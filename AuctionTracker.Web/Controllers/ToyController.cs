@@ -123,8 +123,11 @@ namespace AuctionTracker.Web.Controllers
 
             foreach (var x in toyLines)
             {
+                // Doing manual mapping here as a LAMBDA expression cannot be used directly on the db entity to create this (As wont translate to a SQL equivalent)
                 toy.ToyLineLst.Add(new SelectListItem() { Text = x, Value = x });
             }
+
+            toy.ToyLineLst.Add(new SelectListItem() { Text = "Add a new option", Value = null });
 
             return View(toy);
         }
@@ -136,8 +139,11 @@ namespace AuctionTracker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Toys.Add(obj);
-                //_db.SaveChanges();
+                if(!string.IsNullOrEmpty(obj.ToyLine) && obj.ToyLine != "Please select one")
+                {
+                    _db.Toys.Add(obj);
+                    //_db.SaveChanges();
+                }
 
                 return RedirectToAction("Index", "Toy");
             }

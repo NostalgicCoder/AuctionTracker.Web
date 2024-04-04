@@ -1,15 +1,49 @@
 ﻿@model Toy
 
+@* https://www.w3schools.com/js/default.asp
+https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-select-option *@
+
+<script>
+
+    function updateToyLineControls() {
+
+        /*
+        Required to get around the '<select>' tag not being able to type in new items to a list and because two user controls
+        cannot be bound to the same model item.
+        */
+
+        var toyLineTxt = document.getElementById('toyLineTxt');
+        var toyLineCmbo = document.getElementById('toyLineCmbo');
+
+        if (toyLineCmbo.value == 'Add a new option') {
+            toyLineTxt.hidden = false;
+            toyLineCmbo.hidden = true;
+            toyLineTxt.setAttribute("name", "ToyLine")
+            toyLineCmbo.setAttribute("name", "DontUse")
+        }
+        else {
+            toyLineTxt.hidden = true;
+            toyLineTxt.setAttribute("name", "DontUse")
+        }
+    }
+
+</script>
+
 <h2>Create Toy:</h2>
 
 <form method="post">
 
     <div class="section">
 
+
         <label asp-for="ToyLine"></label>
-        <select asp-for="ToyLine" asp-items="@Model.ToyLineLst" class="form-control" style="width:200px">
+        <select name="ToyLine" asp-items="@Model.ToyLineLst" class="form-control" style="width:200px" id="toyLineCmbo" onchange="updateToyLineControls()">
             <option>Please select one</option>
         </select>
+
+        <br />
+
+        <input name="ToyLine" class="form-control" id="toyLineTxt" hidden="true" />
 
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" style="width:600px" />
