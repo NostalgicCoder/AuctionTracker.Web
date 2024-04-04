@@ -1,0 +1,173 @@
+﻿@using AuctionTracker.Web.Class
+
+@model Product
+
+@{
+    ViewData["Title"] = string.Format("{0} - Auction Sale Info:", Model.SelectedProduct);
+
+    GeneralHelper generalHelper = new GeneralHelper();
+}
+
+<div>
+    <h2>@Model.SelectedProduct - Auction Sale Info:</h2>
+
+    <br />
+
+    <table style="width:30%">
+        <tbody>
+            <tr>
+                <th>
+                    Result Count:
+                </th>
+                <td>
+                    @Model.Game.Count().ToString()
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Mean Price:
+                </th>
+                <td>
+                    <b>£@Math.Round(Model.MeanPrice, 2)</b>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Median Price:
+                </th>
+                <td>
+                    £@Model.MedianPrice
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Range Price:
+                </th>
+                <td>
+                    Min: £@Model.MinPrice > Max: £@Model.MaxPrice
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Mean Postage:
+                </th>
+                <td>
+                    <b>£@Math.Round(Model.MeanPostage, 2)</b>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Median Postage:
+                </th>
+                <td>
+                    £@Model.MedianPostage
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Range Postage:
+                </th>
+                <td>
+                    Min: £@Model.MinPostage > Max: £@Model.MaxPostage
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+
+    <form method="post" asp-action="GameSortOrder">
+
+        <button type="submit" style="width:150px">Order By</button>
+
+        <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <input type="hidden" asp-for="@Model.SelectedProduct" />
+
+    </form>
+
+    <br />
+
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Name:
+                </th>
+                <th>
+                    Condition:
+                </th>
+                <th>
+                    Sealed:
+                </th>
+                <th>
+                    Platform:
+                </th>
+                <th>
+                    Media Type:
+                </th>
+                <th>
+                    Complete:
+                </th>
+                <th>
+                    Price:
+                </th>
+                <th>
+                    Postage:
+                </th>
+                <th>
+                    Sale Date:
+                </th>
+                <th>
+                    Description:
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Game)
+            {
+                <tr>
+                    <td style="text-align: center">
+                        @obj.Name
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Condition
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Sealed
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Platform
+                    </td>
+                    <td style="text-align: center">
+                        @obj.MediaType
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Complete
+                    </td>
+                    <td style="text-align: center">
+                        £@obj.Price
+                    </td>
+                    <td style="text-align: center">
+                        £@obj.Postage
+                    </td>
+                    <td style="text-align: center">
+                        @generalHelper.ConvertDateTime(obj.SaleDate)
+                    </td>
+                    <td>
+                        @obj.Description
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+
+    <a asp-controller="Game" asp-action="Index" style="width:150px">
+        Back to list
+    </a>
+
+</div>

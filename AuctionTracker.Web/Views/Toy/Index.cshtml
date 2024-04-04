@@ -1,0 +1,32 @@
+﻿@using AuctionTracker.Web.Class
+
+@model Product;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+
+    Please select a toy line from the options below then click 'View Results'.
+
+    <p></p>
+
+    <form method="post" asp-action="Index">
+
+        <select asp-for="SelectedProductLine" asp-items="Model.Toy.Select(x =>
+                                  new SelectListItem()
+                                          {
+                                              Text = x.ToyLine,
+                                              Value = x.ToyLine
+                                          }).DistinctBy(x => x.Text).ToList()" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <p></p>
+
+        <button type="submit" style="width:150px">View Results</button>
+
+    </form>
+
+</div>

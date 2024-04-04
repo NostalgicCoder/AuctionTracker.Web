@@ -1,0 +1,56 @@
+﻿@model Game
+
+<h2>Edit Game:</h2>
+
+<form method="post" asp-action="Edit">
+
+    <div class="section">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" style="width:600px" />
+
+        <label asp-for="Sealed"></label>
+        <input asp-for="Sealed" type="checkbox" />
+
+        <br />
+
+        <label asp-for="Condition"></label>
+        <select asp-for="Condition" asp-items="@Model.ConditionList" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Platform"></label>
+        <select asp-for="Platform" asp-items="@Model.PlatformLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="MediaType"></label>
+        <select asp-for="MediaType" asp-items="@Model.MediaLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Complete"></label>
+        <select asp-for="Complete" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" style="width:80px" />
+
+        <label asp-for="Postage"></label>
+        <input asp-for="Postage" class="form-control" style="width:80px" />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit" style="width:150px">Update</button>
+
+    <br /><br />
+
+    <a asp-controller="Game" asp-action="Index">
+        Back to list
+    </a>
+
+</form>

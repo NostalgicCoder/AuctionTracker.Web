@@ -1,0 +1,232 @@
+﻿@using AuctionTracker.Web.Class
+
+@model Product;
+
+@{
+    ViewData["Title"] = string.Format("{0} - Auction Sale Info:", Model.SelectedProduct);
+
+    GeneralHelper generalHelper = new GeneralHelper();
+}
+
+<br />
+
+<h2>@Model.SelectedProductLine > @Model.SelectedProduct - Auction Sale Info:</h2>
+
+<br />
+
+<table style="width:30%">
+    <tbody>
+        <tr>
+            <th>
+                Result Count:
+            </th>
+            <td>
+                @Model.Toy.Count().ToString()
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Mean Price:
+            </th>
+            <td>
+                <b>£@Math.Round(Model.MeanPrice, 2)</b>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Median Price:
+            </th>
+            <td>
+                £@Model.MedianPrice
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Range Price:
+            </th>
+            <td>
+                Min: £@Model.MinPrice > Max: £@Model.MaxPrice
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Mean Postage:
+            </th>
+            <td>
+                <b>£@Math.Round(Model.MeanPostage, 2)</b>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Median Postage:
+            </th>
+            <td>
+                £@Model.MedianPostage
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Range Postage:
+            </th>
+            <td>
+                Min: £@Model.MinPostage > Max: £@Model.MaxPostage
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+
+<form method="post" asp-action="ToyInfoSortOrder">
+
+    <button type="submit" style="width:150px">Order By</button>
+
+    <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
+        <option>Please select one</option>
+    </select>
+
+    <input type="hidden" asp-for="@Model.SelectedProduct" />
+    <input type="hidden" asp-for="@Model.SelectedProductLine" />
+
+</form>
+
+<br />
+
+@{
+    bool completeHidden = true;
+    bool damagedAccessoryHidden = true;
+    bool colourHidden = true;
+    bool discolourHidden = true;
+    bool cardedHidden = true;
+    bool boxedHidden = true;
+    bool standsHidden = true;
+
+    switch (Model.SelectedProductLine.ToLower())
+    {
+        case "mimp":
+            colourHidden = false;
+            discolourHidden = false;
+            break;
+        case "motu":
+            completeHidden = false;
+            damagedAccessoryHidden = false;
+            cardedHidden = false;
+            boxedHidden = false;
+            standsHidden = false;
+            break;
+        default:
+            completeHidden = false;
+            damagedAccessoryHidden = false;
+            cardedHidden = false;
+            boxedHidden = false;
+            break;
+    }
+}
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Name:
+            </th>
+            <th>
+                Condition:
+            </th>
+            <th hidden="@completeHidden">
+                Complete:
+            </th>
+            <th hidden="@colourHidden">
+                Colour:
+            </th>
+            <th hidden="@discolourHidden">
+                Discoloured:
+            </th>
+            <th hidden="@standsHidden">
+                Stands:
+            </th>
+            <th>
+                Damaged:
+            </th>
+            <th hidden="@damagedAccessoryHidden">
+                Damaged Accessory:
+            </th>
+            <th hidden="@cardedHidden">
+                Carded:
+            </th>
+            <th hidden="@boxedHidden">
+                Boxed:
+            </th>
+            <th>
+                Price:
+            </th>
+            <th>
+                Postage:
+            </th>
+            <th>
+                Sale Date:
+            </th>
+            <th>
+                Description:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.Toy)
+        {
+            <tr>
+                <td style="text-align: center">
+                    @obj.Name
+                </td>
+                <td style="text-align: center">
+                    @obj.Condition
+                </td>
+                <td style="text-align: center" hidden="@completeHidden">
+                    @obj.Complete
+                </td>
+                <td style="text-align: center" hidden="@colourHidden">
+                    @obj.Colour
+                </td>
+                <td style="text-align: center" hidden="@discolourHidden">
+                    @obj.Discoloured
+                </td>
+                <td style="text-align: center" hidden="@standsHidden">
+                    @obj.Stands
+                </td>
+                <td style="text-align: center">
+                    @obj.Damaged
+                </td>
+                <td style="text-align: center" hidden="@damagedAccessoryHidden">
+                    @obj.DamagedAccessory
+                </td>
+                <td style="text-align: center" hidden="@cardedHidden">
+                    @obj.Carded
+                </td>
+                <td style="text-align: center" hidden="@boxedHidden">
+                    @obj.Boxed
+                </td>
+                <td style="text-align: center">
+                    £@obj.Price
+                </td>
+                <td style="text-align: center">
+                    £@obj.Postage
+                </td>
+                <td style="text-align: center">
+                    @generalHelper.ConvertDateTime(obj.SaleDate)
+                </td>
+                <td>
+                    @obj.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<form method="post" asp-action="Index">
+
+    <button type="submit" style="width:150px">Back to list</button>
+
+    <input type="hidden" asp-for="@Model.SelectedProductLine" />
+
+</form>

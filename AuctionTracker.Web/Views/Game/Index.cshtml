@@ -1,0 +1,117 @@
+﻿@using AuctionTracker.Web.Class
+
+@model Product;
+
+@{
+    ViewData["Title"] = "Games - Auction Sale Info:";
+
+    GeneralHelper generalHelper = new GeneralHelper();
+}
+
+<div>
+
+    <div>
+        <a asp-controller="Game" asp-action="Create">
+            Create New Game
+        </a>
+    </div>
+
+    <br />
+
+    <h2>Games - Auction Sale Info:</h2>
+
+    <br />
+
+    <form method="post" asp-action="Index">
+
+        <button type="submit" style="width:150px">Order By</button>
+
+        <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+    </form>
+
+    <br />
+
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Name:
+                </th>
+                <th>
+                    Condition:
+                </th>
+                <th>
+                    Sealed:
+                </th>
+                <th>
+                    Platform:
+                </th>
+                <th>
+                    Media Type:
+                </th>
+                <th>
+                    Complete:
+                </th>
+                <th>
+                    Price:
+                </th>
+                <th>
+                    Postage:
+                </th>
+                <th>
+                    Sale Date:
+                </th>
+                <th>
+                    Description:
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Game)
+            {
+                <tr>
+                    <td style="text-align: center">
+                         @Html.ActionLink(@obj.Name, "GameInfo", "Game", new { valGameName = obj.Name })
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Condition
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Sealed
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Platform
+                    </td>
+                    <td style="text-align: center">
+                        @obj.MediaType
+                    </td>
+                    <td style="text-align: center">
+                        @obj.Complete
+                    </td>
+                    <td style="text-align: center">
+                        £@obj.Price
+                    </td>
+                    <td style="text-align: center">
+                        £@obj.Postage
+                    </td>
+                    <td style="text-align: center">
+                        @generalHelper.ConvertDateTime(obj.SaleDate)
+                    </td>
+                    <td>
+                        @obj.Description
+                    </td>
+                    <td style="text-align: center">
+                        <a asp-controller="Game" asp-action="Edit" asp-route-id="@obj.Id">Edit</a>
+                        <a asp-controller="Game" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

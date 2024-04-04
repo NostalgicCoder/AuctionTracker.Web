@@ -1,0 +1,35 @@
+﻿@model Game
+
+<h2>Delete Game:</h2>
+
+<form method="post" asp-action="DeleteProduct">
+
+    <div class="section">
+
+        <input asp-for="Id" hidden />
+
+        <label asp-for="Name"></label>
+        <input asp-for="Name" disabled class="form-control" />
+
+        <label asp-for="Platform"></label>
+        <input asp-for="Platform" disabled class="form-control" />
+
+        <label asp-for="MediaType"></label>
+        <input asp-for="MediaType" disabled class="form-control" />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" disabled class="form-control" />
+
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+
+    <p></p>
+
+    <a asp-controller="Game" asp-action="Index">
+        Back to list
+    </a>
+
+</form>

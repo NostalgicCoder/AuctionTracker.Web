@@ -1,0 +1,79 @@
+﻿@model Toy
+
+<h2>Create Toy:</h2>
+
+<form method="post">
+
+    <div class="section">
+
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" style="width:600px" />
+
+        <label asp-for="Condition"></label>
+        <select asp-for="Condition" asp-items="@Model.ConditionList" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Complete"></label>
+        <select asp-for="Complete" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Carded"></label>
+        <input asp-for="Carded" type="checkbox" />
+
+        <br />
+
+        <label asp-for="Boxed"></label>
+        <input asp-for="Boxed" type="checkbox" />
+
+        <br />
+
+        <label asp-for="Discoloured"></label>
+        <input asp-for="Discoloured" type="checkbox" />
+
+        <br />
+
+        <label asp-for="Stands"></label>
+        <select asp-for="Stands" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Damaged"></label>
+        <select asp-for="Damaged" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+            @* <option selected>No</option> *@
+        </select>
+
+        <label asp-for="DamagedAccessory"></label>
+        <select asp-for="DamagedAccessory" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Colour"></label>
+        <select asp-for="Colour" asp-items="@Model.ColourLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" style="width:80px" />
+
+        <label asp-for="Postage"></label>
+        <input asp-for="Postage" class="form-control" style="width:80px" />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+
+    </div>
+
+    <br />
+
+    <button type="submit" style="width:150px">Create</button>
+
+    <br /><br />
+
+    <a asp-controller="Toy" asp-action="Index" style="width:150px">
+        Back to list
+    </a>
+
+</form>
