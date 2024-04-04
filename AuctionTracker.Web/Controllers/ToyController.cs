@@ -119,20 +119,12 @@ namespace AuctionTracker.Web.Controllers
         {
             Toy toy = new Toy();
 
-            //List<SelectListItem> result = _db.Toys.Select(x => new SelectListItem()
-            //{
-            //    Text = x.ToyLine,
-            //    Value = x.ToyLine
-            //}).DistinctBy(x => x.Text).ToList();
+            var toyLines = _db.Toys.Select(x => x.ToyLine).Distinct();
 
-            var result = _db.Toys.Select(x => x.ToyLine).Distinct();
-
-            List<SelectListItem> result2 = result.Select(x => new SelectListItem()
+            foreach (var x in toyLines)
             {
-                Text = x,
-                Value = x
-            }).DistinctBy(x => x.Text).ToList();
-
+                toy.ToyLineLst.Add(new SelectListItem() { Text = x, Value = x });
+            }
 
             return View(toy);
         }
