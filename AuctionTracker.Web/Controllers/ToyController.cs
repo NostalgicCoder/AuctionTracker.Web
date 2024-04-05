@@ -139,7 +139,65 @@ namespace AuctionTracker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(!string.IsNullOrEmpty(obj.ToyLine) && obj.ToyLine != "Please select one")
+                bool pass = true;
+
+                if (string.IsNullOrEmpty(obj.ToyLine) || obj.ToyLine == "Please select one")
+                {
+                    pass = false;
+                }
+
+                if (string.IsNullOrEmpty(obj.Name))
+                {
+                    pass = false;
+                }
+
+                if (obj.Price == 0.00m || obj.Postage == 0.00m)
+                {
+                    pass = false;
+                }
+
+                if (obj.Condition == "Please select one")
+                {
+                    pass = false;
+                }
+
+                if (obj.Complete == "Please select one")
+                {
+                    pass = false;
+                }
+
+                if (obj.Damaged == "Please select one")
+                {
+                    pass = false;
+                }
+
+                if(obj.ToyLine.ToLower() != "motu")
+                {
+                    obj.Stands = (obj.Stands == "Please select one") ? "Yes" : obj.Stands;
+                }
+                else
+                {
+                    if (obj.Stands == "Please select one")
+                    {
+                        pass = false;
+                    }
+                }
+
+                if (obj.ToyLine.ToLower() != "mimp")
+                {
+                    obj.Colour = (obj.Colour == "Please select one") ? string.Empty : obj.Colour;
+                }
+                else
+                {
+                    if (obj.Colour == "Please select one")
+                    {
+                        pass = false;
+                    }
+                }
+
+                obj.DamagedAccessory = (obj.DamagedAccessory == "Please select one") ? "No" : obj.DamagedAccessory;
+
+                if (pass)
                 {
                     _db.Toys.Add(obj);
                     //_db.SaveChanges();

@@ -5,25 +5,51 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
 
 <script>
 
-    function updateToyLineControls() {
+    function updateControls() {
 
         /*
-        Required to get around the '<select>' tag not being able to type in new items to a list and because two user controls
-        cannot be bound to the same model item.
+        Some of the below is required to get around the '<select>' tags limitation of not being able to type type in and add new values 
+        to the drop down list and because two user controls cannot be bound to the same model item.
         */
 
         var toyLineTxt = document.getElementById('toyLineTxt');
         var toyLineCmbo = document.getElementById('toyLineCmbo');
 
+        var standsLbl = document.getElementById('standsLbl');
+        var standsCmbo = document.getElementById('standsCmbo');
+
+        var colourLbl = document.getElementById('colourLbl');
+        var colourCmbo = document.getElementById('colourCmbo');
+        
         if (toyLineCmbo.value == 'Add a new option') {
             toyLineTxt.hidden = false;
             toyLineCmbo.hidden = true;
-            toyLineTxt.setAttribute("name", "ToyLine")
-            toyLineCmbo.setAttribute("name", "DontUse")
+            toyLineTxt.setAttribute("name", "ToyLine");
+            toyLineCmbo.setAttribute("name", "DontUse");
         }
         else {
             toyLineTxt.hidden = true;
-            toyLineTxt.setAttribute("name", "DontUse")
+            toyLineTxt.setAttribute("name", "DontUse");
+        }
+
+        if (toyLineCmbo.value == 'Motu') {
+            standsLbl.hidden = false;
+            standsCmbo.hidden = false;
+        }
+        else {
+            standsLbl.hidden = true;
+            standsCmbo.hidden = true;
+            standsCmbo.value = 'Please select one';
+        }
+
+        if (toyLineCmbo.value == 'Mimp') {
+            colourLbl.hidden = false;
+            colourCmbo.hidden = false;
+        }
+        else {
+            colourLbl.hidden = true;
+            colourCmbo.hidden = true;
+            colourCmbo.value = 'Please select one';
         }
     }
 
@@ -37,13 +63,11 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
 
 
         <label asp-for="ToyLine"></label>
-        <select name="ToyLine" asp-items="@Model.ToyLineLst" class="form-control" style="width:200px" id="toyLineCmbo" onchange="updateToyLineControls()">
+        <select name="ToyLine" asp-items="@Model.ToyLineLst" class="form-control" style="width:200px" id="toyLineCmbo" onchange="updateControls()">
             <option>Please select one</option>
         </select>
 
-        <br />
-
-        <input name="ToyLine" class="form-control" id="toyLineTxt" hidden="true" />
+        <input name="ToyLine" class="form-control" style="width:600px" id="toyLineTxt" hidden="true" />
 
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" style="width:600px" />
@@ -73,8 +97,8 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
 
         <br />
 
-        <label asp-for="Stands"></label>
-        <select asp-for="Stands" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+        <label asp-for="Stands" id="standsLbl" hidden="true"></label>
+        <select asp-for="Stands" asp-items="@Model.CompleteLst" class="form-control" style="width:200px" id="standsCmbo" hidden="true">
             <option>Please select one</option>
         </select>
 
@@ -89,8 +113,8 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
             <option>Please select one</option>
         </select>
 
-        <label asp-for="Colour"></label>
-        <select asp-for="Colour" asp-items="@Model.ColourLst" class="form-control" style="width:200px">
+        <label asp-for="Colour" id="colourLbl" hidden="true"></label>
+        <select asp-for="Colour" asp-items="@Model.ColourLst" class="form-control" style="width:200px" id="colourCmbo" hidden="true">
             <option>Please select one</option>
         </select>
 
