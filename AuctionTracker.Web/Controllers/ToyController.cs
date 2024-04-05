@@ -2,7 +2,7 @@
 using AuctionTracker.Web.Data;
 using AuctionTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.RegularExpressions;
 
 namespace AuctionTracker.Web.Controllers
 {
@@ -11,6 +11,7 @@ namespace AuctionTracker.Web.Controllers
         private readonly ApplicationDbContext _db;
 
         private CalculatePrices _calculatePrices = new CalculatePrices();
+        private PopulateControls _populateControls = new PopulateControls();
 
         /// <summary>
         /// Constructor
@@ -119,15 +120,7 @@ namespace AuctionTracker.Web.Controllers
         {
             Toy toy = new Toy();
 
-            var toyLines = _db.Toys.Select(x => x.ToyLine).Distinct();
-
-            foreach (var x in toyLines)
-            {
-                // Doing manual mapping here as a LAMBDA expression cannot be used directly on the db entity to create this (As wont translate to a SQL equivalent)
-                toy.ToyLineLst.Add(new SelectListItem() { Text = x, Value = x });
-            }
-
-            toy.ToyLineLst.Add(new SelectListItem() { Text = "Add a new option", Value = null });
+            toy.ToyLineLst = _populateControls.GenerateToyLineListItems(_db);
 
             return View(toy);
         }
@@ -137,74 +130,83 @@ namespace AuctionTracker.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Toy obj)
         {
-            if (ModelState.IsValid)
+            bool pass = true;
+
+            if (string.IsNullOrEmpty(obj.ToyLine) || obj.ToyLine == "Please select one")
             {
-                bool pass = true;
+                pass = false;
+                ModelState.AddModelError("ToyLine", "No 'Toyline' selected OR added");
+            }
 
-                if (string.IsNullOrEmpty(obj.ToyLine) || obj.ToyLine == "Please select one")
+            if (obj.Price == 0.00m || obj.Postage == 0.00m)
+            {
+                pass = false;
+                ModelState.AddModelError("Name", "No valid price OR postage provided.");
+            }
+
+            // The regex for this needs tweaking as not right currently
+            if (!Regex.IsMatch(obj.Price.ToString(), @"^\d$") || !Regex.IsMatch(obj.Postage.ToString(), @"^\d$"))
+            {
+                pass = false;
+                ModelState.AddModelError("Name", "Price OR postage is not a number value.");
+            }
+
+            if (obj.Condition == "Please select one")
+            {
+                pass = false;
+                ModelState.AddModelError("Name", "No 'Condition' provided.");
+            }
+
+            if (obj.Complete == "Please select one")
+            {
+                pass = false;
+                ModelState.AddModelError("Name", "No 'Complete' provided.");
+            }
+
+            if (obj.Damaged == "Please select one")
+            {
+                pass = false;
+                ModelState.AddModelError("Name", "No 'Damaged' provided.");
+            }
+
+            if (obj.ToyLine.ToLower() != "motu")
+            {
+                obj.Stands = (obj.Stands == "Please select one") ? "Yes" : obj.Stands;
+            }
+            else
+            {
+                if (obj.Stands == "Please select one")
                 {
                     pass = false;
+                    ModelState.AddModelError("Name", "No 'Stands' provided.");
                 }
+            }
 
-                if (string.IsNullOrEmpty(obj.Name))
+            if (obj.ToyLine.ToLower() != "mimp")
+            {
+                obj.Colour = (obj.Colour == "Please select one") ? string.Empty : obj.Colour;
+            }
+            else
+            {
+                if (obj.Colour == "Please select one")
                 {
                     pass = false;
+                    ModelState.AddModelError("Name", "No 'Colour' provided.");
                 }
+            }
 
-                if (obj.Price == 0.00m || obj.Postage == 0.00m)
-                {
-                    pass = false;
-                }
+            obj.DamagedAccessory = (obj.DamagedAccessory == "Please select one") ? "No" : obj.DamagedAccessory;
 
-                if (obj.Condition == "Please select one")
-                {
-                    pass = false;
-                }
-
-                if (obj.Complete == "Please select one")
-                {
-                    pass = false;
-                }
-
-                if (obj.Damaged == "Please select one")
-                {
-                    pass = false;
-                }
-
-                if(obj.ToyLine.ToLower() != "motu")
-                {
-                    obj.Stands = (obj.Stands == "Please select one") ? "Yes" : obj.Stands;
-                }
-                else
-                {
-                    if (obj.Stands == "Please select one")
-                    {
-                        pass = false;
-                    }
-                }
-
-                if (obj.ToyLine.ToLower() != "mimp")
-                {
-                    obj.Colour = (obj.Colour == "Please select one") ? string.Empty : obj.Colour;
-                }
-                else
-                {
-                    if (obj.Colour == "Please select one")
-                    {
-                        pass = false;
-                    }
-                }
-
-                obj.DamagedAccessory = (obj.DamagedAccessory == "Please select one") ? "No" : obj.DamagedAccessory;
-
-                if (pass)
-                {
-                    _db.Toys.Add(obj);
-                    //_db.SaveChanges();
-                }
+            if (ModelState.IsValid && pass)
+            {
+                _db.Toys.Add(obj);
+                //_db.SaveChanges();
 
                 return RedirectToAction("Index", "Toy");
             }
+
+            // Regenerate the list of toyLines otherwise JS wont have the data it needs on refresh
+            obj.ToyLineLst = _populateControls.GenerateToyLineListItems(_db);
 
             return View(obj);
         }

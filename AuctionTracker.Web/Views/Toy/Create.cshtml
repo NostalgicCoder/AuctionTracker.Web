@@ -8,7 +8,7 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
     function updateControls() {
 
         /*
-        Some of the below is required to get around the '<select>' tags limitation of not being able to type type in and add new values 
+        Some of the below is required to get around the '<select>' tags limitation of not being able to type type in and add new values
         to the drop down list and because two user controls cannot be bound to the same model item.
         */
 
@@ -20,7 +20,10 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
 
         var colourLbl = document.getElementById('colourLbl');
         var colourCmbo = document.getElementById('colourCmbo');
-        
+
+        var damagedAccessoryLbl = document.getElementById('damagedAccessoryLbl');
+        var damagedAccessoryCmbo = document.getElementById('damagedAccessoryCmbo');
+
         if (toyLineCmbo.value == 'Add a new option') {
             toyLineTxt.hidden = false;
             toyLineCmbo.hidden = true;
@@ -32,25 +35,38 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
             toyLineTxt.setAttribute("name", "DontUse");
         }
 
-        if (toyLineCmbo.value == 'Motu') {
-            standsLbl.hidden = false;
-            standsCmbo.hidden = false;
-        }
-        else {
-            standsLbl.hidden = true;
-            standsCmbo.hidden = true;
-            standsCmbo.value = 'Please select one';
+        switch (toyLineCmbo.value) {
+            case 'Mimp':
+                colourLbl.hidden = false;
+                colourCmbo.hidden = false;
+
+                damagedAccessoryLbl.hidden = true;
+                damagedAccessoryCmbo.hidden = true
+                standsLbl.hidden = true;
+                standsCmbo.hidden = true;
+                break;
+            case 'Motu':
+                standsLbl.hidden = false;
+                standsCmbo.hidden = false;
+                damagedAccessoryLbl.hidden = false;
+                damagedAccessoryCmbo.hidden = false
+
+                colourLbl.hidden = true;
+                colourCmbo.hidden = true;
+                break;
+            default:
+                damagedAccessoryLbl.hidden = false;
+                damagedAccessoryCmbo.hidden = false
+
+                colourLbl.hidden = true;
+                colourCmbo.hidden = true;
+                standsLbl.hidden = true;
+                standsCmbo.hidden = true;
         }
 
-        if (toyLineCmbo.value == 'Mimp') {
-            colourLbl.hidden = false;
-            colourCmbo.hidden = false;
-        }
-        else {
-            colourLbl.hidden = true;
-            colourCmbo.hidden = true;
-            colourCmbo.value = 'Please select one';
-        }
+        damagedAccessoryCmbo.value = 'Please select one';
+        standsCmbo.value = 'Please select one';
+        colourCmbo.value = 'Please select one';
     }
 
 </script>
@@ -61,6 +77,7 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
 
     <div class="section">
 
+        <div asp-validation-summary="All" class="text-danger"></div>
 
         <label asp-for="ToyLine"></label>
         <select name="ToyLine" asp-items="@Model.ToyLineLst" class="form-control" style="width:200px" id="toyLineCmbo" onchange="updateControls()">
@@ -108,8 +125,8 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
             @* <option selected>No</option> *@
         </select>
 
-        <label asp-for="DamagedAccessory"></label>
-        <select asp-for="DamagedAccessory" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+        <label asp-for="DamagedAccessory" id="damagedAccessoryLbl"></label>
+        <select asp-for="DamagedAccessory" asp-items="@Model.CompleteLst" class="form-control" style="width:200px" id="damagedAccessoryCmbo">
             <option>Please select one</option>
         </select>
 
@@ -140,3 +157,11 @@ https://stackoverflow.com/questions/31990700/run-function-when-clicking-on-a-sel
     </a>
 
 </form>
+
+@* The below gives us 'Client' side validation without the need to callout to the server.  All the validations are done 'Client' side because of the scripts included below in the partial view.
+ *@
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
