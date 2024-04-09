@@ -1,0 +1,126 @@
+﻿@model Toy
+
+<h2>Edit Toy:</h2>
+
+<form method="post" asp-action="Edit">
+
+    @{
+        bool completeHidden = true;
+        bool damagedAccessoryHidden = true;
+        bool colourHidden = true;
+        bool discolourHidden = true;
+        bool standsHidden = true;
+
+        switch (Model.ToyLine.ToLower())
+        {
+            case "mimp":
+                colourHidden = false;
+                discolourHidden = false;
+                break;
+            case "motu":
+                completeHidden = false;
+                damagedAccessoryHidden = false;
+                standsHidden = false;
+                break;
+            default:
+                completeHidden = false;
+                damagedAccessoryHidden = false;
+                break;
+        }
+    }
+
+    <div class="section">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <input type="hidden" asp-for="@Model.ToyLine" />
+
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" style="width:600px" />
+
+        <label asp-for="Condition"></label>
+        <select asp-for="Condition" asp-items="@Model.ConditionList" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <div hidden="@completeHidden">
+            <label asp-for="Complete"></label>
+            <select asp-for="Complete" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+                <option>Please select one</option>
+            </select>
+        </div>
+
+        <label asp-for="Carded"></label>
+        <input asp-for="Carded" type="checkbox" />
+
+        <br />
+
+        <label asp-for="Boxed"></label>
+        <input asp-for="Boxed" type="checkbox" />
+
+        <br />
+
+        <div hidden="@discolourHidden">
+            <label asp-for="Discoloured"></label>
+            <input asp-for="Discoloured" type="checkbox"  />
+
+            <br />
+        </div>
+
+        <div hidden="@standsHidden">
+            <label asp-for="Stands"></label>
+            <select asp-for="Stands" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+                <option>Please select one</option>
+            </select>
+        </div>
+
+        <label asp-for="Damaged"></label>
+        <select asp-for="Damaged" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+            <option>Please select one</option>
+        </select>
+
+        <div hidden="@damagedAccessoryHidden">
+            <label asp-for="DamagedAccessory"></label>
+            <select asp-for="DamagedAccessory" asp-items="@Model.CompleteLst" class="form-control" style="width:200px">
+                <option>Please select one</option>
+            </select>
+        </div>
+
+        <div hidden="@colourHidden">
+            <label asp-for="Colour"></label>
+            <select asp-for="Colour" asp-items="@Model.ColourLst" class="form-control" style="width:200px">
+                <option>Please select one</option>
+            </select>
+        </div>
+
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" style="width:80px" />
+
+        <label asp-for="Postage"></label>
+        <input asp-for="Postage" class="form-control" style="width:80px" />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit" style="width:150px">Update</button>
+
+</form>
+
+<br />
+
+<form method="post" asp-controller="Toy" asp-action="ConvertToyModelToProductModel">
+
+    <button type="submit" style="width:150px">Back to list</button>
+
+    <input type="hidden" asp-for="@Model.ToyLine" />
+
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

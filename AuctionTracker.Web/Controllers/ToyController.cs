@@ -113,6 +113,18 @@ namespace AuctionTracker.Web.Controllers
             return RedirectToAction("ToyInfo", "Toy", new { valToyName = product.SelectedProduct, valToyLine = product.SelectedProductLine, valToySortOrder = product.SelectedSortOrder });
         }
 
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ConvertToyModelToProductModel(Toy val)
+        {
+            Product product = new Product();
+
+            product.SelectedProductLine = val.ToyLine;
+
+            return RedirectToAction("Index", "Toy", product);
+        }
+
         #region Create
 
         //GET
@@ -206,6 +218,104 @@ namespace AuctionTracker.Web.Controllers
 
             // Regenerate the list of toyLines otherwise JS wont have the data it needs on refresh
             obj.ToyLineLst = _populateControls.GenerateToyLineListItems(_db);
+
+            return View(obj);
+        }
+
+        #endregion
+
+        #region Edit
+
+        //GET
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var obj = _db.Toys.Find(id);
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Toy obj)
+        {
+            bool pass = true;
+
+            if (obj.Price == 0.00m || obj.Postage == 0.00m)
+            {
+                pass = false;
+                ModelState.AddModelError("Edit", "No valid price OR postage provided.");
+            }
+
+            if (!_generalHelper.ValidDecimalNumber(obj.Price) || !_generalHelper.ValidDecimalNumber(obj.Postage))
+            {
+                pass = false;
+                ModelState.AddModelError("Edit", "Price OR postage is not a number value.");
+            }
+
+            if (obj.Condition == "Please select one")
+            {
+                pass = false;
+                ModelState.AddModelError("Edit", "No 'Condition' provided.");
+            }
+
+            if (obj.Complete == "Please select one")
+            {
+                pass = false;
+                ModelState.AddModelError("Edit", "No 'Complete' provided.");
+            }
+
+            if (obj.Damaged == "Please select one")
+            {
+                pass = false;
+                ModelState.AddModelError("Edit", "No 'Damaged' provided.");
+            }
+
+            if (obj.ToyLine.ToLower() != "motu")
+            {
+                obj.Stands = (obj.Stands == "Please select one") ? "Yes" : obj.Stands;
+            }
+            else
+            {
+                if (obj.Stands == "Please select one")
+                {
+                    pass = false;
+                    ModelState.AddModelError("Edit", "No 'Stands' provided.");
+                }
+            }
+
+            if (obj.ToyLine.ToLower() != "mimp")
+            {
+                obj.Colour = (obj.Colour == "Please select one") ? string.Empty : obj.Colour;
+            }
+            else
+            {
+                if (obj.Colour == "Please select one")
+                {
+                    pass = false;
+                    ModelState.AddModelError("Edit", "No 'Colour' provided.");
+                }
+            }
+
+            obj.DamagedAccessory = (obj.DamagedAccessory == "Please select one") ? "No" : obj.DamagedAccessory;
+
+            if (ModelState.IsValid && pass)
+            {
+                _db.Toys.Update(obj);
+                _db.SaveChanges(); 
+
+                return RedirectToAction("Index", "Toy"); 
+            }
 
             return View(obj);
         }

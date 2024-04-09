@@ -26,10 +26,14 @@
 
     <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
 
-    <p></p>
+</form>
 
-    <a asp-controller="Toy" asp-action="Index">
-        Back to list
-    </a>
+<br />
+
+<form method="post" asp-controller="Toy" asp-action="ConvertToyModelToProductModel">
+
+    <button type="submit" style="width:150px">Back to list</button>
+
+    <input type="hidden" asp-for="@Model.ToyLine" />
 
 </form>
