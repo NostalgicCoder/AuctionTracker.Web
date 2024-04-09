@@ -113,6 +113,8 @@
             <th>
                 Description:
             </th>
+            <th>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -160,6 +162,9 @@
                 </td>
                 <td>
                     @obj.Description
+                </td>
+                <td style="text-align: center">
+                    <a asp-controller="Toy" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
                 </td>
             </tr>
         }

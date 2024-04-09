@@ -2,7 +2,6 @@
 using AuctionTracker.Web.Data;
 using AuctionTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.RegularExpressions;
 
 namespace AuctionTracker.Web.Controllers
 {
@@ -209,6 +208,45 @@ namespace AuctionTracker.Web.Controllers
             obj.ToyLineLst = _populateControls.GenerateToyLineListItems(_db);
 
             return View(obj);
+        }
+
+        #endregion
+
+        #region Delete
+
+        //GET
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var obj = _db.Toys.Find(id);
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteProduct(int? id)
+        {
+            var obj = _db.Toys.Find(id);
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Toys.Remove(obj);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index", "Toy");
         }
 
         #endregion

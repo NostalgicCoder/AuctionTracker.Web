@@ -1,0 +1,35 @@
+﻿@model Toy
+
+<h2>Delete Toy:</h2>
+
+<form method="post" asp-action="DeleteProduct">
+
+    <div class="section">
+
+        <input asp-for="Id" hidden />
+
+        <label asp-for="Name"></label>
+        <input asp-for="Name" disabled class="form-control" />
+
+        <label asp-for="Condition"></label>
+        <input asp-for="Condition" disabled class="form-control" />
+
+        <label asp-for="Damaged"></label>
+        <input asp-for="Damaged" disabled class="form-control" />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" disabled class="form-control" />
+
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+
+    <p></p>
+
+    <a asp-controller="Toy" asp-action="Index">
+        Back to list
+    </a>
+
+</form>
