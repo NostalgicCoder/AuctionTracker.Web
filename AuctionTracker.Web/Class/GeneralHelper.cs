@@ -1,4 +1,6 @@
-﻿namespace AuctionTracker.Web.Class
+﻿using System.Text.RegularExpressions;
+
+namespace AuctionTracker.Web.Class
 {
     public class GeneralHelper
     {
@@ -45,6 +47,23 @@
                 default:
                     return string.Empty;
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Validate that a decimal value match a pattern like '10.29' or '1000.45' and fails with for eg '100.456' or '.45'
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public bool ValidDecimalNumber(decimal val)
+        {
+            if(Regex.IsMatch(val.ToString(), @"^[0-9]*[.][0-9]{2}$"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

@@ -12,6 +12,7 @@ namespace AuctionTracker.Web.Controllers
 
         private CalculatePrices _calculatePrices = new CalculatePrices();
         private PopulateControls _populateControls = new PopulateControls();
+        private GeneralHelper _generalHelper = new GeneralHelper();
 
         /// <summary>
         /// Constructor
@@ -135,38 +136,37 @@ namespace AuctionTracker.Web.Controllers
             if (string.IsNullOrEmpty(obj.ToyLine) || obj.ToyLine == "Please select one")
             {
                 pass = false;
-                ModelState.AddModelError("ToyLine", "No 'Toyline' selected OR added");
+                ModelState.AddModelError("Create", "No 'Toyline' selected OR added");
             }
 
             if (obj.Price == 0.00m || obj.Postage == 0.00m)
             {
                 pass = false;
-                ModelState.AddModelError("Name", "No valid price OR postage provided.");
+                ModelState.AddModelError("Create", "No valid price OR postage provided.");
             }
 
-            // The regex for this needs tweaking as not right currently
-            if (!Regex.IsMatch(obj.Price.ToString(), @"^\d$") || !Regex.IsMatch(obj.Postage.ToString(), @"^\d$"))
+            if(!_generalHelper.ValidDecimalNumber(obj.Price) || !_generalHelper.ValidDecimalNumber(obj.Postage))
             {
                 pass = false;
-                ModelState.AddModelError("Name", "Price OR postage is not a number value.");
+                ModelState.AddModelError("Create", "Price OR postage is not a number value.");
             }
 
             if (obj.Condition == "Please select one")
             {
                 pass = false;
-                ModelState.AddModelError("Name", "No 'Condition' provided.");
+                ModelState.AddModelError("Create", "No 'Condition' provided.");
             }
 
             if (obj.Complete == "Please select one")
             {
                 pass = false;
-                ModelState.AddModelError("Name", "No 'Complete' provided.");
+                ModelState.AddModelError("Create", "No 'Complete' provided.");
             }
 
             if (obj.Damaged == "Please select one")
             {
                 pass = false;
-                ModelState.AddModelError("Name", "No 'Damaged' provided.");
+                ModelState.AddModelError("Create", "No 'Damaged' provided.");
             }
 
             if (obj.ToyLine.ToLower() != "motu")
@@ -178,7 +178,7 @@ namespace AuctionTracker.Web.Controllers
                 if (obj.Stands == "Please select one")
                 {
                     pass = false;
-                    ModelState.AddModelError("Name", "No 'Stands' provided.");
+                    ModelState.AddModelError("Create", "No 'Stands' provided.");
                 }
             }
 
@@ -191,7 +191,7 @@ namespace AuctionTracker.Web.Controllers
                 if (obj.Colour == "Please select one")
                 {
                     pass = false;
-                    ModelState.AddModelError("Name", "No 'Colour' provided.");
+                    ModelState.AddModelError("Create", "No 'Colour' provided.");
                 }
             }
 
@@ -200,7 +200,7 @@ namespace AuctionTracker.Web.Controllers
             if (ModelState.IsValid && pass)
             {
                 _db.Toys.Add(obj);
-                //_db.SaveChanges();
+                _db.SaveChanges();
 
                 return RedirectToAction("Index", "Toy");
             }
