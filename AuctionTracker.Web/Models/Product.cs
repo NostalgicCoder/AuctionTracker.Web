@@ -18,18 +18,19 @@ namespace AuctionTracker.Web.Models
         public string SelectedProduct { get; set; }
         public string SelectedProductLine { get; set; }
         public string SelectedSortOrder { get; set; }
+        public string SearchCriteria { get; set; }
 
         public IEnumerable<Game> Game { get; set; }
         public IEnumerable<Toy> Toy { get; set; }
 
         public List<SelectListItem> SortOrderList = new List<SelectListItem>()
         {
-            new SelectListItem {Text = "Price >", Value = "PriceAsc"},
-            new SelectListItem {Text = "Price <", Value = "PriceDsc"},
+            new SelectListItem {Text = "Price > (Low to High)", Value = "PriceAsc"},
+            new SelectListItem {Text = "Price < (High to Low)", Value = "PriceDsc"},
             new SelectListItem {Text = "Platform", Value = "Platform"},
             new SelectListItem {Text = "Name", Value = "Name"},
-            new SelectListItem {Text = "Date >", Value = "DateAsc"},
-            new SelectListItem {Text = "Date <", Value = "DateDsc"},
+            new SelectListItem {Text = "Date > (Old to New)", Value = "DateAsc"},
+            new SelectListItem {Text = "Date < (New to Old)", Value = "DateDsc"},
             new SelectListItem {Text = "Condition", Value = "Condition"},
             new SelectListItem {Text = "Complete", Value = "Complete"}
         };

@@ -26,39 +26,111 @@ namespace AuctionTracker.Web.Controllers
             switch (val.SelectedSortOrder)
             {
                 case "PriceAsc":
-                    product.Game = _db.Games.OrderBy(x => x.Price);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderBy(x => x.Price);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderBy(x => x.Price);
+                    }
+
                     return View(product);
                     break;
                 case "PriceDsc":
-                    product.Game = _db.Games.OrderByDescending(x => x.Price);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderByDescending(x => x.Price);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderByDescending(x => x.Price);
+                    }
+                    
                     return View(product);
                     break;
                 case "Platform":
-                    product.Game = _db.Games.OrderBy(x => x.Platform);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderBy(x => x.Platform);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderBy(x => x.Platform);
+                    }
+                    
                     return View(product);
                     break;
                 case "Name":
-                    product.Game = _db.Games.OrderBy(x => x.Name);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderBy(x => x.Name);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderBy(x => x.Name);
+                    }
+                    
                     return View(product);
                     break;
                 case "DateAsc":
-                    product.Game = _db.Games.OrderBy(x => x.SaleDate);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderBy(x => x.SaleDate);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderBy(x => x.SaleDate);
+                    }
+                    
                     return View(product);
                     break;
                 case "DateDsc":
-                    product.Game = _db.Games.OrderByDescending(x => x.SaleDate);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderByDescending(x => x.SaleDate);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderByDescending(x => x.SaleDate);
+                    }
+                    
                     return View(product);
                     break;
                 case "Condition":
-                    product.Game = _db.Games.OrderBy(x => x.Condition);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderBy(x => x.Condition);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderBy(x => x.Condition);
+                    }
+                    
                     return View(product);
                     break;
                 case "Complete":
-                    product.Game = _db.Games.OrderByDescending(x => x.Complete);
+                    if (!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria)).OrderByDescending(x => x.Complete);
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderByDescending(x => x.Complete);
+                    }
+                    
                     return View(product);
                     break;
                 default:
-                    product.Game = _db.Games.OrderBy(x => x.Name);
+                    if(!string.IsNullOrEmpty(val.SearchCriteria))
+                    {
+                        product.Game = _db.Games.Where(x => x.Name.Contains(val.SearchCriteria));
+                    }
+                    else
+                    {
+                        product.Game = _db.Games.OrderBy(x => x.Name);
+                    }
+
                     return View(product);
                     break;
             }
