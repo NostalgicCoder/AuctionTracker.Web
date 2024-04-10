@@ -47,6 +47,19 @@
                     Min: £@Model.MinPrice > Max: £@Model.MaxPrice
                 </td>
             </tr>
+            @{
+                if(Model.MaxPriceCurrentYear != 0.00M)
+                {
+                    <tr>
+                        <th>
+                            @DateTime.Now.Year Range Price:
+                        </th>
+                        <td>
+                            Min: £@Model.MinPriceCurrentYear > Max: £@Model.MaxPriceCurrentYear
+                        </td>
+                    </tr>
+                }
+            }
             <tr>
                 <th>
                     Mean Postage:

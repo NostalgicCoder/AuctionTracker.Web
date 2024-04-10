@@ -8,6 +8,8 @@ namespace AuctionTracker.Web.Models
         public decimal MedianPrice { get; set; }
         public decimal MaxPrice { get; set; }
         public decimal MinPrice { get; set; }
+        public decimal MaxPriceCurrentYear { get; set; }
+        public decimal MinPriceCurrentYear { get; set; }
         public decimal MeanPostage { get; set; }
         public decimal MedianPostage { get; set; }
         public decimal MaxPostage { get; set; }

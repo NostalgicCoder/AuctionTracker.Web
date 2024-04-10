@@ -30,6 +30,13 @@ namespace AuctionTracker.Web.Class
 
             product.MaxPrice = product.Game.Select(x => x.Price).Max();
             product.MinPrice = product.Game.Select(x => x.Price).Min();
+
+            if (product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Count() > 1)
+            {
+                product.MaxPriceCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Max();
+                product.MinPriceCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Min();
+            }
+
             product.MaxPostage = product.Game.Select(x => x.Postage).Max();
             product.MinPostage = product.Game.Select(x => x.Postage).Min();
 
@@ -62,6 +69,13 @@ namespace AuctionTracker.Web.Class
 
             product.MaxPrice = product.Toy.Select(x => x.Price).Max();
             product.MinPrice = product.Toy.Select(x => x.Price).Min();
+
+            if (product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Count() > 1)
+            {
+                product.MaxPriceCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Max();
+                product.MinPriceCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Min();
+            }
+
             product.MaxPostage = product.Toy.Select(x => x.Postage).Max();
             product.MinPostage = product.Toy.Select(x => x.Postage).Min();
 
