@@ -14,7 +14,7 @@
 
     <form method="post" asp-action="Index">
 
-        <select asp-for="SelectedProductLine" asp-items="Model.Toy.Select(x =>
+        <select class="form-select" id="exampleSelect1" asp-for="SelectedProductLine" asp-items="Model.Toy.Select(x =>
                                   new SelectListItem()
                                           {
                                               Text = x.ToyLine,
@@ -25,7 +25,7 @@
 
         <p></p>
 
-        <button type="submit" style="width:150px">View Results</button>
+        <button type="submit" style="width:150px" class="btn btn-primary">View Results</button>
 
     </form>
 
