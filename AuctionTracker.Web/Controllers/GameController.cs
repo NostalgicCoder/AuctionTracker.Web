@@ -27,6 +27,7 @@ namespace AuctionTracker.Web.Controllers
 
             if (!string.IsNullOrEmpty(val.SearchCriteria))
             {
+                // Make search criteria lower case so keywords are not blocked by case sensetivity
                 product.Game = product.Game.Where(x => x.Name.ToLower().Contains(val.SearchCriteria.ToLower()));
             }
 

@@ -79,32 +79,34 @@ namespace AuctionTracker.Web.Controllers
             product.SelectedProduct = valToyName;
             product.SelectedProductLine = valToyLine;
 
+            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct);
+
             // Debated over adding new sort options for 'Toy' items but most of the unique new fields are unlikely to be searched against.  Can be added in if required later
             switch (valToySortOrder)
             {
                 case "PriceAsc":
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderBy(x => x.Price);
+                    product.Toy = product.Toy.OrderBy(x => x.Price);
                     break;
                 case "PriceDsc":
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderByDescending(x => x.Price);
+                    product.Toy = product.Toy.OrderByDescending(x => x.Price);
                     break;
                 case "Name":
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderBy(x => x.Name);
+                    product.Toy = product.Toy.OrderBy(x => x.Name);
                     break;
                 case "DateAsc":
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderBy(x => x.SaleDate);
+                    product.Toy = product.Toy.OrderBy(x => x.SaleDate);
                     break;
                 case "DateDsc":
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderByDescending(x => x.SaleDate);
+                    product.Toy = product.Toy.OrderByDescending(x => x.SaleDate);
                     break;
                 case "Condition":
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderBy(x => x.Condition);
+                    product.Toy = product.Toy.OrderBy(x => x.Condition);
                     break;
                 case "Complete":
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderByDescending(x => x.Complete);
+                    product.Toy = product.Toy.OrderByDescending(x => x.Complete);
                     break;
                 default:
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderByDescending(x => x.SaleDate);
+                    product.Toy = product.Toy.OrderByDescending(x => x.SaleDate);
                     break;
             }
 
