@@ -8,120 +8,120 @@
     GeneralHelper generalHelper = new GeneralHelper();
 }
 
+<br />
+
+<h2>Games - Auction Sale Info:</h2>
+
+<br />
+
 <div>
+    <a asp-controller="Game" asp-action="Create" style="width:150px" class="btn btn-primary">
+        Create New Game
+    </a>
+</div>
 
-    <div>
-        <a asp-controller="Game" asp-action="Create" style="width:150px" class="btn btn-primary">
-            Create New Game
-        </a>
-    </div>
+<br />
 
-    <br />
+<form method="post" asp-action="Index">
 
-    <h2>Games - Auction Sale Info:</h2>
+    <label>Keyword:</label>
+    <input asp-for="SearchCriteria" class="form-control" style="width:400px" />
 
-    <br />
-
-    <form method="post" asp-action="Index">
-
-        <label>Keyword:</label>
-        <input asp-for="SearchCriteria" class="form-control" style="width:400px"/>
-
-        <label>Order By:</label>
-
-        <br />
-
-        <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
-            <option>Please select one</option>
-        </select>
-
-        <br />
-        <br />
-
-        <button type="submit" style="width:150px" class="btn btn-primary">Filter Results</button>
-
-    </form>
+    <label>Order By:</label>
 
     <br />
 
-    <table style="width:100%">
-        <thead>
+    <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
+        <option>Please select one</option>
+    </select>
+
+    <br />
+    <br />
+
+    <button type="submit" style="width:150px" class="btn btn-primary">Filter Results</button>
+
+</form>
+
+<br />
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Name:
+            </th>
+            <th>
+                Condition:
+            </th>
+            <th>
+                Sealed:
+            </th>
+            <th>
+                Platform:
+            </th>
+            <th>
+                Media Type:
+            </th>
+            <th>
+                Complete:
+            </th>
+            <th>
+                Price:
+            </th>
+            <th>
+                Postage:
+            </th>
+            <th>
+                Sale Date:
+            </th>
+            <th>
+                Description:
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.Game)
+        {
             <tr>
-                <th>
-                    Name:
-                </th>
-                <th>
-                    Condition:
-                </th>
-                <th>
-                    Sealed:
-                </th>
-                <th>
-                    Platform:
-                </th>
-                <th>
-                    Media Type:
-                </th>
-                <th>
-                    Complete:
-                </th>
-                <th>
-                    Price:
-                </th>
-                <th>
-                    Postage:
-                </th>
-                <th>
-                    Sale Date:
-                </th>
-                <th>
-                    Description:
-                </th>
-                <th>
-                </th>
+                <td style="text-align: center">
+                    @Html.ActionLink(@obj.Name, "GameInfo", "Game", new { valGameName = obj.Name })
+                </td>
+                <td style="text-align: center">
+                    @obj.Condition
+                </td>
+                <td style="text-align: center">
+                    @obj.Sealed
+                </td>
+                <td style="text-align: center">
+                    @obj.Platform
+                </td>
+                <td style="text-align: center">
+                    @obj.MediaType
+                </td>
+                <td style="text-align: center">
+                    @obj.Complete
+                </td>
+                <td style="text-align: center">
+                    £@obj.Price
+                </td>
+                <td style="text-align: center">
+                    £@obj.Postage
+                </td>
+                <td style="text-align: center">
+                    @generalHelper.ConvertDateTime(obj.SaleDate)
+                </td>
+                <td>
+                    @obj.Description
+                </td>
+                <td style="text-align: center">
+                    <a asp-controller="Game" asp-action="Edit" asp-route-id="@obj.Id">Edit</a>
+                    <a asp-controller="Game" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var obj in Model.Game)
-            {
-                <tr>
-                    <td style="text-align: center">
-                         @Html.ActionLink(@obj.Name, "GameInfo", "Game", new { valGameName = obj.Name })
-                    </td>
-                    <td style="text-align: center">
-                        @obj.Condition
-                    </td>
-                    <td style="text-align: center">
-                        @obj.Sealed
-                    </td>
-                    <td style="text-align: center">
-                        @obj.Platform
-                    </td>
-                    <td style="text-align: center">
-                        @obj.MediaType
-                    </td>
-                    <td style="text-align: center">
-                        @obj.Complete
-                    </td>
-                    <td style="text-align: center">
-                        £@obj.Price
-                    </td>
-                    <td style="text-align: center">
-                        £@obj.Postage
-                    </td>
-                    <td style="text-align: center">
-                        @generalHelper.ConvertDateTime(obj.SaleDate)
-                    </td>
-                    <td>
-                        @obj.Description
-                    </td>
-                    <td style="text-align: center">
-                        <a asp-controller="Game" asp-action="Edit" asp-route-id="@obj.Id">Edit</a>
-                        <a asp-controller="Game" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
 </div>

@@ -35,28 +35,84 @@ namespace AuctionTracker.Web.Controllers
                 switch (product.SelectedSortOrder)
                 {
                     case "PriceAsc":
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Price);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderBy(x => x.Price);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Price);
+                        }
                         break;
                     case "PriceDsc":
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderByDescending(x => x.Price);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderByDescending(x => x.Price);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderByDescending(x => x.Price);
+                        }
                         break;
                     case "Name":
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Name);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderBy(x => x.Name);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Name);
+                        }
                         break;
                     case "DateAsc":
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.SaleDate);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderBy(x => x.SaleDate);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.SaleDate);
+                        }
                         break;
                     case "DateDsc":
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderByDescending(x => x.SaleDate);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderByDescending(x => x.SaleDate);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderByDescending(x => x.SaleDate);
+                        }
                         break;
                     case "Condition":
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Condition);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderBy(x => x.Condition);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Condition);
+                        }
                         break;
                     case "Complete":
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderByDescending(x => x.Complete);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderByDescending(x => x.Complete);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderByDescending(x => x.Complete);
+                        }
                         break;
                     default:
-                        product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Name);
+                        if (!string.IsNullOrEmpty(product.SearchCriteria))
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name.Contains(product.SearchCriteria)).OrderBy(x => x.Name);
+                        }
+                        else
+                        {
+                            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).OrderBy(x => x.Name);
+                        }
                         break;
                 }
 
@@ -96,7 +152,7 @@ namespace AuctionTracker.Web.Controllers
                     product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderByDescending(x => x.Complete);
                     break;
                 default:
-                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderBy(x => x.Name);
+                    product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct).OrderByDescending(x => x.SaleDate);
                     break;
             }
 
