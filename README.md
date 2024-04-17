@@ -23,7 +23,7 @@ Technologies / Principles Used:
 
 Resources:
 
-https://getbootstrap.com/docs/5.3/getting-started/introduction/
-https://icons.getbootstrap.com/
-https://bootswatch.com/cosmo/
-Original Traning Video - https://www.youtube.com/watch?v=hZ1DASYd9rk&list=WL&index=7
+- https://getbootstrap.com/docs/5.3/getting-started/introduction/
+- https://icons.getbootstrap.com/
+- https://bootswatch.com/cosmo/
+- Original Traning Video - https://www.youtube.com/watch?v=hZ1DASYd9rk&list=WL&index=7
