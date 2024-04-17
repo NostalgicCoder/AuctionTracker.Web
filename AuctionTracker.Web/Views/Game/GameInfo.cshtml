@@ -91,7 +91,7 @@
 
     <form method="post" asp-action="GameSortOrder">
 
-        <button type="submit" style="width:150px" class="btn btn-primary">Order By</button>
+        <button type="submit" class="btn btn-primary">Order By</button>
 
         <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
             <option>Please select one</option>
@@ -179,8 +179,8 @@
 
     <br />
 
-    <a asp-controller="Game" asp-action="Index" style="width:150px" class="btn btn-primary">
-        Back to list
+    <a asp-controller="Game" asp-action="Index" class="btn btn-primary siteButton">
+        <i class="bi bi-chevron-left"></i> Back to list
     </a>
 
 </div>

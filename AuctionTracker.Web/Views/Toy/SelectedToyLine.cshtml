@@ -15,8 +15,8 @@
 <br />
 
 <div>
-    <a asp-controller="Toy" asp-action="Create" style="width:150px" class="btn btn-primary">
-        Create New Toy
+    <a asp-controller="Toy" asp-action="Create" class="btn btn-primary siteButton">
+        Create New Toy &nbsp; <i class="bi bi-plus-circle"></i>
     </a>
 </div>
 
@@ -38,7 +38,7 @@
     <br />
     <br />
 
-    <button type="submit" style="width:150px" class="btn btn-primary">Filter Results</button>
+    <button type="submit" class="btn btn-primary">Filter Results &nbsp; <i class="bi bi-filter"></i></button>
 
     <input type="hidden" asp-for="@Model.SelectedProduct" />
     <input type="hidden" asp-for="@Model.SelectedProductLine" />
@@ -184,6 +184,6 @@
 
 <br />
 
-<a asp-controller="Toy" asp-action="Index" style="width:150px" class="btn btn-primary">
-    Back to list
+<a asp-controller="Toy" asp-action="Index" class="btn btn-primary siteButton">
+    <i class="bi bi-chevron-left"></i> Back to list
 </a>

@@ -24,7 +24,7 @@
 
     <br />
 
-    <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+    <button type="submit" class="btn btn-danger">Delete &nbsp; <i class="bi bi-trash3"></i></button>
 
 </form>
 
@@ -32,7 +32,7 @@
 
 <form method="post" asp-controller="Toy" asp-action="ConvertToyModelToProductModel">
 
-    <button type="submit" style="width:150px" class="btn btn-primary">Back to list</button>
+    <button type="submit" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back to list</button>
 
     <input type="hidden" asp-for="@Model.ToyLine" />
 
