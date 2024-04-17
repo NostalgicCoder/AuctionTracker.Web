@@ -78,6 +78,8 @@
     }
 }
 
+@Model.Toy.Count().ToString() Results found
+
 <table style="width:100%">
     <thead>
         <tr>
@@ -132,7 +134,8 @@
         {
             <tr>
                 <td style="text-align: center">
-                    @Html.ActionLink(@obj.Name, "ToyInfo", "Toy", new { valToyName = obj.Name, valToyLine = obj.ToyLine })
+                   @*  @Html.ActionLink(@obj.Name, "ToyInfo", "Toy", new { valToyName = obj.Name, valToyLine = obj.ToyLine }) *@
+                    @Html.ActionLink(@obj.Name, "ToyInfo", "Toy", new Product() { SelectedProduct = obj.Name, SelectedProductLine = obj.ToyLine })
                 </td>
                 <td style="text-align: center">
                     @obj.Condition

@@ -72,17 +72,22 @@ namespace AuctionTracker.Web.Controllers
             }
         }
 
-        public IActionResult ToyInfo(string? valToyName, string? valToyLine, string? valToySortOrder)
+        public IActionResult ToyInfo(Product product)
         {
-            Product product = new Product();
-
-            product.SelectedProduct = valToyName;
-            product.SelectedProductLine = valToyLine;
-
             product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct);
 
+            if(product.SearchCondition)
+            {
+                product.Toy = product.Toy.Where(x => x.Condition.ToLower() == "high" || x.Condition.ToLower() == "mint");
+            }
+
+            if (product.SearchComplete)
+            {
+                product.Toy = product.Toy.Where(x => x.Complete.ToLower() == "yes");
+            }
+
             // Debated over adding new sort options for 'Toy' items but most of the unique new fields are unlikely to be searched against.  Can be added in if required later
-            switch (valToySortOrder)
+            switch (product.SelectedSortOrder)
             {
                 case "PriceAsc":
                     product.Toy = product.Toy.OrderBy(x => x.Price);
@@ -120,7 +125,7 @@ namespace AuctionTracker.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ToyInfoSortOrder(Product product)
         {
-            return RedirectToAction("ToyInfo", "Toy", new { valToyName = product.SelectedProduct, valToyLine = product.SelectedProductLine, valToySortOrder = product.SelectedSortOrder });
+            return RedirectToAction("ToyInfo", "Toy", product);
         }
 
         //POST

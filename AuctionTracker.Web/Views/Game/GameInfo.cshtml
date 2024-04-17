@@ -97,6 +97,26 @@
             <option>Please select one</option>
         </select>
 
+        <p></p>
+
+        Show Only:
+
+        <p></p>
+
+        <div class="form-check">
+            <input asp-for="SearchCondition" class="form-check-input" type="checkbox">
+            <label class="form-check-label">
+                Mint/High Condition
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input asp-for="SearchComplete" class="form-check-input" type="checkbox">
+            <label class="form-check-label">
+                Complete
+            </label>
+        </div>
+
         <input type="hidden" asp-for="@Model.SelectedProduct" />
 
     </form>

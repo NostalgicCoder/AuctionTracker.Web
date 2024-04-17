@@ -44,6 +44,8 @@
 
 <br />
 
+@Model.Game.Count().ToString() Results found
+
 <table style="width:100%">
     <thead>
         <tr>
@@ -86,7 +88,8 @@
         {
             <tr>
                 <td style="text-align: center">
-                    @Html.ActionLink(@obj.Name, "GameInfo", "Game", new { valGameName = obj.Name })
+                    @* @Html.ActionLink(@obj.Name, "GameInfo", "Game", new { valGameName = obj.Name }) *@
+                    @Html.ActionLink(@obj.Name, "GameInfo", "Game", new Product() { SelectedProduct = obj.Name })
                 </td>
                 <td style="text-align: center">
                     @obj.Condition

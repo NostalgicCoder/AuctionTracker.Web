@@ -65,14 +65,21 @@ namespace AuctionTracker.Web.Controllers
             return View(product);
         }
 
-        public IActionResult GameInfo(string? valGameName, string? valSortOrder)
+        public IActionResult GameInfo(Product product)
         {
-            Product product = new Product();
+            product.Game = _db.Games.Where(x => x.Name == product.SelectedProduct);
 
-            product.SelectedProduct = valGameName;
-            product.Game = _db.Games.Where(x => x.Name == valGameName);
+            if (product.SearchCondition)
+            {
+                product.Game = product.Game.Where(x => x.Condition.ToLower() == "high" || x.Condition.ToLower() == "mint");
+            }
 
-            switch (valSortOrder)
+            if (product.SearchComplete)
+            {
+                product.Game = product.Game.Where(x => x.Complete.ToLower() == "yes");
+            }
+
+            switch (product.SelectedSortOrder)
             {
                 case "PriceAsc":
                     product.Game = product.Game.OrderBy(x => x.Price);
@@ -113,7 +120,7 @@ namespace AuctionTracker.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult GameSortOrder(Product product)
         {
-            return RedirectToAction("GameInfo", "Game", new { valGameName = product.SelectedProduct, valSortOrder = product.SelectedSortOrder });
+            return RedirectToAction("GameInfo", "Game", product);
         }
 
         #region Create

@@ -20,6 +20,9 @@ namespace AuctionTracker.Web.Models
         public string SelectedSortOrder { get; set; }
         public string SearchCriteria { get; set; }
 
+        public bool SearchCondition { get; set; }
+        public bool SearchComplete { get; set; }
+
         public IEnumerable<Game> Game { get; set; }
         public IEnumerable<Toy> Toy { get; set; }
 
