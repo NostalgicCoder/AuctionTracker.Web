@@ -29,9 +29,13 @@ th, td {
     padding: 5px;
 }
 
+td.bgHighlight {
+    background-color: #D9E5F7;
+}
+
 th {
     text-align: center;
-    background-color: lightgray
+    background-color: lightgray;
 }
 
 a {
@@ -39,7 +43,7 @@ a {
 }
 
 a.siteButton {
-    width: 160px
+    width: 160px;
 }
 
 div.section {
@@ -48,5 +52,10 @@ div.section {
 }
 
 button {
-    width: 160px
+    width: 160px;
+}
+
+span.highlightGreen {
+    color: mediumseagreen;
+    font-weight: 900;
 }

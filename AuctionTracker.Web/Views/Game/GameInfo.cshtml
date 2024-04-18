@@ -99,29 +99,30 @@
 
         <p></p>
 
-        Show Only:
+        <div class="card border-primary mb-3" style="width: 100%">
+            <div class="card-header">Show Only:</div>
+            <div class="card-body">
 
-        <p></p>
+                <div class="form-check">
+                    <input asp-for="SearchCondition" class="form-check-input" type="checkbox">
+                    <label class="form-check-label">
+                        Mint/High Condition
+                    </label>
+                </div>
 
-        <div class="form-check">
-            <input asp-for="SearchCondition" class="form-check-input" type="checkbox">
-            <label class="form-check-label">
-                Mint/High Condition
-            </label>
-        </div>
+                <div class="form-check">
+                    <input asp-for="SearchComplete" class="form-check-input" type="checkbox">
+                    <label class="form-check-label">
+                        Complete
+                    </label>
+                </div>
 
-        <div class="form-check">
-            <input asp-for="SearchComplete" class="form-check-input" type="checkbox">
-            <label class="form-check-label">
-                Complete
-            </label>
+            </div>
         </div>
 
         <input type="hidden" asp-for="@Model.SelectedProduct" />
 
     </form>
-
-    <br />
 
     <table style="width:100%">
         <thead>
@@ -180,7 +181,7 @@
                     <td style="text-align: center">
                         @obj.Complete
                     </td>
-                    <td style="text-align: center">
+                    <td class="bgHighlight" style="text-align: center">
                         £@obj.Price
                     </td>
                     <td style="text-align: center">
