@@ -92,13 +92,13 @@
 
 <form method="post" asp-action="ToyInfoSortOrder">
 
-    <button type="submit" class="btn btn-primary">Order By</button>
+    <label>Order By:</label>
 
-    <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
+    <select class="form-select" asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
         <option>Please select one</option>
     </select>
 
-   <p></p>
+    <p></p>
 
     <div class="card border-primary mb-3" style="width: 100%">
         <div class="card-header">Show Only:</div>
@@ -120,6 +120,10 @@
 
         </div>
     </div>
+
+    <button type="submit" class="btn btn-primary">Filter Results &nbsp; <i class="bi bi-filter"></i></button>
+
+    <p></p>
 
     <input type="hidden" asp-for="@Model.SelectedProduct" />
     <input type="hidden" asp-for="@Model.SelectedProductLine" />

@@ -48,7 +48,7 @@
                 </td>
             </tr>
             @{
-                if(Model.MaxPriceCurrentYear != 0.00M)
+                if (Model.MaxPriceCurrentYear != 0.00M)
                 {
                     <tr>
                         <th>
@@ -91,9 +91,9 @@
 
     <form method="post" asp-action="GameSortOrder">
 
-        <button type="submit" class="btn btn-primary">Order By</button>
+        <label>Order By:</label>
 
-        <select asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
+        <select class="form-select" asp-for="SelectedSortOrder" asp-items="@Model.SortOrderList" style="width:200px">
             <option>Please select one</option>
         </select>
 
@@ -119,6 +119,10 @@
 
             </div>
         </div>
+
+        <button type="submit" class="btn btn-primary">Filter Results &nbsp; <i class="bi bi-filter"></i></button>
+
+        <p></p>
 
         <input type="hidden" asp-for="@Model.SelectedProduct" />
 
