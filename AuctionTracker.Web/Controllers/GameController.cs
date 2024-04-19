@@ -27,7 +27,7 @@ namespace AuctionTracker.Web.Controllers
 
             if (!string.IsNullOrEmpty(val.SearchCriteria))
             {
-                // Make search criteria lower case so keywords are not blocked by case sensetivity
+                // Make search criteria lower case so keywords are not blocked by case sensitivity
                 product.Game = product.Game.Where(x => x.Name.ToLower().Contains(val.SearchCriteria.ToLower()));
             }
 
@@ -77,6 +77,11 @@ namespace AuctionTracker.Web.Controllers
             if (product.SearchComplete)
             {
                 product.Game = product.Game.Where(x => x.Complete.ToLower() == "yes");
+            }
+
+            if (product.SearchCurrentYear)
+            {
+                product.Game = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year);
             }
 
             switch (product.SelectedSortOrder)

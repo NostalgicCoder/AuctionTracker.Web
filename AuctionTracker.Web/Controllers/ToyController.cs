@@ -35,7 +35,7 @@ namespace AuctionTracker.Web.Controllers
 
                 if (!string.IsNullOrEmpty(product.SearchCriteria))
                 {
-                    // Make search criteria lower case so keywords are not blocked by case sensetivity
+                    // Make search criteria lower case so keywords are not blocked by case sensitivity
                     product.Toy = product.Toy.Where(x => x.Name.ToLower().Contains(product.SearchCriteria.ToLower()));
                 }
 
@@ -84,6 +84,11 @@ namespace AuctionTracker.Web.Controllers
             if (product.SearchComplete)
             {
                 product.Toy = product.Toy.Where(x => x.Complete.ToLower() == "yes");
+            }
+
+            if(product.SearchCurrentYear)
+            {
+                product.Toy = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year);
             }
 
             // Debated over adding new sort options for 'Toy' items but most of the unique new fields are unlikely to be searched against.  Can be added in if required later
