@@ -1,5 +1,5 @@
 -----------------------------------------
-17 April 2024:
+19 April 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -27,3 +27,4 @@ Resources:
 - https://icons.getbootstrap.com/
 - https://bootswatch.com/cosmo/
 - Original Traning Video - https://www.youtube.com/watch?v=hZ1DASYd9rk&list=WL&index=7
+- Refer to the location '\Resources\AuctionDb.bak' in the code for a backup copy of the SQL database (Test Version).
