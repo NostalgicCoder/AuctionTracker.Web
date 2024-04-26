@@ -41,6 +41,8 @@ namespace AuctionTracker.Web.Class
 
                 product.MaxPostage = product.Game.Select(x => x.Postage).Max();
                 product.MinPostage = product.Game.Select(x => x.Postage).Min();
+
+                SpotPriceTrend(product);
             }
 
             return product;
@@ -86,6 +88,64 @@ namespace AuctionTracker.Web.Class
             }
 
             return product;
+        }
+
+        /// <summary>
+        /// Analyse the search results and try and spot a trend for the price: up, down, same or not enough data.  
+        /// - The results for this are not full proof as sometimes the data can just be erratic due to condition, completeness of a item affecting its price.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public string SpotPriceTrend(Product product)
+        {
+            string trend = "Not enough data";
+
+            if (product.Game.Where(x => (x.Condition.ToLower() == "high" || x.Condition.ToLower() == "medium") && x.Complete.ToLower() == "yes").Count() == 2)
+            {
+                decimal newest = product.Game.OrderByDescending(x => x.SaleDate).Select(x => x.Price).FirstOrDefault();
+                decimal oldest = product.Game.OrderBy(x => x.SaleDate).Select(x => x.Price).FirstOrDefault();
+
+                if (oldest > newest)
+                {
+                    trend = "Going down";
+                }
+
+                if (newest > oldest)
+                {
+                    trend = "Going up";
+                }
+
+                if (oldest == newest)
+                {
+                    trend = "Staying the same";
+                }
+            }
+
+            if(product.Game.Where(x => (x.Condition.ToLower() == "high" || x.Condition.ToLower() == "medium") && x.Complete.ToLower() == "yes").Count() > 2)
+            {
+                List<Game> result = product.Game.Where(x => (x.Condition.ToLower() == "high" || x.Condition.ToLower() == "medium") && x.Complete.ToLower() == "yes").OrderByDescending(x => x.SaleDate).ToList();
+
+                decimal price1 = result[0].Price;
+                decimal price2 = result[1].Price;
+                decimal price3 = result[2].Price;
+
+                if(price1 > price2 && price1 > price3)
+                {
+                    trend = "Going up";
+                }
+
+                if(price1 < price2 && price1 < price3)
+                {
+                    trend = "Going down";
+                }
+
+                if(price1 == price2 && price1 == price3)
+                {
+                    trend = "Staying the same";
+                }
+            }
+
+            return trend;
         }
     }
 }

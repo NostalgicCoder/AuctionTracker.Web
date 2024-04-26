@@ -4,6 +4,12 @@ namespace AuctionTracker.Web.Class
 {
     public class GeneralHelper
     {
+        /// <summary>
+        /// Convert the dateTime value into a more simplified version for display.
+        /// - Full dateTime data retained in backend to allow for more powerful search features later
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
         public string ConvertDateTime(DateTime val)
         {
             switch (val.Month)
@@ -51,7 +57,7 @@ namespace AuctionTracker.Web.Class
         }
 
         /// <summary>
-        /// Validate that a decimal value match a pattern like '10.29' or '1000.45' and fails with for eg '100.456' or '.45'
+        /// Validate that a decimal value matches a pattern like '10.29' or '1000.45' and fails with for eg '100.456' or '.45'
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>

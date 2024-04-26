@@ -1,5 +1,5 @@
 -----------------------------------------
-19 April 2024:
+26 April 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -20,6 +20,7 @@ Technologies / Principles Used:
 - CSS / Bootstrap Themes & Icons
 - Entity Framework - Code first approach
 - SQL Server Express backend database
+- TDD (Microsoft Test Framework + Fluent Assertion)
 
 Resources:
 
