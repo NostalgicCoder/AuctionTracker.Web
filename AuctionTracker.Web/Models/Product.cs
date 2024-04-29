@@ -14,8 +14,8 @@ namespace AuctionTracker.Web.Models
         public decimal MedianPostage { get; set; }
         public decimal MaxPostage { get; set; }
         public decimal MinPostage { get; set; }
-        public string Trend { get; set; }
 
+        public string Trend { get; set; }
         public string SelectedProduct { get; set; }
         public string SelectedProductLine { get; set; }
         public string SelectedSortOrder { get; set; }

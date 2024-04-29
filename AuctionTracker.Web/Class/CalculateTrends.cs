@@ -130,6 +130,18 @@ namespace AuctionTracker.Web.Class
                 trend = _trendSame;
             }
 
+            // Less accurate trend scenarios - Below:
+
+            if (price3 > price2 && price3 > price1)
+            {
+                trend = _trendDown;
+            }
+
+            if (price3 < price2 && price3 < price1)
+            {
+                trend = _trendUp;
+            }
+
             return trend;
         }
     }

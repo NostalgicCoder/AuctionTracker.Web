@@ -34,6 +34,7 @@ namespace AuctionTracker.Web.Models
 
         public List<SelectListItem> MediaLst = new List<SelectListItem>()
         {
+            new SelectListItem {Text = "Blu-ray", Value = "Blu-ray"},
             new SelectListItem {Text = "DVD-ROM", Value = "DVD-ROM"},
             new SelectListItem {Text = "CD-ROM", Value = "CD-ROM"},
             new SelectListItem { Text = "Tape", Value = "Tape" },
@@ -49,6 +50,10 @@ namespace AuctionTracker.Web.Models
             new SelectListItem {Text = "Spectrum", Value = "Spectrum"},
             new SelectListItem {Text = "Amstrad", Value = "Amstrad"},
             new SelectListItem {Text = "C64", Value = "C64"},
+            new SelectListItem {Text = "Xbox 360", Value = "Xbox 360"},
+            new SelectListItem {Text = "Xbox One", Value = "Xbox One"},
+            new SelectListItem {Text = "Playstation 2", Value = "Playstation 2"},
+            new SelectListItem {Text = "Playstation 4", Value = "Playstation 4"},
             new SelectListItem {Text = "Mongrel", Value = "Mongrel"}
         };
 
