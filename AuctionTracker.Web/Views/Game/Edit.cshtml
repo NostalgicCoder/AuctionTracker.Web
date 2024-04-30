@@ -8,10 +8,12 @@
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" style="width:600px" />
 
-        <label asp-for="Sealed"></label>
-        <input asp-for="Sealed" type="checkbox" />
-
-        <br />
+        <div class="form-check">
+            <input asp-for="Sealed" class="form-check-input" type="checkbox">
+            <label class="form-check-label">
+                Sealed
+            </label>
+        </div>
 
         <label asp-for="Condition"></label>
         <select asp-for="Condition" asp-items="@Model.ConditionList" class="form-control" style="width:200px">

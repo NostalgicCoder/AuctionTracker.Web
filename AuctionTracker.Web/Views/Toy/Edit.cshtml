@@ -50,21 +50,25 @@
             </select>
         </div>
 
-        <label asp-for="Carded"></label>
-        <input asp-for="Carded" type="checkbox" />
+        <div class="form-check">
+            <input asp-for="Carded" class="form-check-input" type="checkbox">
+            <label class="form-check-label">
+                Carded
+            </label>
+        </div>
 
-        <br />
+        <div class="form-check">
+            <input asp-for="Boxed" class="form-check-input" type="checkbox">
+            <label class="form-check-label">
+                Boxed
+            </label>
+        </div>
 
-        <label asp-for="Boxed"></label>
-        <input asp-for="Boxed" type="checkbox" />
-
-        <br />
-
-        <div hidden="@discolourHidden">
-            <label asp-for="Discoloured"></label>
-            <input asp-for="Discoloured" type="checkbox"  />
-
-            <br />
+        <div class="form-check" hidden="@discolourHidden">
+            <input asp-for="Discoloured" class="form-check-input" type="checkbox">
+            <label class="form-check-label">
+                Discoloured
+            </label>
         </div>
 
         <div hidden="@standsHidden">

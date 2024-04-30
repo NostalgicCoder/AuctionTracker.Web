@@ -32,10 +32,10 @@ namespace AuctionTracker.Web.Models
         {
             new SelectListItem {Text = "Price > (Low to High)", Value = "PriceAsc"},
             new SelectListItem {Text = "Price < (High to Low)", Value = "PriceDsc"},
+            new SelectListItem {Text = "Date (Old to New)", Value = "DateAsc"},
+            new SelectListItem {Text = "Date (New to Old)", Value = "DateDsc"},
             new SelectListItem {Text = "Platform", Value = "Platform"},
             new SelectListItem {Text = "Name", Value = "Name"},
-            new SelectListItem {Text = "Date > (Old to New)", Value = "DateAsc"},
-            new SelectListItem {Text = "Date < (New to Old)", Value = "DateDsc"},
             new SelectListItem {Text = "Condition", Value = "Condition"},
             new SelectListItem {Text = "Complete", Value = "Complete"}
         };
