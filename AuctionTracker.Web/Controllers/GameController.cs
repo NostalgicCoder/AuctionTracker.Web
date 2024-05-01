@@ -10,6 +10,7 @@ namespace AuctionTracker.Web.Controllers
         private readonly ApplicationDbContext _db;
 
         private CalculatePrices _calculatePrices = new CalculatePrices();
+        private Validation _validation = new Validation();
 
         /// <summary>
         /// Constructor
@@ -141,17 +142,19 @@ namespace AuctionTracker.Web.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Game obj)
+        public IActionResult Create(Game game)
         {
-            if (ModelState.IsValid)
+            bool pass = _validation.ValidateGame(ModelState, game);
+
+            if (ModelState.IsValid && pass)
             {
-                _db.Games.Add(obj);
+                _db.Games.Add(game);
                 _db.SaveChanges();
 
                 return RedirectToAction("Index", "Game");
             }
 
-            return View(obj);
+            return View(game);
         }
 
         #endregion
@@ -179,17 +182,19 @@ namespace AuctionTracker.Web.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Game obj)
+        public IActionResult Edit(Game game)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Games.Update(obj);
-                _db.SaveChanges(); // Not saved to the database until this command is run
+            bool pass = _validation.ValidateGame(ModelState, game);
 
-                return RedirectToAction("Index", "Game"); // When performed redirect to the 'Index' action
+            if (ModelState.IsValid && pass)
+            {
+                _db.Games.Update(game);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index", "Game");
             }
 
-            return View(obj);
+            return View(game);
         }
 
         #endregion

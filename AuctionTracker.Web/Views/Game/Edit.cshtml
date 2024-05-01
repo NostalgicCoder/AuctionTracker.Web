@@ -5,6 +5,9 @@
 <form method="post" asp-action="Edit">
 
     <div class="section">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" style="width:600px" />
 
@@ -56,3 +59,9 @@
     </a>
 
 </form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

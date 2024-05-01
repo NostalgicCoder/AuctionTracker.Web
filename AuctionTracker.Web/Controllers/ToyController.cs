@@ -12,6 +12,7 @@ namespace AuctionTracker.Web.Controllers
         private CalculatePrices _calculatePrices = new CalculatePrices();
         private PopulateControls _populateControls = new PopulateControls();
         private GeneralHelper _generalHelper = new GeneralHelper();
+        private Validation _validation = new Validation();
 
         /// <summary>
         /// Constructor
@@ -160,86 +161,22 @@ namespace AuctionTracker.Web.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Toy obj)
+        public IActionResult Create(Toy toy)
         {
-            bool pass = true;
-
-            if (string.IsNullOrEmpty(obj.ToyLine) || obj.ToyLine == "Please select one")
-            {
-                pass = false;
-                ModelState.AddModelError("Create", "No 'Toyline' selected OR added");
-            }
-
-            if (obj.Price == 0.00m || obj.Postage == 0.00m)
-            {
-                pass = false;
-                ModelState.AddModelError("Create", "No valid price OR postage provided.");
-            }
-
-            if (!_generalHelper.ValidDecimalNumber(obj.Price) || !_generalHelper.ValidDecimalNumber(obj.Postage))
-            {
-                pass = false;
-                ModelState.AddModelError("Create", "Price OR postage is not a number value.");
-            }
-
-            if (obj.Condition == "Please select one")
-            {
-                pass = false;
-                ModelState.AddModelError("Create", "No 'Condition' provided.");
-            }
-
-            if (obj.Complete == "Please select one")
-            {
-                pass = false;
-                ModelState.AddModelError("Create", "No 'Complete' provided.");
-            }
-
-            if (obj.Damaged == "Please select one")
-            {
-                pass = false;
-                ModelState.AddModelError("Create", "No 'Damaged' provided.");
-            }
-
-            if (obj.ToyLine.ToLower() != "motu")
-            {
-                obj.Stands = (obj.Stands == "Please select one") ? "Yes" : obj.Stands;
-            }
-            else
-            {
-                if (obj.Stands == "Please select one")
-                {
-                    pass = false;
-                    ModelState.AddModelError("Create", "No 'Stands' provided.");
-                }
-            }
-
-            if (obj.ToyLine.ToLower() != "mimp")
-            {
-                obj.Colour = (obj.Colour == "Please select one") ? string.Empty : obj.Colour;
-            }
-            else
-            {
-                if (obj.Colour == "Please select one")
-                {
-                    pass = false;
-                    ModelState.AddModelError("Create", "No 'Colour' provided.");
-                }
-            }
-
-            obj.DamagedAccessory = (obj.DamagedAccessory == "Please select one") ? "No" : obj.DamagedAccessory;
+            bool pass = _validation.ValidateToy(ModelState, toy);
 
             if (ModelState.IsValid && pass)
             {
-                _db.Toys.Add(obj);
+                _db.Toys.Add(toy);
                 _db.SaveChanges();
 
                 return RedirectToAction("Index", "Toy");
             }
 
             // Regenerate the list of toyLines otherwise JS wont have the data it needs on refresh
-            obj.ToyLineLst = _populateControls.GenerateToyLineListItems(_db);
+            toy.ToyLineLst = _populateControls.GenerateToyLineListItems(_db);
 
-            return View(obj);
+            return View(toy);
         }
 
         #endregion
