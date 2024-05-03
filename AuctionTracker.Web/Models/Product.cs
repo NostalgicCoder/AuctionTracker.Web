@@ -28,16 +28,32 @@ namespace AuctionTracker.Web.Models
         public IEnumerable<Game> Game { get; set; }
         public IEnumerable<Toy> Toy { get; set; }
 
-        public List<SelectListItem> SortOrderList = new List<SelectListItem>()
+        public List<SelectListItem> SortOrderListGame = new List<SelectListItem>()
         {
             new SelectListItem {Text = "Price > (Low to High)", Value = "PriceAsc"},
             new SelectListItem {Text = "Price < (High to Low)", Value = "PriceDsc"},
             new SelectListItem {Text = "Date (Old to New)", Value = "DateAsc"},
             new SelectListItem {Text = "Date (New to Old)", Value = "DateDsc"},
-            new SelectListItem {Text = "Platform", Value = "Platform"},
             new SelectListItem {Text = "Name", Value = "Name"},
             new SelectListItem {Text = "Condition", Value = "Condition"},
-            new SelectListItem {Text = "Complete", Value = "Complete"}
+            new SelectListItem {Text = "Complete", Value = "Complete"},
+            new SelectListItem {Text = "Platform", Value = "Platform"},
+            new SelectListItem {Text = "Sealed", Value = "Sealed"}
+        };
+
+        public List<SelectListItem> SortOrderListToy = new List<SelectListItem>()
+        {
+            new SelectListItem {Text = "Price > (Low to High)", Value = "PriceAsc"},
+            new SelectListItem {Text = "Price < (High to Low)", Value = "PriceDsc"},
+            new SelectListItem {Text = "Date (Old to New)", Value = "DateAsc"},
+            new SelectListItem {Text = "Date (New to Old)", Value = "DateDsc"},
+            new SelectListItem {Text = "Name", Value = "Name"},
+            new SelectListItem {Text = "Condition", Value = "Condition"},
+            new SelectListItem {Text = "Complete", Value = "Complete"},
+            new SelectListItem {Text = "Carded", Value = "Carded"},
+            new SelectListItem {Text = "Boxed", Value = "Boxed"},
+            new SelectListItem {Text = "Damaged", Value = "Damaged"},
+            new SelectListItem {Text = "Damaged Accessory", Value = "DamagedAccessory"}
         };
     }
 }

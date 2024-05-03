@@ -11,6 +11,7 @@ namespace AuctionTracker.Web.Controllers
 
         private CalculatePrices _calculatePrices = new CalculatePrices();
         private Validation _validation = new Validation();
+        private SortData _sortData = new SortData();
 
         /// <summary>
         /// Constructor
@@ -20,48 +21,17 @@ namespace AuctionTracker.Web.Controllers
             _db = db;
         }
 
-        public IActionResult Index(Product? val)
+        public IActionResult Index(Product? product)
         {
-            Product product = new Product();
-
             product.Game = _db.Games;
 
-            if (!string.IsNullOrEmpty(val.SearchCriteria))
+            if (!string.IsNullOrEmpty(product.SearchCriteria))
             {
                 // Make search criteria lower case so keywords are not blocked by case sensitivity
-                product.Game = product.Game.Where(x => x.Name.ToLower().Contains(val.SearchCriteria.ToLower()));
+                product.Game = product.Game.Where(x => x.Name.ToLower().Contains(product.SearchCriteria.ToLower()));
             }
 
-            switch (val.SelectedSortOrder)
-            {
-                case "PriceAsc":
-                    product.Game = product.Game.OrderBy(x => x.Price);
-                    break;
-                case "PriceDsc":
-                    product.Game = product.Game.OrderByDescending(x => x.Price);
-                    break;
-                case "Platform":
-                    product.Game = product.Game.OrderBy(x => x.Platform);
-                    break;
-                case "Name":
-                    product.Game = product.Game.OrderBy(x => x.Name);
-                    break;
-                case "DateAsc":
-                    product.Game = product.Game.OrderBy(x => x.SaleDate);
-                    break;
-                case "DateDsc":
-                    product.Game = product.Game.OrderByDescending(x => x.SaleDate);
-                    break;
-                case "Condition":
-                    product.Game = product.Game.OrderBy(x => x.Condition);
-                    break;
-                case "Complete":
-                    product.Game = product.Game.OrderByDescending(x => x.Complete);
-                    break;
-                default:
-                    product.Game = product.Game.OrderBy(x => x.Name);
-                    break;
-            }
+            product = _sortData.SortGameOrder(product, 1);
 
             return View(product);
         }
@@ -85,36 +55,7 @@ namespace AuctionTracker.Web.Controllers
                 product.Game = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year);
             }
 
-            switch (product.SelectedSortOrder)
-            {
-                case "PriceAsc":
-                    product.Game = product.Game.OrderBy(x => x.Price);
-                    break;
-                case "PriceDsc":
-                    product.Game = product.Game.OrderByDescending(x => x.Price);
-                    break;
-                case "Platform":
-                    product.Game = product.Game.OrderBy(x => x.Platform);
-                    break;
-                case "Name":
-                    product.Game = product.Game.OrderBy(x => x.Name);
-                    break;
-                case "DateAsc":
-                    product.Game = product.Game.OrderBy(x => x.SaleDate);
-                    break;
-                case "DateDsc":
-                    product.Game = product.Game.OrderByDescending(x => x.SaleDate);
-                    break;
-                case "Condition":
-                    product.Game = product.Game.OrderBy(x => x.Condition);
-                    break;
-                case "Complete":
-                    product.Game = product.Game.OrderByDescending(x => x.Complete);
-                    break;
-                default:
-                    product.Game = product.Game.OrderByDescending(x => x.SaleDate);
-                    break;
-            }
+            product = _sortData.SortGameOrder(product, 2);
 
             product = _calculatePrices.GetGamePrices(product);
 

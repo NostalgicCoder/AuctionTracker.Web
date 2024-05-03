@@ -64,6 +64,18 @@ namespace AuctionTracker.Web.Controllers
                     case "Complete":
                         product.Toy = product.Toy.OrderByDescending(x => x.Complete);
                         break;
+                    case "Carded":
+                        product.Toy = product.Toy.OrderByDescending(x => x.Carded);
+                        break;
+                    case "Boxed":
+                        product.Toy = product.Toy.OrderByDescending(x => x.Boxed);
+                        break;
+                    case "Damaged":
+                        product.Toy = product.Toy.OrderByDescending(x => x.Damaged);
+                        break;
+                    case "DamagedAccessory":
+                        product.Toy = product.Toy.OrderByDescending(x => x.DamagedAccessory);
+                        break;
                     default:
                         product.Toy = product.Toy.OrderBy(x => x.Name);
                         break;
@@ -115,6 +127,18 @@ namespace AuctionTracker.Web.Controllers
                     break;
                 case "Complete":
                     product.Toy = product.Toy.OrderByDescending(x => x.Complete);
+                    break;
+                case "Carded":
+                    product.Toy = product.Toy.OrderByDescending(x => x.Carded);
+                    break;
+                case "Boxed":
+                    product.Toy = product.Toy.OrderByDescending(x => x.Boxed);
+                    break;
+                case "Damaged":
+                    product.Toy = product.Toy.OrderByDescending(x => x.Damaged);
+                    break;
+                case "DamagedAccessory":
+                    product.Toy = product.Toy.OrderByDescending(x => x.DamagedAccessory);
                     break;
                 default:
                     product.Toy = product.Toy.OrderByDescending(x => x.SaleDate);
