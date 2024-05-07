@@ -66,6 +66,11 @@ namespace AuctionTracker.Web.Controllers
                 product.Toy = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year);
             }
 
+            if(product.SearchLoose)
+            {
+                product.Toy = product.Toy.Where(x => x.Carded == false && x.Boxed == false);
+            }
+
             product = _sortData.SortToyOrder(product, 2);
 
             product = _calculatePrices.GetToyPrices(product);
