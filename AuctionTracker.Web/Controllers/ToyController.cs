@@ -13,6 +13,7 @@ namespace AuctionTracker.Web.Controllers
         private PopulateControls _populateControls = new PopulateControls();
         private GeneralHelper _generalHelper = new GeneralHelper();
         private Validation _validation = new Validation();
+        private SortData _sortData = new SortData();
 
         /// <summary>
         /// Constructor
@@ -40,46 +41,7 @@ namespace AuctionTracker.Web.Controllers
                     product.Toy = product.Toy.Where(x => x.Name.ToLower().Contains(product.SearchCriteria.ToLower()));
                 }
 
-                // Debated over adding new sort options for 'Toy' items but most of the unique new fields are unlikely to be searched against.  Can be added in if required later
-                switch (product.SelectedSortOrder)
-                {
-                    case "PriceAsc":
-                        product.Toy = product.Toy.OrderBy(x => x.Price);
-                        break;
-                    case "PriceDsc":
-                        product.Toy = product.Toy.OrderByDescending(x => x.Price);
-                        break;
-                    case "Name":
-                        product.Toy = product.Toy.OrderBy(x => x.Name);
-                        break;
-                    case "DateAsc":
-                        product.Toy = product.Toy.OrderBy(x => x.SaleDate);
-                        break;
-                    case "DateDsc":
-                        product.Toy = product.Toy.OrderByDescending(x => x.SaleDate);
-                        break;
-                    case "Condition":
-                        product.Toy = product.Toy.OrderBy(x => x.Condition);
-                        break;
-                    case "Complete":
-                        product.Toy = product.Toy.OrderByDescending(x => x.Complete);
-                        break;
-                    case "Carded":
-                        product.Toy = product.Toy.OrderByDescending(x => x.Carded);
-                        break;
-                    case "Boxed":
-                        product.Toy = product.Toy.OrderByDescending(x => x.Boxed);
-                        break;
-                    case "Damaged":
-                        product.Toy = product.Toy.OrderByDescending(x => x.Damaged);
-                        break;
-                    case "DamagedAccessory":
-                        product.Toy = product.Toy.OrderByDescending(x => x.DamagedAccessory);
-                        break;
-                    default:
-                        product.Toy = product.Toy.OrderBy(x => x.Name);
-                        break;
-                }
+                product = _sortData.SortToyOrder(product, 1);
 
                 return View("SelectedToyLine", product);
             }
@@ -104,46 +66,7 @@ namespace AuctionTracker.Web.Controllers
                 product.Toy = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year);
             }
 
-            // Debated over adding new sort options for 'Toy' items but most of the unique new fields are unlikely to be searched against.  Can be added in if required later
-            switch (product.SelectedSortOrder)
-            {
-                case "PriceAsc":
-                    product.Toy = product.Toy.OrderBy(x => x.Price);
-                    break;
-                case "PriceDsc":
-                    product.Toy = product.Toy.OrderByDescending(x => x.Price);
-                    break;
-                case "Name":
-                    product.Toy = product.Toy.OrderBy(x => x.Name);
-                    break;
-                case "DateAsc":
-                    product.Toy = product.Toy.OrderBy(x => x.SaleDate);
-                    break;
-                case "DateDsc":
-                    product.Toy = product.Toy.OrderByDescending(x => x.SaleDate);
-                    break;
-                case "Condition":
-                    product.Toy = product.Toy.OrderBy(x => x.Condition);
-                    break;
-                case "Complete":
-                    product.Toy = product.Toy.OrderByDescending(x => x.Complete);
-                    break;
-                case "Carded":
-                    product.Toy = product.Toy.OrderByDescending(x => x.Carded);
-                    break;
-                case "Boxed":
-                    product.Toy = product.Toy.OrderByDescending(x => x.Boxed);
-                    break;
-                case "Damaged":
-                    product.Toy = product.Toy.OrderByDescending(x => x.Damaged);
-                    break;
-                case "DamagedAccessory":
-                    product.Toy = product.Toy.OrderByDescending(x => x.DamagedAccessory);
-                    break;
-                default:
-                    product.Toy = product.Toy.OrderByDescending(x => x.SaleDate);
-                    break;
-            }
+            product = _sortData.SortToyOrder(product, 2);
 
             product = _calculatePrices.GetToyPrices(product);
 
