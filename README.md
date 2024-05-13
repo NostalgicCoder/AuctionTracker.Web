@@ -1,5 +1,5 @@
 -----------------------------------------
-26 April 2024:
+13th May 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -29,3 +29,14 @@ Resources:
 - https://bootswatch.com/cosmo/
 - Original Traning Video - https://www.youtube.com/watch?v=hZ1DASYd9rk&list=WL&index=7
 - Refer to the location '\Resources\AuctionDb.bak' in the code for a backup copy of the SQL database (Test Version).
+
+Images:
+
+![Alt text](Images/AuctionTracker1.jpg)
+![Alt text](Images/AuctionTracker2.jpg)
+![Alt text](Images/AuctionTracker3.jpg)
+![Alt text](Images/AuctionTracker4.jpg)
+![Alt text](Images/AuctionTracker5.jpg)
+![Alt text](Images/AuctionTracker6.jpg)
+
+
