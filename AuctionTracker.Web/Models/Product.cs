@@ -5,15 +5,24 @@ namespace AuctionTracker.Web.Models
     public class Product
     {
         public decimal MeanPrice { get; set; }
+        public decimal MeanPriceAndPostage { get; set; }
         public decimal MedianPrice { get; set; }
+        public decimal MedianPriceAndPostage { get; set; }
         public decimal MaxPrice { get; set; }
+        public decimal MaxPriceAndPostage { get; set; }
         public decimal MinPrice { get; set; }
+        public decimal MinPriceAndPostage { get; set; }
         public decimal MaxPriceCurrentYear { get; set; }
+        public decimal MaxPriceAndPostageCurrentYear { get; set; }
         public decimal MinPriceCurrentYear { get; set; }
+        public decimal MinPriceAndPostageCurrentYear { get; set; }
         public decimal MeanPostage { get; set; }
         public decimal MedianPostage { get; set; }
         public decimal MaxPostage { get; set; }
         public decimal MinPostage { get; set; }
+        public decimal MaxPostageCurrentYear { get; set; }
+        public decimal MinPostageCurrentYear { get; set; }
+
 
         public string Trend { get; set; }
         public string SelectedProduct { get; set; }

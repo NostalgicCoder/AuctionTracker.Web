@@ -13,7 +13,7 @@
 
     <br />
 
-    <table style="width:30%">
+    <table style="width:40%">
         <tbody>
             <tr>
                 <th>
@@ -28,7 +28,7 @@
                     Mean Price:
                 </th>
                 <td>
-                    <b>£@Math.Round(Model.MeanPrice, 2)</b>
+                    <b>£@Math.Round(Model.MeanPrice, 2) (£@Math.Round(Model.MeanPriceAndPostage, 2))</b>
                 </td>
             </tr>
             <tr>
@@ -36,7 +36,7 @@
                     Median Price:
                 </th>
                 <td>
-                    £@Model.MedianPrice
+                    £@Math.Round(Model.MedianPrice, 2) (£@Math.Round(Model.MedianPriceAndPostage, 2))
                 </td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
                     Range Price:
                 </th>
                 <td>
-                    Min: £@Model.MinPrice > Max: £@Model.MaxPrice
+                    Min: £@Math.Round(Model.MinPrice, 2) (£@Math.Round(Model.MinPriceAndPostage, 2)) > Max: £@Math.Round(Model.MaxPrice, 2) (£@Math.Round(Model.MaxPriceAndPostage, 2))
                 </td>
             </tr>
             @{
@@ -55,7 +55,7 @@
                             @DateTime.Now.Year Range Price:
                         </th>
                         <td>
-                            Min: £@Model.MinPriceCurrentYear > Max: £@Model.MaxPriceCurrentYear
+                            Min: £@Math.Round(Model.MinPriceCurrentYear, 2) (£@Math.Round(Model.MinPriceAndPostageCurrentYear, 2)) > Max: £@Math.Round(Model.MaxPriceCurrentYear, 2) (£@Math.Round(Model.MaxPriceAndPostageCurrentYear, 2))
                         </td>
                     </tr>
                 }
@@ -86,7 +86,7 @@
             </tr>
             <tr>
                 <th>
-                    Trend:
+                    Price Trend:
                 </th>
                 <td>
                     @Model.Trend

@@ -23,10 +23,10 @@ namespace AuctionTracker.Web.Class
                 modelState.AddModelError("Create", "No 'Complete' provided.");
             }
 
-            if (game.Price == 0.00m || game.Postage == 0.00m)
+            if (game.Price == 0.00m)
             {
                 pass = false;
-                modelState.AddModelError("Create", "No valid price OR postage provided.");
+                modelState.AddModelError("Create", "No valid price provided.");
             }
 
             if (!_generalHelper.ValidDecimalNumber(game.Price) || !_generalHelper.ValidDecimalNumber(game.Postage))
@@ -60,10 +60,10 @@ namespace AuctionTracker.Web.Class
                 modelState.AddModelError("Create", "No 'Toyline' selected OR added");
             }
 
-            if (toy.Price == 0.00m || toy.Postage == 0.00m)
+            if (toy.Price == 0.00m)
             {
                 pass = false;
-                modelState.AddModelError("Create", "No valid price OR postage provided.");
+                modelState.AddModelError("Create", "No valid price provided.");
             }
 
             if (!_generalHelper.ValidDecimalNumber(toy.Price) || !_generalHelper.ValidDecimalNumber(toy.Postage))

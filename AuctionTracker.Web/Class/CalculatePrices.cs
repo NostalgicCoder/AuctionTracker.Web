@@ -12,6 +12,7 @@ namespace AuctionTracker.Web.Class
             {
                 product.MeanPrice = Math.Round((product.Game.Sum(x => x.Price) / product.Game.Count()), 2);
                 product.MeanPostage = Math.Round((product.Game.Sum(x => x.Postage) / product.Game.Count()), 2);
+                product.MeanPriceAndPostage = (product.MeanPrice + product.MeanPostage);
 
                 Int32 middle = 0;
 
@@ -32,6 +33,7 @@ namespace AuctionTracker.Web.Class
                     product.MedianPostage = Math.Round(product.Game.OrderBy(x => x.Postage).ToList()[middle].Postage, 2);
                 }
 
+                product.MedianPriceAndPostage = (product.MedianPrice + product.MedianPostage);
                 product.MaxPrice = product.Game.Select(x => x.Price).Max();
                 product.MinPrice = product.Game.Select(x => x.Price).Min();
 
@@ -39,10 +41,18 @@ namespace AuctionTracker.Web.Class
                 {
                     product.MaxPriceCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Max();
                     product.MinPriceCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Min();
+
+                    product.MaxPostageCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Max();
+                    product.MinPostageCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Min();
+                    product.MaxPriceAndPostageCurrentYear = (product.MaxPriceCurrentYear + product.MaxPostageCurrentYear);
+                    product.MinPriceAndPostageCurrentYear = (product.MinPriceCurrentYear + product.MinPostageCurrentYear);
                 }
 
                 product.MaxPostage = product.Game.Select(x => x.Postage).Max();
                 product.MinPostage = product.Game.Select(x => x.Postage).Min();
+
+                product.MaxPriceAndPostage = (product.MaxPrice + product.MaxPostage);
+                product.MinPriceAndPostage = (product.MinPrice + product.MinPostage);
 
                 product.Trend = _calculateTrends.SpotPriceTrend(product, 1);
             }
@@ -56,6 +66,7 @@ namespace AuctionTracker.Web.Class
             {
                 product.MeanPrice = Math.Round((product.Toy.Sum(x => x.Price) / product.Toy.Count()), 2);
                 product.MeanPostage = Math.Round((product.Toy.Sum(x => x.Postage) / product.Toy.Count()), 2);
+                product.MeanPriceAndPostage = (product.MeanPrice + product.MeanPostage);
 
                 Int32 middle = 0;
 
@@ -76,6 +87,7 @@ namespace AuctionTracker.Web.Class
                     product.MedianPostage = Math.Round(product.Toy.OrderBy(x => x.Postage).ToList()[middle].Postage, 2);
                 }
 
+                product.MedianPriceAndPostage = (product.MedianPrice + product.MedianPostage);
                 product.MaxPrice = product.Toy.Select(x => x.Price).Max();
                 product.MinPrice = product.Toy.Select(x => x.Price).Min();
 
@@ -83,10 +95,18 @@ namespace AuctionTracker.Web.Class
                 {
                     product.MaxPriceCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Max();
                     product.MinPriceCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Price).Min();
+
+                    product.MaxPostageCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Max();
+                    product.MinPostageCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Min();
+                    product.MaxPriceAndPostageCurrentYear = (product.MaxPriceCurrentYear + product.MaxPostageCurrentYear);
+                    product.MinPriceAndPostageCurrentYear = (product.MinPriceCurrentYear + product.MinPostageCurrentYear);
                 }
 
                 product.MaxPostage = product.Toy.Select(x => x.Postage).Max();
                 product.MinPostage = product.Toy.Select(x => x.Postage).Min();
+
+                product.MaxPriceAndPostage = (product.MaxPrice + product.MaxPostage);
+                product.MinPriceAndPostage = (product.MinPrice + product.MinPostage);
 
                 product.Trend = _calculateTrends.SpotPriceTrend(product, 2);
             }
