@@ -1,5 +1,5 @@
 -----------------------------------------
-13th May 2024:
+14th May 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -22,7 +22,7 @@ Technologies / Principles Used:
 - SQL Server Express backend database
 - TDD (Microsoft Test Framework + Fluent Assertion)
 
-Resources:
+Resources / Credits:
 
 - https://getbootstrap.com/docs/5.3/getting-started/introduction/
 - https://icons.getbootstrap.com/
@@ -38,5 +38,7 @@ Images:
 ![Alt text](Images/AuctionTracker4.jpg)
 ![Alt text](Images/AuctionTracker5.jpg)
 ![Alt text](Images/AuctionTracker6.jpg)
+![Alt text](Images/AuctionTracker7.jpg)
+![Alt text](Images/AuctionTracker8.jpg)
 
 
