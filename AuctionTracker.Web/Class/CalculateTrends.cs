@@ -28,7 +28,7 @@ namespace AuctionTracker.Web.Class
             switch (caller)
             {
                 case 1:
-                    List<Game> gameResult = product.Game.Where(x => (x.Condition.ToLower() == "high" || x.Condition.ToLower() == "medium") && x.Complete.ToLower() == "yes").OrderByDescending(x => x.SaleDate).ToList();
+                    List<Game> gameResult = product.Game.Where(x => (x.Condition.ToLower() == "mint" || x.Condition.ToLower() == "high" || x.Condition.ToLower() == "medium") && x.Complete.ToLower() == "yes").OrderByDescending(x => x.SaleDate).ToList();
 
                     if (gameResult.Count() == 2)
                     {
@@ -51,7 +51,7 @@ namespace AuctionTracker.Web.Class
                     }
                     break;
                 case 2:
-                    List<Toy> toyResult = product.Toy.Where(x => (x.Condition.ToLower() == "high" || x.Condition.ToLower() == "medium") && x.Complete.ToLower() == "yes").OrderByDescending(x => x.SaleDate).ToList();
+                    List<Toy> toyResult = product.Toy.Where(x => (x.Condition.ToLower() == "mint" || x.Condition.ToLower() == "high" || x.Condition.ToLower() == "medium") && x.Complete.ToLower() == "yes").OrderByDescending(x => x.SaleDate).ToList();
 
                     if (toyResult.Count() == 2)
                     {
