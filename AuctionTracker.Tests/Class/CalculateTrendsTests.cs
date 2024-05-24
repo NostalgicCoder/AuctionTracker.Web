@@ -5,7 +5,7 @@ using FluentAssertions;
 namespace AuctionTracker.Tests.Class
 {
     [TestClass]
-    public class CalculatePricesTests
+    public class CalculateTrendsTests
     {
         private CalculateTrends _calculateTrends = new CalculateTrends();
 
@@ -16,7 +16,7 @@ namespace AuctionTracker.Tests.Class
             List<Game> game = new List<Game>()
             {
                 new Game() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 1, 1), Price = 5.00m },
-                new Game() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 5.50m },
+                new Game() { Name = "Name", Condition = "mint", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 5.50m },
                 new Game() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2022, 1, 1), Price = 6.00m },
                 new Game() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2022, 2, 1), Price = 6.50m },
                 new Game() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2024, 1, 1), Price = 7.00m },
@@ -42,7 +42,7 @@ namespace AuctionTracker.Tests.Class
             List<Game> game = new List<Game>()
             {
                 new Game() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 1, 1), Price = 7.50m },
-                new Game() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 7.00m },
+                new Game() { Name = "Name", Condition = "mint", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 7.00m },
                 new Game() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2022, 1, 1), Price = 6.50m },
                 new Game() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2022, 2, 1), Price = 6.00m },
                 new Game() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2024, 1, 1), Price = 5.50m },
@@ -68,7 +68,7 @@ namespace AuctionTracker.Tests.Class
             List<Toy> toy = new List<Toy>()
             {
                 new Toy() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 1, 1), Price = 5.00m },
-                new Toy() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 5.50m },
+                new Toy() { Name = "Name", Condition = "mint", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 5.50m },
                 new Toy() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2022, 1, 1), Price = 6.00m },
                 new Toy() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2022, 2, 1), Price = 6.50m },
                 new Toy() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2024, 1, 1), Price = 7.00m },
@@ -83,7 +83,7 @@ namespace AuctionTracker.Tests.Class
             List<Toy> toy = new List<Toy>()
             {
                 new Toy() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 1, 1), Price = 7.50m },
-                new Toy() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 7.00m },
+                new Toy() { Name = "Name", Condition = "mint", Complete = "yes", SaleDate = new DateTime(2020, 2, 1), Price = 7.00m },
                 new Toy() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2022, 1, 1), Price = 6.50m },
                 new Toy() { Name = "Name", Condition = "high", Complete = "yes", SaleDate = new DateTime(2022, 2, 1), Price = 6.00m },
                 new Toy() { Name = "Name", Condition = "medium", Complete = "yes", SaleDate = new DateTime(2024, 1, 1), Price = 5.50m },
