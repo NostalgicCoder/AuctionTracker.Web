@@ -1,5 +1,5 @@
 -----------------------------------------
-14th May 2024:
+24th May 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -29,6 +29,12 @@ Resources / Credits:
 - https://bootswatch.com/cosmo/
 - Original Traning Video - https://www.youtube.com/watch?v=hZ1DASYd9rk&list=WL&index=7
 - Refer to the location '\Resources\AuctionDb.bak' in the code for a backup copy of the SQL database (Test Version).
+
+Image Credits:
+
+Credit to the below site(s) for images used in this application.
+
+- https://retromash.com/2015/01/30/top-ten-action-figure-toylines/
 
 Images:
 

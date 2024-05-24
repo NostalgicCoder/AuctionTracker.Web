@@ -25,6 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\Images\eBayLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Images\ToyLines.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Resources\AuctionDb.bak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
