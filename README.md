@@ -1,5 +1,5 @@
 -----------------------------------------
-24th May 2024:
+29th May 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -38,6 +38,8 @@ Credit to the below site(s) for images used in this application.
 
 Images:
 
+![Alt text](Images/AuctionTracker9.jpg)
+![Alt text](Images/AuctionTracker10.jpg)
 ![Alt text](Images/AuctionTracker1.jpg)
 ![Alt text](Images/AuctionTracker2.jpg)
 ![Alt text](Images/AuctionTracker3.jpg)
