@@ -65,5 +65,7 @@ namespace AuctionTracker.Web.Models
             new SelectListItem {Text = "Damaged", Value = "Damaged"},
             new SelectListItem {Text = "Damaged Accessory", Value = "DamagedAccessory"}
         };
+
+        public List<GraphModel> LineGraph = new List<GraphModel>();
     }
 }

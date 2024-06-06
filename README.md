@@ -1,5 +1,5 @@
 -----------------------------------------
-29th May 2024:
+6th June 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -18,6 +18,7 @@ Technologies / Principles Used:
 - JavaScript
 - ASP.NET MVC Core
 - CSS / Bootstrap Themes & Icons
+- Chart.js
 - Entity Framework - Code first approach
 - SQL Server Express backend database
 - TDD (Microsoft Test Framework + Fluent Assertion)
@@ -28,6 +29,7 @@ Resources / Credits:
 - https://icons.getbootstrap.com/
 - https://bootswatch.com/cosmo/
 - Original Traning Video - https://www.youtube.com/watch?v=hZ1DASYd9rk&list=WL&index=7
+- Chart training example - https://www.c-sharpcorner.com/article/creating-charts-with-asp-net-core/
 - Refer to the location '\Resources\AuctionDb.bak' in the code for a backup copy of the SQL database (Test Version).
 
 Image Credits:
@@ -42,8 +44,11 @@ Images:
 ![Alt text](Images/AuctionTracker10.jpg)
 ![Alt text](Images/AuctionTracker1.jpg)
 ![Alt text](Images/AuctionTracker2.jpg)
+![Alt text](Images/AuctionTracker11.jpg)
+![Alt text](Images/AuctionTracker12.jpg)
 ![Alt text](Images/AuctionTracker3.jpg)
 ![Alt text](Images/AuctionTracker4.jpg)
+![Alt text](Images/AuctionTracker13.jpg)
 ![Alt text](Images/AuctionTracker5.jpg)
 ![Alt text](Images/AuctionTracker6.jpg)
 ![Alt text](Images/AuctionTracker7.jpg)
