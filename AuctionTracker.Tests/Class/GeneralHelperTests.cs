@@ -1,4 +1,5 @@
 ﻿using AuctionTracker.Web.Class;
+using AuctionTracker.Web.Interfaces;
 using FluentAssertions;
 
 namespace AuctionTracker.Tests.Class
@@ -6,7 +7,7 @@ namespace AuctionTracker.Tests.Class
     [TestClass]
     public class GeneralHelperTests
     {
-        private GeneralHelper _generalHelper = new GeneralHelper();
+        private IGeneralHelper _generalHelper = new GeneralHelper();
 
         [TestMethod]
         public void CallConvertDateTimeResultShouldMatchExpectedAndPass()

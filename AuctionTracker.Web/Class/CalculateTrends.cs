@@ -1,8 +1,9 @@
-﻿using AuctionTracker.Web.Models;
+﻿using AuctionTracker.Web.Interfaces;
+using AuctionTracker.Web.Models;
 
 namespace AuctionTracker.Web.Class
 {
-    public class CalculateTrends
+    public class CalculateTrends : ICalculateTrends
     {
         private string _trendUp = "Going up";
         private string _trendDown = "Going down";
@@ -85,7 +86,7 @@ namespace AuctionTracker.Web.Class
         /// <param name="newest"></param>
         /// <param name="oldest"></param>
         /// <returns></returns>
-        private string CalcTrendResult(string trend, decimal newest, decimal oldest)
+        public string CalcTrendResult(string trend, decimal newest, decimal oldest)
         {
             if (oldest > newest)
             {

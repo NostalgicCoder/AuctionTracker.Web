@@ -1,10 +1,11 @@
-﻿using AuctionTracker.Web.Models;
+﻿using AuctionTracker.Web.Interfaces;
+using AuctionTracker.Web.Models;
 
 namespace AuctionTracker.Web.Class
 {
-    public class CalculatePrices
+    public class CalculatePrices : ICalculatePrices
     {
-        private CalculateTrends _calculateTrends = new CalculateTrends();
+        private ICalculateTrends _calculateTrends = new CalculateTrends();
 
         public Product GetGamePrices(Product product)
         {

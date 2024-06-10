@@ -1,11 +1,12 @@
 ﻿@using AuctionTracker.Web.Class
+@using AuctionTracker.Web.Interfaces
 
 @model Product;
 
 @{
     ViewData["Title"] = string.Format("{0} - Auction Sale Info:", Model.SelectedProduct);
 
-    GeneralHelper generalHelper = new GeneralHelper();
+    IGeneralHelper generalHelper = new GeneralHelper();
 
     var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.LineGraph.Select(x => x.SaleDate).ToList());
     var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.LineGraph.Select(x => x.Price).ToList());

@@ -1,5 +1,6 @@
 ﻿using AuctionTracker.Web.Class;
 using AuctionTracker.Web.Data;
+using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,9 @@ namespace AuctionTracker.Web.Controllers
     {
         private readonly ApplicationDbContext _db;
 
-        private CalculatePrices _calculatePrices = new CalculatePrices();
+        private ICalculatePrices _calculatePrices = new CalculatePrices();
         private Validation _validation = new Validation();
-        private SortData _sortData = new SortData();
+        private ISortData _sortData = new SortData();
 
         /// <summary>
         /// Constructor

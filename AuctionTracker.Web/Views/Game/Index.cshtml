@@ -1,11 +1,12 @@
 ﻿@using AuctionTracker.Web.Class
+@using AuctionTracker.Web.Interfaces
 
 @model Product;
 
 @{
     ViewData["Title"] = "Games - Auction Sale Info:";
 
-    GeneralHelper generalHelper = new GeneralHelper();
+    IGeneralHelper generalHelper = new GeneralHelper();
 }
 
 <br />

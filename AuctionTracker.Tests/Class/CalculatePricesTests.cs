@@ -1,13 +1,14 @@
 ﻿using AuctionTracker.Web.Class;
 using FluentAssertions;
 using AuctionTracker.Web.Models;
+using AuctionTracker.Web.Interfaces;
 
 namespace AuctionTracker.Tests.Class
 {
     [TestClass]
     public class CalculatePricesTests
     {
-        private CalculatePrices _calculatePrices = new CalculatePrices();
+        private ICalculatePrices _calculatePrices = new CalculatePrices();
 
         private Product BuildProductObj()
         {

@@ -1,8 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using AuctionTracker.Web.Interfaces;
+using System.Text.RegularExpressions;
 
 namespace AuctionTracker.Web.Class
 {
-    public class GeneralHelper
+    public class GeneralHelper : IGeneralHelper
     {
         /// <summary>
         /// Convert the dateTime value into a more simplified version for display.

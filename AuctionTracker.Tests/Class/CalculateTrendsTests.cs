@@ -1,4 +1,5 @@
 using AuctionTracker.Web.Class;
+using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
 using FluentAssertions;
 
@@ -7,7 +8,7 @@ namespace AuctionTracker.Tests.Class
     [TestClass]
     public class CalculateTrendsTests
     {
-        private CalculateTrends _calculateTrends = new CalculateTrends();
+        private ICalculateTrends _calculateTrends = new CalculateTrends();
 
         #region Model Build Up - Test Cases
 

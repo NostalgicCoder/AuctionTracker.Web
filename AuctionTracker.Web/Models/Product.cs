@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AuctionTracker.Web.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AuctionTracker.Web.Models
 {
@@ -66,6 +67,6 @@ namespace AuctionTracker.Web.Models
             new SelectListItem {Text = "Damaged Accessory", Value = "DamagedAccessory"}
         };
 
-        public List<GraphModel> LineGraph = new List<GraphModel>();
+        public List<IGraphModel> LineGraph = new List<IGraphModel>();
     }
 }

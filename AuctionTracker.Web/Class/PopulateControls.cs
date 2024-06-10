@@ -1,9 +1,10 @@
 ﻿using AuctionTracker.Web.Data;
+using AuctionTracker.Web.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AuctionTracker.Web.Class
 {
-    public class PopulateControls
+    public class PopulateControls : IPopulateControls
     {
         public List<SelectListItem> GenerateToyLineListItems(ApplicationDbContext db)
         {

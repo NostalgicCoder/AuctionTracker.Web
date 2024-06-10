@@ -1,8 +1,9 @@
-﻿using AuctionTracker.Web.Models;
+﻿using AuctionTracker.Web.Interfaces;
+using AuctionTracker.Web.Models;
 
 namespace AuctionTracker.Web.Class
 {
-    public class SortData
+    public class SortData : ISortData
     {
         /// <summary>
         /// Sort the GAME data by the order chosen by the user on the front end.  The default sort order changes dependant on if its the main or detailed game page call this function.

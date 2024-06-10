@@ -1,11 +1,12 @@
-﻿using AuctionTracker.Web.Models;
+﻿using AuctionTracker.Web.Interfaces;
+using AuctionTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AuctionTracker.Web.Class
 {
     public class Validation
     {
-        private GeneralHelper _generalHelper = new GeneralHelper();
+        private IGeneralHelper _generalHelper = new GeneralHelper();
 
         public bool ValidateGame(ModelStateDictionary modelState, Game game)
         {
