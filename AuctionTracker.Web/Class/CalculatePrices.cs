@@ -51,8 +51,21 @@ namespace AuctionTracker.Web.Class
                 product.MaxPostage = product.Game.Select(x => x.Postage).Max();
                 product.MinPostage = product.Game.Select(x => x.Postage).Min();
 
-                product.MaxPriceAndPostage = (product.MaxPrice + product.MaxPostage);
-                product.MinPriceAndPostage = (product.MinPrice + product.MinPostage);
+                List<decimal> PriceAndPostageColl = new List<decimal>();
+
+                foreach (Game x in product.Game.OrderBy(x => x.SaleDate))
+                {
+                    PriceAndPostageColl.Add(x.Price + x.Postage);
+
+                    product.LineGraph.Add(new GraphModel
+                    {
+                        SaleDate = x.SaleDate.ToShortDateString(),
+                        Price = (x.Price + x.Postage)
+                    });
+                }
+
+                product.MaxPriceAndPostage = PriceAndPostageColl.Max();
+                product.MinPriceAndPostage = PriceAndPostageColl.Min();
 
                 product.Trend = _calculateTrends.SpotPriceTrend(product, 1);
             }
@@ -105,8 +118,21 @@ namespace AuctionTracker.Web.Class
                 product.MaxPostage = product.Toy.Select(x => x.Postage).Max();
                 product.MinPostage = product.Toy.Select(x => x.Postage).Min();
 
-                product.MaxPriceAndPostage = (product.MaxPrice + product.MaxPostage);
-                product.MinPriceAndPostage = (product.MinPrice + product.MinPostage);
+                List<decimal> PriceAndPostageColl = new List<decimal>();
+
+                foreach (Toy x in product.Toy.OrderBy(x => x.SaleDate))
+                {
+                    PriceAndPostageColl.Add(x.Price + x.Postage);
+
+                    product.LineGraph.Add(new GraphModel
+                    {
+                        SaleDate = x.SaleDate.ToShortDateString(),
+                        Price = (x.Price + x.Postage)
+                    });
+                }
+
+                product.MaxPriceAndPostage = PriceAndPostageColl.Max();
+                product.MinPriceAndPostage = PriceAndPostageColl.Min();
 
                 product.Trend = _calculateTrends.SpotPriceTrend(product, 2);
             }

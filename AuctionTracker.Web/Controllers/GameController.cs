@@ -59,15 +59,6 @@ namespace AuctionTracker.Web.Controllers
 
             product = _calculatePrices.GetGamePrices(product);
 
-            foreach(Game x in product.Game.OrderBy(x => x.SaleDate))
-            {
-                product.LineGraph.Add(new GraphModel
-                {
-                    SaleDate = x.SaleDate.ToShortDateString(),
-                    Price = x.Price
-                });
-            }
-
             return View(product);
         }
 
