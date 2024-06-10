@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AuctionTracker.Web.Class
 {
-    public class Validation
+    public class Validation : IValidation
     {
         private IGeneralHelper _generalHelper = new GeneralHelper();
 

@@ -10,10 +10,10 @@ namespace AuctionTracker.Web.Controllers
     {
         private readonly ApplicationDbContext _db;
 
-        private CalculatePrices _calculatePrices = new CalculatePrices();
+        private ICalculatePrices _calculatePrices = new CalculatePrices();
         private IPopulateControls _populateControls = new PopulateControls();
         private IGeneralHelper _generalHelper = new GeneralHelper();
-        private Validation _validation = new Validation();
+        private IValidation _validation = new Validation();
         private ISortData _sortData = new SortData();
 
         /// <summary>
