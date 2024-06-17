@@ -1,5 +1,5 @@
 -----------------------------------------
-6th June 2024:
+17th June 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -16,6 +16,7 @@ Technologies / Principles Used:
 
 - C#
 - JavaScript
+- JQuery
 - ASP.NET MVC Core
 - CSS / Bootstrap Themes & Icons
 - Chart.js
