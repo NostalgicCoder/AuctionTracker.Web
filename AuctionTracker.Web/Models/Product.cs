@@ -35,6 +35,7 @@ namespace AuctionTracker.Web.Models
         public bool SearchComplete { get; set; }
         public bool SearchCurrentYear { get; set; }
         public bool SearchLoose { get; set; }
+        public bool SearchCardedBoxed { get; set; }
 
         public IEnumerable<Game> Game { get; set; }
         public IEnumerable<Toy> Toy { get; set; }

@@ -16,6 +16,22 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
+
+    function updateFrmChkBx(e){
+        var info = document.getElementById(e);
+
+        if (info.getAttribute("id") == "searchCardedBoxedChkBx") {
+            document.getElementById('searchLooseChkBx').checked = false;
+        }
+
+        if (info.getAttribute("id") == "searchLooseChkBx") {
+            document.getElementById('searchCardedBoxedChkBx').checked = false;
+        }
+
+        //alert(info.getAttribute("id"));
+    }
+
+    // JQuery Code:
     $(function () {
         var chartName = "chart";
         var ctx = document.getElementById(chartName).getContext('2d');
@@ -88,6 +104,7 @@
 
         });
     });
+
 </script>
 
 <br />
@@ -133,14 +150,14 @@
         @{
             if (Model.MaxPriceCurrentYear != 0.00M)
             {
-                <tr>
-                    <th>
-                        @DateTime.Now.Year Range Price:
-                    </th>
-                    <td>
-                        Min: £@Math.Round(Model.MinPriceCurrentYear, 2) (£@Math.Round(Model.MinPriceAndPostageCurrentYear, 2)) > Max: £@Math.Round(Model.MaxPriceCurrentYear, 2) (£@Math.Round(Model.MaxPriceAndPostageCurrentYear, 2))
-                    </td>
-                </tr>
+                                        <tr>
+                                            <th>
+                                                @DateTime.Now.Year Range Price:
+                                            </th>
+                                            <td>
+                                                Min: £@Math.Round(Model.MinPriceCurrentYear, 2) (£@Math.Round(Model.MinPriceAndPostageCurrentYear, 2)) > Max: £@Math.Round(Model.MaxPriceCurrentYear, 2) (£@Math.Round(Model.MaxPriceAndPostageCurrentYear, 2))
+                                            </td>
+                                        </tr>
             }
         }
         <tr>
@@ -222,9 +239,16 @@
             </div>
 
             <div class="form-check">
-                <input asp-for="SearchLoose" class="form-check-input" type="checkbox">
+                <input asp-for="SearchLoose" class="form-check-input" type="checkbox" id="searchLooseChkBx" onclick="updateFrmChkBx(id)">
                 <label class="form-check-label">
                     Loose Toys
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input asp-for="SearchCardedBoxed" class="form-check-input" type="checkbox" id="searchCardedBoxedChkBx" onclick="updateFrmChkBx(id)">
+                <label class="form-check-label">
+                    Carded / Boxed
                 </label>
             </div>
 

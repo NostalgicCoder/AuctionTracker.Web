@@ -72,6 +72,11 @@ namespace AuctionTracker.Web.Controllers
                 product.Toy = product.Toy.Where(x => x.Carded == false && x.Boxed == false);
             }
 
+            if(product.SearchCardedBoxed)
+            {
+                product.Toy = product.Toy.Where(x => x.Carded == true || x.Boxed == true);
+            }
+
             product = _sortData.SortToyOrder(product, 2);
 
             product = _calculatePrices.GetToyPrices(product);
