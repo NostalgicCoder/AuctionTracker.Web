@@ -7,6 +7,12 @@ namespace AuctionTracker.Web.Class
     {
         private ICalculateTrends _calculateTrends = new CalculateTrends();
 
+        /// <summary>
+        /// Calculate prices associated with the current game thats been selected by the user
+        /// - TODO: See if this code can be optimised to use better code reuse via introduction of generics to bypass the unique custom object issue with the queries
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public Product GetGamePrices(Product product)
         {
             if (product.Game.Count() != 0)
@@ -45,8 +51,16 @@ namespace AuctionTracker.Web.Class
 
                     product.MaxPostageCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Max();
                     product.MinPostageCurrentYear = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Min();
-                    product.MaxPriceAndPostageCurrentYear = (product.MaxPriceCurrentYear + product.MaxPostageCurrentYear);
-                    product.MinPriceAndPostageCurrentYear = (product.MinPriceCurrentYear + product.MinPostageCurrentYear);
+
+                    List<decimal> PriceAndPostageCollCurrentYear = new List<decimal>();
+
+                    foreach (Game x in product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).OrderBy(x => x.SaleDate))
+                    {
+                        PriceAndPostageCollCurrentYear.Add(x.Price + x.Postage);
+                    }
+
+                    product.MaxPriceAndPostageCurrentYear = PriceAndPostageCollCurrentYear.Max();
+                    product.MinPriceAndPostageCurrentYear = PriceAndPostageCollCurrentYear.Min();
                 }
 
                 product.MaxPostage = product.Game.Select(x => x.Postage).Max();
@@ -74,6 +88,12 @@ namespace AuctionTracker.Web.Class
             return product;
         }
 
+        /// <summary>
+        /// Calculate prices associated with the current toy thats been selected by the user
+        /// - TODO: See if this code can be optimised to use better code reuse via introduction of generics to bypass the unique custom object issue with the queries
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public Product GetToyPrices(Product product)
         {
             if (product.Toy.Count() != 0)
@@ -112,8 +132,16 @@ namespace AuctionTracker.Web.Class
 
                     product.MaxPostageCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Max();
                     product.MinPostageCurrentYear = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).Select(x => x.Postage).Min();
-                    product.MaxPriceAndPostageCurrentYear = (product.MaxPriceCurrentYear + product.MaxPostageCurrentYear);
-                    product.MinPriceAndPostageCurrentYear = (product.MinPriceCurrentYear + product.MinPostageCurrentYear);
+
+                    List<decimal> PriceAndPostageCollCurrentYear = new List<decimal>();
+
+                    foreach (Toy x in product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year).OrderBy(x => x.SaleDate))
+                    {
+                        PriceAndPostageCollCurrentYear.Add(x.Price + x.Postage);
+                    }
+
+                    product.MaxPriceAndPostageCurrentYear = PriceAndPostageCollCurrentYear.Max();
+                    product.MinPriceAndPostageCurrentYear = PriceAndPostageCollCurrentYear.Min(); 
                 }
 
                 product.MaxPostage = product.Toy.Select(x => x.Postage).Max();
