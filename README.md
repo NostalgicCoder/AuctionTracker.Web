@@ -1,5 +1,5 @@
 -----------------------------------------
-17th June 2024:
+2nd July 2024:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -52,6 +52,7 @@ Images:
 ![Alt text](Images/AuctionTracker13.jpg)
 ![Alt text](Images/AuctionTracker5.jpg)
 ![Alt text](Images/AuctionTracker6.jpg)
+![Alt text](Images/AuctionTracker14.jpg)
 ![Alt text](Images/AuctionTracker7.jpg)
 ![Alt text](Images/AuctionTracker8.jpg)
 

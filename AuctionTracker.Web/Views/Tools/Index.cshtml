@@ -1,0 +1,41 @@
+﻿@model PricePerItem;
+
+@{
+    ViewData["Title"] = "Tools:";
+}
+
+<h2>Auction Tools:</h2>
+
+<form method="post" asp-action="CalculateItemPrice">
+
+    <div class="card border-primary mb-3" style="width: 100%">
+        <div class="card-header">Calculator - Cost Per Item:</div>
+        <div class="card-body">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <label asp-for="Quantity"></label>
+            <input asp-for="Quantity" class="form-control" style="width:68px" />
+
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" style="width:80px" />
+
+            <label asp-for="Postage"></label>
+            <input asp-for="Postage" class="form-control" style="width:80px" />
+
+            <br />
+
+            Cost per item: £@Math.Round(Model.ItemPrice, 2)
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calculate &nbsp; <i class="bi bi-plus-circle"></i></button>
+
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -7,5 +7,7 @@ namespace AuctionTracker.Web.Interfaces
     {
         bool ValidateGame(ModelStateDictionary modelState, Game game);
         bool ValidateToy(ModelStateDictionary modelState, Toy toy);
+
+        bool ValidatePricePerItem(ModelStateDictionary modelState, PricePerItem pricePerItem);
     }
 }

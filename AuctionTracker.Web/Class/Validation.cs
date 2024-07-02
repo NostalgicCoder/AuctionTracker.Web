@@ -8,6 +8,37 @@ namespace AuctionTracker.Web.Class
     {
         private IGeneralHelper _generalHelper = new GeneralHelper();
 
+        public bool ValidatePricePerItem(ModelStateDictionary modelState, PricePerItem pricePerItem)
+        {
+            bool pass = true;
+
+            if (pricePerItem.Quantity == 0)
+            {
+                pass = false;
+                modelState.AddModelError("Calculate", "No valid quantity provided.");
+            }
+
+            if (pricePerItem.Price == 0.00m)
+            {
+                pass = false;
+                modelState.AddModelError("Calculate", "No valid price provided.");
+            }
+
+            if (pricePerItem.Postage == 0.00m)
+            {
+                pass = false;
+                modelState.AddModelError("Calculate", "No valid postage provided.");
+            }
+
+            if (!_generalHelper.ValidDecimalNumber(pricePerItem.Price) || !_generalHelper.ValidDecimalNumber(pricePerItem.Postage))
+            {
+                pass = false;
+                modelState.AddModelError("Create", "Price OR postage is not a number value.");
+            }
+
+            return pass;
+        }
+
         public bool ValidateGame(ModelStateDictionary modelState, Game game)
         {
             bool pass = true;
