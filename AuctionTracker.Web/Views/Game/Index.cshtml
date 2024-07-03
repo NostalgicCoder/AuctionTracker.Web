@@ -48,40 +48,40 @@
 
 @Model.Game.Count().ToString() Results found
 
-<table style="width:100%">
+<table class="siteTheme" style="width:100%">
     <thead>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Name:
             </th>
-            <th>
+            <th class="siteTheme">
                 Condition:
             </th>
-            <th>
+            <th class="siteTheme">
                 Sealed:
             </th>
-            <th>
+            <th class="siteTheme">
                 Platform:
             </th>
-            <th>
+            <th class="siteTheme">
                 Media Type:
             </th>
-            <th>
+            <th class="siteTheme">
                 Complete:
             </th>
-            <th>
+            <th class="siteTheme">
                 Price:
             </th>
-            <th>
+            <th class="siteTheme">
                 Postage:
             </th>
-            <th>
+            <th class="siteTheme">
                 Sale Date:
             </th>
-            <th>
+            <th class="siteTheme">
                 Description:
             </th>
-            <th>
+            <th class="siteTheme">
             </th>
         </tr>
     </thead>
@@ -89,38 +89,38 @@
         @foreach (var obj in Model.Game)
         {
             <tr>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @* @Html.ActionLink(@obj.Name, "GameInfo", "Game", new { valGameName = obj.Name }) *@
                     @Html.ActionLink(@obj.Name, "GameInfo", "Game", new Product() { SelectedProduct = obj.Name })
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Condition
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Sealed
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Platform
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.MediaType
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Complete
                 </td>
-                <td class="bgHighlight" style="text-align: center">
+                <td class="siteTheme bgHighlight" style="text-align: center">
                     £@obj.Price
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     £@obj.Postage
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @generalHelper.ConvertDateTime(obj.SaleDate)
                 </td>
-                <td>
+                <td class="siteTheme">
                     @obj.Description
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     <a asp-controller="Game" asp-action="Edit" asp-route-id="@obj.Id">Edit</a> /
                     <a asp-controller="Game" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
                 </td>

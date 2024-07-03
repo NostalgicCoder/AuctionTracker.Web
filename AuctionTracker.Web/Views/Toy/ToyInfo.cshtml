@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
 
-    function updateFrmChkBx(e){
+    function updateFrmChkBx(e) {
         var info = document.getElementById(e);
 
         if (info.getAttribute("id") == "searchCardedBoxedChkBx") {
@@ -69,7 +69,7 @@
                 ],
                 borderWidth: 1,
                 data: @Html.Raw(YValues)
-                }]
+                    }]
         };
 
         var options = {
@@ -113,82 +113,82 @@
 
 <br />
 
-<table style="width:40%">
+<table class="siteTheme" style="width:40%">
     <tbody>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Result Count:
             </th>
-            <td>
+            <td class="siteTheme">
                 @Model.Toy.Count().ToString()
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Mean Price:
             </th>
-            <td>
+            <td class="siteTheme">
                 <b>£@Math.Round(Model.MeanPrice, 2) (£@Math.Round(Model.MeanPriceAndPostage, 2))</b>
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Median Price:
             </th>
-            <td>
+            <td class="siteTheme">
                 £@Math.Round(Model.MedianPrice, 2) (£@Math.Round(Model.MedianPriceAndPostage, 2))
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Range Price:
             </th>
-            <td>
+            <td class="siteTheme">
                 Min: £@Math.Round(Model.MinPrice, 2) (£@Math.Round(Model.MinPriceAndPostage, 2)) > Max: £@Math.Round(Model.MaxPrice, 2) (£@Math.Round(Model.MaxPriceAndPostage, 2))
             </td>
         </tr>
         @{
             if (Model.MaxPriceCurrentYear != 0.00M)
             {
-                                        <tr>
-                                            <th>
-                                                @DateTime.Now.Year Range Price:
-                                            </th>
-                                            <td>
-                                                Min: £@Math.Round(Model.MinPriceCurrentYear, 2) (£@Math.Round(Model.MinPriceAndPostageCurrentYear, 2)) > Max: £@Math.Round(Model.MaxPriceCurrentYear, 2) (£@Math.Round(Model.MaxPriceAndPostageCurrentYear, 2))
-                                            </td>
-                                        </tr>
+                <tr>
+                    <th class="siteTheme">
+                        @DateTime.Now.Year Range Price:
+                    </th>
+                    <td class="siteTheme">
+                        Min: £@Math.Round(Model.MinPriceCurrentYear, 2) (£@Math.Round(Model.MinPriceAndPostageCurrentYear, 2)) > Max: £@Math.Round(Model.MaxPriceCurrentYear, 2) (£@Math.Round(Model.MaxPriceAndPostageCurrentYear, 2))
+                    </td>
+                </tr>
             }
         }
         <tr>
-            <th>
+            <th class="siteTheme">
                 Mean Postage:
             </th>
-            <td>
+            <td class="siteTheme">
                 <b>£@Math.Round(Model.MeanPostage, 2)</b>
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Median Postage:
             </th>
-            <td>
+            <td class="siteTheme">
                 £@Model.MedianPostage
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Range Postage:
             </th>
-            <td>
+            <td class="siteTheme">
                 Min: £@Model.MinPostage > Max: £@Model.MaxPostage
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Price Trend:
             </th>
-            <td>
+            <td class="siteTheme">
                 @Model.Trend &nbsp; <i class="bi bi-info-square" data-toggle="tooltip" data-placement="right" title="Looks at the price of items that are in mint, high or medium condition and complete, it then identifies if the price is going up, down or staying the same. Compares the top three most recent sale results OR compares the top two OR will report not enough data."></i>
             </td>
         </tr>
@@ -295,49 +295,49 @@
     }
 }
 
-<table style="width:100%">
+<table class="siteTheme" style="width:100%">
     <thead>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Name:
             </th>
-            <th>
+            <th class="siteTheme">
                 Condition:
             </th>
-            <th hidden="@completeHidden">
+            <th class="siteTheme" hidden="@completeHidden">
                 Complete:
             </th>
-            <th hidden="@colourHidden">
+            <th class="siteTheme" hidden="@colourHidden">
                 Colour:
             </th>
-            <th hidden="@discolourHidden">
+            <th class="siteTheme" hidden="@discolourHidden">
                 Discoloured:
             </th>
-            <th hidden="@standsHidden">
+            <th class="siteTheme" hidden="@standsHidden">
                 Stands:
             </th>
-            <th>
+            <th class="siteTheme">
                 Damaged:
             </th>
-            <th hidden="@damagedAccessoryHidden">
+            <th class="siteTheme" hidden="@damagedAccessoryHidden">
                 Damaged Accessory:
             </th>
-            <th hidden="@cardedHidden">
+            <th class="siteTheme" hidden="@cardedHidden">
                 Carded:
             </th>
-            <th hidden="@boxedHidden">
+            <th class="siteTheme" hidden="@boxedHidden">
                 Boxed:
             </th>
-            <th>
+            <th class="siteTheme">
                 Price:
             </th>
-            <th>
+            <th class="siteTheme">
                 Postage:
             </th>
-            <th>
+            <th class="siteTheme">
                 Sale Date:
             </th>
-            <th>
+            <th class="siteTheme">
                 Description:
             </th>
         </tr>
@@ -346,46 +346,46 @@
         @foreach (var obj in Model.Toy)
         {
             <tr>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Name
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Condition
                 </td>
-                <td style="text-align: center" hidden="@completeHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@completeHidden">
                     @obj.Complete
                 </td>
-                <td style="text-align: center" hidden="@colourHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@colourHidden">
                     @obj.Colour
                 </td>
-                <td style="text-align: center" hidden="@discolourHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@discolourHidden">
                     @obj.Discoloured
                 </td>
-                <td style="text-align: center" hidden="@standsHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@standsHidden">
                     @obj.Stands
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Damaged
                 </td>
-                <td style="text-align: center" hidden="@damagedAccessoryHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@damagedAccessoryHidden">
                     @obj.DamagedAccessory
                 </td>
-                <td style="text-align: center" hidden="@cardedHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@cardedHidden">
                     @obj.Carded
                 </td>
-                <td style="text-align: center" hidden="@boxedHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@boxedHidden">
                     @obj.Boxed
                 </td>
-                <td class="bgHighlight" style="text-align: center">
+                <td class="siteTheme" class="bgHighlight" style="text-align: center">
                     £@obj.Price
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     £@obj.Postage
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @generalHelper.ConvertDateTime(obj.SaleDate)
                 </td>
-                <td>
+                <td class="siteTheme">
                     @obj.Description
                 </td>
             </tr>

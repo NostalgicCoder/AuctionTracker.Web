@@ -95,37 +95,37 @@
 
     <br />
 
-    <table style="width:40%">
+    <table class="siteTheme" style="width:40%">
         <tbody>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Result Count:
                 </th>
-                <td>
+                <td class="siteTheme">
                     @Model.Game.Count().ToString()
                 </td>
             </tr>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Mean Price:
                 </th>
-                <td>
+                <td class="siteTheme">
                     <b>£@Math.Round(Model.MeanPrice, 2) (£@Math.Round(Model.MeanPriceAndPostage, 2))</b>
                 </td>
             </tr>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Median Price:
                 </th>
-                <td>
+                <td class="siteTheme">
                     £@Math.Round(Model.MedianPrice, 2) (£@Math.Round(Model.MedianPriceAndPostage, 2))
                 </td>
             </tr>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Range Price:
                 </th>
-                <td>
+                <td class="siteTheme">
                     Min: £@Math.Round(Model.MinPrice, 2) (£@Math.Round(Model.MinPriceAndPostage, 2)) > Max: £@Math.Round(Model.MaxPrice, 2) (£@Math.Round(Model.MaxPriceAndPostage, 2))
                 </td>
             </tr>
@@ -133,44 +133,44 @@
                 if (Model.MaxPriceCurrentYear != 0.00M)
                 {
                     <tr>
-                        <th>
+                        <th class="siteTheme">
                             @DateTime.Now.Year Range Price:
                         </th>
-                        <td>
+                        <td class="siteTheme">
                             Min: £@Math.Round(Model.MinPriceCurrentYear, 2) (£@Math.Round(Model.MinPriceAndPostageCurrentYear, 2)) > Max: £@Math.Round(Model.MaxPriceCurrentYear, 2) (£@Math.Round(Model.MaxPriceAndPostageCurrentYear, 2))
                         </td>
                     </tr>
                 }
             }
             <tr>
-                <th>
+                <th class="siteTheme">
                     Mean Postage:
                 </th>
-                <td>
+                <td class="siteTheme">
                     <b>£@Math.Round(Model.MeanPostage, 2)</b>
                 </td>
             </tr>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Median Postage:
                 </th>
-                <td>
+                <td class ="siteTheme">
                     £@Model.MedianPostage
                 </td>
             </tr>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Range Postage:
                 </th>
-                <td>
+                <td class="siteTheme">
                     Min: £@Model.MinPostage > Max: £@Model.MaxPostage
                 </td>
             </tr>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Price Trend:
                 </th>
-                <td>
+                <td class="siteTheme">
                     @Model.Trend &nbsp; <i class="bi bi-info-square" data-toggle="tooltip" data-placement="right" title="Looks at the price of items that are in mint, high or medium condition and complete, it then identifies if the price is going up, down or staying the same. Compares the top three most recent sale results OR compares the top two OR will report not enough data."></i>
                 </td>
             </tr>
@@ -231,37 +231,37 @@
 
     </form>
 
-    <table style="width:100%">
+    <table class="siteTheme" style="width:100%">
         <thead>
             <tr>
-                <th>
+                <th class="siteTheme">
                     Name:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Condition:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Sealed:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Platform:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Media Type:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Complete:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Price:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Postage:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Sale Date:
                 </th>
-                <th>
+                <th class="siteTheme">
                     Description:
                 </th>
             </tr>
@@ -270,34 +270,34 @@
             @foreach (var obj in Model.Game)
             {
                 <tr>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         @obj.Name
                     </td>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         @obj.Condition
                     </td>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         @obj.Sealed
                     </td>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         @obj.Platform
                     </td>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         @obj.MediaType
                     </td>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         @obj.Complete
                     </td>
-                    <td class="bgHighlight" style="text-align: center">
+                    <td class="siteTheme" class="bgHighlight" style="text-align: center">
                         £@obj.Price
                     </td>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         £@obj.Postage
                     </td>
-                    <td style="text-align: center">
+                    <td class="siteTheme" style="text-align: center">
                         @generalHelper.ConvertDateTime(obj.SaleDate)
                     </td>
-                    <td>
+                    <td class="siteTheme">
                         @obj.Description
                     </td>
                 </tr>

@@ -24,12 +24,6 @@ namespace AuctionTracker.Web.Class
                 modelState.AddModelError("Calculate", "No valid price provided.");
             }
 
-            if (pricePerItem.Postage == 0.00m)
-            {
-                pass = false;
-                modelState.AddModelError("Calculate", "No valid postage provided.");
-            }
-
             if (!_generalHelper.ValidDecimalNumber(pricePerItem.Price) || !_generalHelper.ValidDecimalNumber(pricePerItem.Postage))
             {
                 pass = false;

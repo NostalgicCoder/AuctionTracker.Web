@@ -82,52 +82,52 @@
 
 @Model.Toy.Count().ToString() Results found
 
-<table style="width:100%">
+<table class="siteTheme" style="width:100%">
     <thead>
         <tr>
-            <th>
+            <th class="siteTheme">
                 Name:
             </th>
-            <th>
+            <th class="siteTheme">
                 Condition:
             </th>
-            <th hidden="@completeHidden">
+            <th class="siteTheme" hidden="@completeHidden">
                 Complete:
             </th>
-            <th hidden="@colourHidden">
+            <th class="siteTheme" hidden="@colourHidden">
                 Colour:
             </th>
-            <th hidden="@discolourHidden">
+            <th class="siteTheme" hidden="@discolourHidden">
                 Discoloured:
             </th>
-            <th hidden="@standsHidden">
+            <th class="siteTheme" hidden="@standsHidden">
                 Stands:
             </th>
-            <th>
+            <th class="siteTheme">
                 Damaged:
             </th>
-            <th hidden="@damagedAccessoryHidden">
+            <th class="siteTheme" hidden="@damagedAccessoryHidden">
                 Damaged Accessory:
             </th>
-            <th hidden="@cardedHidden">
+            <th class="siteTheme" hidden="@cardedHidden">
                 Carded:
             </th>
-            <th hidden="@boxedHidden">
+            <th class="siteTheme" hidden="@boxedHidden">
                 Boxed:
             </th>
-            <th>
+            <th class="siteTheme">
                 Price:
             </th>
-            <th>
+            <th class="siteTheme">
                 Postage:
             </th>
-            <th>
+            <th class="siteTheme">
                 Sale Date:
             </th>
-            <th>
+            <th class="siteTheme">
                 Description:
             </th>
-            <th>
+            <th class="siteTheme">
             </th>
         </tr>
     </thead>
@@ -135,50 +135,50 @@
         @foreach (var obj in Model.Toy)
         {
             <tr>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @*  @Html.ActionLink(@obj.Name, "ToyInfo", "Toy", new { valToyName = obj.Name, valToyLine = obj.ToyLine }) *@
                     @Html.ActionLink(@obj.Name, "ToyInfo", "Toy", new Product() { SelectedProduct = obj.Name, SelectedProductLine = obj.ToyLine })
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Condition
                 </td>
-                <td style="text-align: center" hidden="@completeHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@completeHidden">
                     @obj.Complete
                 </td>
-                <td style="text-align: center" hidden="@colourHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@colourHidden">
                     @obj.Colour
                 </td>
-                <td style="text-align: center" hidden="@discolourHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@discolourHidden">
                     @obj.Discoloured
                 </td>
-                <td style="text-align: center" hidden="@standsHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@standsHidden">
                     @obj.Stands
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @obj.Damaged
                 </td>
-                <td style="text-align: center" hidden="@damagedAccessoryHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@damagedAccessoryHidden">
                     @obj.DamagedAccessory
                 </td>
-                <td style="text-align: center" hidden="@cardedHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@cardedHidden">
                     @obj.Carded
                 </td>
-                <td style="text-align: center" hidden="@boxedHidden">
+                <td class="siteTheme" style="text-align: center" hidden="@boxedHidden">
                     @obj.Boxed
                 </td>
-                <td class="bgHighlight" style="text-align: center">
+                <td class="siteTheme bgHighlight" style="text-align: center">
                     £@obj.Price
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     £@obj.Postage
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     @generalHelper.ConvertDateTime(obj.SaleDate)
                 </td>
-                <td>
+                <td class="siteTheme">
                     @obj.Description
                 </td>
-                <td style="text-align: center">
+                <td class="siteTheme" style="text-align: center">
                     <a asp-controller="Toy" asp-action="Edit" asp-route-id="@obj.Id">Edit</a> /
                     <a asp-controller="Toy" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
                 </td>

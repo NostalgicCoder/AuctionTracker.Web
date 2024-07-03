@@ -21,38 +21,38 @@ body {
     margin-bottom: 60px;
 }
 
-table, th, td {
-    border: 2px solid;
-}
-
-th, td {
-    padding: 5px;
-}
-
-td.bgHighlight {
-    background-color: #D9E5F7;
-}
-
-th {
-    text-align: center;
-    background-color: lightgray;
-}
-
 a {
     text-decoration: none;
+}
+
+button {
+    width: 160px;
 }
 
 a.siteButton {
     width: 160px;
 }
 
+table.siteTheme, th.siteTheme, td.siteTheme {
+    border: 2px solid;
+}
+
+th.siteTheme, td.siteTheme {
+    padding: 5px;
+}
+
+th.siteTheme {
+    text-align: center;
+    background-color: lightgray;
+}
+
+td.bgHighlight {
+    background-color: #D9E5F7;
+}
+
 div.section {
     border: 2px solid;
     padding: 10px;
-}
-
-button {
-    width: 160px;
 }
 
 span.highlightGreen {
