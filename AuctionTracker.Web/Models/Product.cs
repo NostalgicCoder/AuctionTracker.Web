@@ -30,6 +30,7 @@ namespace AuctionTracker.Web.Models
         public string SelectedProductLine { get; set; }
         public string SelectedSortOrder { get; set; }
         public string SearchCriteria { get; set; }
+        public List<SelectedRow> SelectedRow { get; set; }
 
         public bool SearchCondition { get; set; }
         public bool SearchComplete { get; set; }

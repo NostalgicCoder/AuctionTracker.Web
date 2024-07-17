@@ -10,9 +10,10 @@ namespace AuctionTracker.Web.Controllers
     {
         private readonly ApplicationDbContext _db;
 
-        private ICalculatePrices _calculatePrices = new CalculatePrices();
         private IValidation _validation = new Validation();
         private ISortData _sortData = new SortData();
+
+        private PopulateProductModel _populateProductModel = new PopulateProductModel();
 
         /// <summary>
         /// Constructor
@@ -39,26 +40,7 @@ namespace AuctionTracker.Web.Controllers
 
         public IActionResult GameInfo(Product product)
         {
-            product.Game = _db.Games.Where(x => x.Name == product.SelectedProduct);
-
-            if (product.SearchCondition)
-            {
-                product.Game = product.Game.Where(x => x.Condition.ToLower() == "high" || x.Condition.ToLower() == "mint");
-            }
-
-            if (product.SearchComplete)
-            {
-                product.Game = product.Game.Where(x => x.Complete.ToLower() == "yes");
-            }
-
-            if (product.SearchCurrentYear)
-            {
-                product.Game = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year);
-            }
-
-            product = _sortData.SortGameOrder(product, 2);
-
-            product = _calculatePrices.GetGamePrices(product);
+            product = _populateProductModel.PopulateGameModel(_db, product);
 
             return View(product);
         }
@@ -68,7 +50,9 @@ namespace AuctionTracker.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult GameSortOrder(Product product)
         {
-            return RedirectToAction("GameInfo", "Game", product);
+            product = _populateProductModel.PopulateGameModel(_db, product);
+
+            return View("GameInfo", product);
         }
 
         #region Create
