@@ -1,5 +1,5 @@
 -----------------------------------------
-2nd July 2024:
+eBay Auction Tracker - About:
 -----------------------------------------
 
 The purpose of this project was to achieve two goals:
@@ -41,19 +41,17 @@ Credit to the below site(s) for images used in this application.
 
 Images:
 
-![Alt text](Images/AuctionTracker9.jpg)
-![Alt text](Images/AuctionTracker10.jpg)
-![Alt text](Images/AuctionTracker1.jpg)
-![Alt text](Images/AuctionTracker2.jpg)
-![Alt text](Images/AuctionTracker11.jpg)
-![Alt text](Images/AuctionTracker12.jpg)
-![Alt text](Images/AuctionTracker3.jpg)
-![Alt text](Images/AuctionTracker4.jpg)
-![Alt text](Images/AuctionTracker13.jpg)
-![Alt text](Images/AuctionTracker5.jpg)
-![Alt text](Images/AuctionTracker6.jpg)
-![Alt text](Images/AuctionTracker14.jpg)
-![Alt text](Images/AuctionTracker7.jpg)
-![Alt text](Images/AuctionTracker8.jpg)
+![Alt text](Images/AuctionTrackerStart1.jpg)
+![Alt text](Images/AuctionTrackerStart2.jpg)
+![Alt text](Images/AuctionTrackerGame1.jpg)
+![Alt text](Images/AuctionTrackerGame2.jpg)
+![Alt text](Images/AuctionTrackerGame3.jpg)
+![Alt text](Images/AuctionTrackerCrud1.jpg)
+![Alt text](Images/AuctionTrackerCrud2.jpg)
+![Alt text](Images/AuctionTrackerCrud3.jpg)
+![Alt text](Images/AuctionTrackerEnd1.jpg)
+![Alt text](Images/AuctionTrackerEnd2.jpg)
+![Alt text](Images/AuctionTrackerEnd3.jpg)
+
 
 
