@@ -12,8 +12,7 @@ namespace AuctionTracker.Web.Controllers
 
         private IValidation _validation = new Validation();
         private ISortData _sortData = new SortData();
-
-        private PopulateProductModel _populateProductModel = new PopulateProductModel();
+        private IPopulateProductModel _populateProductModel = new PopulateProductModel();
 
         /// <summary>
         /// Constructor

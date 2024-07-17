@@ -4,7 +4,7 @@ using AuctionTracker.Web.Models;
 
 namespace AuctionTracker.Web.Class
 {
-    public class PopulateProductModel
+    public class PopulateProductModel : IPopulateProductModel
     {
         private ICalculatePrices _calculatePrices = new CalculatePrices();
         private ISortData _sortData = new SortData();
