@@ -17,6 +17,16 @@
 
 <script type="text/javascript">
 
+    // On Page Load:
+    $(document).ready(function () {
+        // Get the array size for 'selectedRowChkBx' checkboxes and uncheck them all (Req due to dynamic nature of results varying in size)
+        var value = $("input:checkbox[id=selectedRowChkBx]").length;
+
+        for (i = 0; i < value; i++) {
+            $('input:checkbox[id=selectedRowChkBx]')[i].checked = false;
+        }
+    });
+
     function updateFrmChkBx(e) {
         var info = document.getElementById(e);
 
@@ -259,139 +269,146 @@
 
     <p></p>
 
+    @{
+        bool completeHidden = true;
+        bool damagedAccessoryHidden = true;
+        bool colourHidden = true;
+        bool discolourHidden = true;
+        bool cardedHidden = true;
+        bool boxedHidden = true;
+        bool standsHidden = true;
+
+        switch (Model.SelectedProductLine.ToLower())
+        {
+            case "mimp":
+                colourHidden = false;
+                discolourHidden = false;
+                break;
+            case "motu":
+                completeHidden = false;
+                damagedAccessoryHidden = false;
+                cardedHidden = false;
+                boxedHidden = false;
+                standsHidden = false;
+                break;
+            default:
+                completeHidden = false;
+                damagedAccessoryHidden = false;
+                cardedHidden = false;
+                boxedHidden = false;
+                break;
+        }
+    }
+
+    <table class="siteTheme" style="width:100%">
+        <thead>
+            <tr>
+                <th class="siteTheme">
+                    <i class="bi bi-info-square" data-toggle="tooltip" data-placement="right" title="Check to exclude the row item from filtered results."></i>
+                </th>
+                <th class="siteTheme">
+                    Name:
+                </th>
+                <th class="siteTheme">
+                    Condition:
+                </th>
+                <th class="siteTheme" hidden="@completeHidden">
+                    Complete:
+                </th>
+                <th class="siteTheme" hidden="@colourHidden">
+                    Colour:
+                </th>
+                <th class="siteTheme" hidden="@discolourHidden">
+                    Discoloured:
+                </th>
+                <th class="siteTheme" hidden="@standsHidden">
+                    Stands:
+                </th>
+                <th class="siteTheme">
+                    Damaged:
+                </th>
+                <th class="siteTheme" hidden="@damagedAccessoryHidden">
+                    Damaged Accessory:
+                </th>
+                <th class="siteTheme" hidden="@cardedHidden">
+                    Carded:
+                </th>
+                <th class="siteTheme" hidden="@boxedHidden">
+                    Boxed:
+                </th>
+                <th class="siteTheme">
+                    Price:
+                </th>
+                <th class="siteTheme">
+                    Postage:
+                </th>
+                <th class="siteTheme">
+                    Sale Date:
+                </th>
+                <th class="siteTheme">
+                    Description:
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var val = 0; val < Model.Toy.Count(); val++)
+            {
+                <tr>
+                    <td class="siteTheme" style="text-align: center">
+                        <input id="selectedRowChkBx" asp-for="SelectedRow[val].IsSelected" class="form-check-input" type="checkbox">
+                        <input type="hidden" asp-for="SelectedRow[val].Id" value="@Model.Toy.ToArray()[val].Id" />
+                    </td>
+                    <td class="siteTheme" style="text-align: center">
+                        @Model.Toy.ToArray()[val].Name
+                    </td>
+                    <td class="siteTheme" style="text-align: center">
+                        @Model.Toy.ToArray()[val].Condition
+                    </td>
+                    <td class="siteTheme" style="text-align: center" hidden="@completeHidden">
+                        @Model.Toy.ToArray()[val].Complete
+                    </td>
+                    <td class="siteTheme" style="text-align: center" hidden="@colourHidden">
+                        @Model.Toy.ToArray()[val].Colour
+                    </td>
+                    <td class="siteTheme" style="text-align: center" hidden="@discolourHidden">
+                        @Model.Toy.ToArray()[val].Discoloured
+                    </td>
+                    <td class="siteTheme" style="text-align: center" hidden="@standsHidden">
+                        @Model.Toy.ToArray()[val].Stands
+                    </td>
+                    <td class="siteTheme" style="text-align: center">
+                        @Model.Toy.ToArray()[val].Damaged
+                    </td>
+                    <td class="siteTheme" style="text-align: center" hidden="@damagedAccessoryHidden">
+                        @Model.Toy.ToArray()[val].DamagedAccessory
+                    </td>
+                    <td class="siteTheme" style="text-align: center" hidden="@cardedHidden">
+                        @Model.Toy.ToArray()[val].Carded
+                    </td>
+                    <td class="siteTheme" style="text-align: center" hidden="@boxedHidden">
+                        @Model.Toy.ToArray()[val].Boxed
+                    </td>
+                    <td class="siteTheme" class="bgHighlight" style="text-align: center">
+                        £@Model.Toy.ToArray()[val].Price
+                    </td>
+                    <td class="siteTheme" style="text-align: center">
+                        £@Model.Toy.ToArray()[val].Postage
+                    </td>
+                    <td class="siteTheme" style="text-align: center">
+                        @generalHelper.ConvertDateTime(@Model.Toy.ToArray()[val].SaleDate)
+                    </td>
+                    <td class="siteTheme">
+                        @Model.Toy.ToArray()[val].Description
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
     <input type="hidden" asp-for="@Model.SelectedProduct" />
     <input type="hidden" asp-for="@Model.SelectedProductLine" />
 
 </form>
-
-@{
-    bool completeHidden = true;
-    bool damagedAccessoryHidden = true;
-    bool colourHidden = true;
-    bool discolourHidden = true;
-    bool cardedHidden = true;
-    bool boxedHidden = true;
-    bool standsHidden = true;
-
-    switch (Model.SelectedProductLine.ToLower())
-    {
-        case "mimp":
-            colourHidden = false;
-            discolourHidden = false;
-            break;
-        case "motu":
-            completeHidden = false;
-            damagedAccessoryHidden = false;
-            cardedHidden = false;
-            boxedHidden = false;
-            standsHidden = false;
-            break;
-        default:
-            completeHidden = false;
-            damagedAccessoryHidden = false;
-            cardedHidden = false;
-            boxedHidden = false;
-            break;
-    }
-}
-
-<table class="siteTheme" style="width:100%">
-    <thead>
-        <tr>
-            <th class="siteTheme">
-                Name:
-            </th>
-            <th class="siteTheme">
-                Condition:
-            </th>
-            <th class="siteTheme" hidden="@completeHidden">
-                Complete:
-            </th>
-            <th class="siteTheme" hidden="@colourHidden">
-                Colour:
-            </th>
-            <th class="siteTheme" hidden="@discolourHidden">
-                Discoloured:
-            </th>
-            <th class="siteTheme" hidden="@standsHidden">
-                Stands:
-            </th>
-            <th class="siteTheme">
-                Damaged:
-            </th>
-            <th class="siteTheme" hidden="@damagedAccessoryHidden">
-                Damaged Accessory:
-            </th>
-            <th class="siteTheme" hidden="@cardedHidden">
-                Carded:
-            </th>
-            <th class="siteTheme" hidden="@boxedHidden">
-                Boxed:
-            </th>
-            <th class="siteTheme">
-                Price:
-            </th>
-            <th class="siteTheme">
-                Postage:
-            </th>
-            <th class="siteTheme">
-                Sale Date:
-            </th>
-            <th class="siteTheme">
-                Description:
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var obj in Model.Toy)
-        {
-            <tr>
-                <td class="siteTheme" style="text-align: center">
-                    @obj.Name
-                </td>
-                <td class="siteTheme" style="text-align: center">
-                    @obj.Condition
-                </td>
-                <td class="siteTheme" style="text-align: center" hidden="@completeHidden">
-                    @obj.Complete
-                </td>
-                <td class="siteTheme" style="text-align: center" hidden="@colourHidden">
-                    @obj.Colour
-                </td>
-                <td class="siteTheme" style="text-align: center" hidden="@discolourHidden">
-                    @obj.Discoloured
-                </td>
-                <td class="siteTheme" style="text-align: center" hidden="@standsHidden">
-                    @obj.Stands
-                </td>
-                <td class="siteTheme" style="text-align: center">
-                    @obj.Damaged
-                </td>
-                <td class="siteTheme" style="text-align: center" hidden="@damagedAccessoryHidden">
-                    @obj.DamagedAccessory
-                </td>
-                <td class="siteTheme" style="text-align: center" hidden="@cardedHidden">
-                    @obj.Carded
-                </td>
-                <td class="siteTheme" style="text-align: center" hidden="@boxedHidden">
-                    @obj.Boxed
-                </td>
-                <td class="siteTheme" class="bgHighlight" style="text-align: center">
-                    £@obj.Price
-                </td>
-                <td class="siteTheme" style="text-align: center">
-                    £@obj.Postage
-                </td>
-                <td class="siteTheme" style="text-align: center">
-                    @generalHelper.ConvertDateTime(obj.SaleDate)
-                </td>
-                <td class="siteTheme">
-                    @obj.Description
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
 <br />
 

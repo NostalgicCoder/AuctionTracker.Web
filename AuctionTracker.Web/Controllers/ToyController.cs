@@ -10,11 +10,11 @@ namespace AuctionTracker.Web.Controllers
     {
         private readonly ApplicationDbContext _db;
 
-        private ICalculatePrices _calculatePrices = new CalculatePrices();
         private IPopulateControls _populateControls = new PopulateControls();
         private IGeneralHelper _generalHelper = new GeneralHelper();
         private IValidation _validation = new Validation();
         private ISortData _sortData = new SortData();
+        private IPopulateProductModel _populateProductModel = new PopulateProductModel();
 
         /// <summary>
         /// Constructor
@@ -50,36 +50,7 @@ namespace AuctionTracker.Web.Controllers
 
         public IActionResult ToyInfo(Product product)
         {
-            product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct);
-
-            if(product.SearchCondition)
-            {
-                product.Toy = product.Toy.Where(x => x.Condition.ToLower() == "high" || x.Condition.ToLower() == "mint");
-            }
-
-            if (product.SearchComplete)
-            {
-                product.Toy = product.Toy.Where(x => x.Complete.ToLower() == "yes");
-            }
-
-            if(product.SearchCurrentYear)
-            {
-                product.Toy = product.Toy.Where(x => x.SaleDate.Year == DateTime.Now.Year);
-            }
-
-            if(product.SearchLoose)
-            {
-                product.Toy = product.Toy.Where(x => x.Carded == false && x.Boxed == false);
-            }
-
-            if(product.SearchCardedBoxed)
-            {
-                product.Toy = product.Toy.Where(x => x.Carded == true || x.Boxed == true);
-            }
-
-            product = _sortData.SortToyOrder(product, 2);
-
-            product = _calculatePrices.GetToyPrices(product);
+            product = _populateProductModel.PopulateToyModel(_db, product);
 
             return View(product);
         }
@@ -89,7 +60,9 @@ namespace AuctionTracker.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ToyInfoSortOrder(Product product)
         {
-            return RedirectToAction("ToyInfo", "Toy", product);
+            product = _populateProductModel.PopulateToyModel(_db, product);
+
+            return View("ToyInfo", product);
         }
 
         //POST
