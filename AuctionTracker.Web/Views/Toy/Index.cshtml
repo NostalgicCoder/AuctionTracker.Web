@@ -28,7 +28,7 @@
                                           {
                                               Text = x.ToyLine,
                                               Value = x.ToyLine
-                                          }).DistinctBy(x => x.Text).ToList()" style="width:200px">
+                                          }).DistinctBy(x => x.Text).OrderBy(x => x.Text).ToList()" style="width:200px">
             <option>Please select one</option>
         </select>
 

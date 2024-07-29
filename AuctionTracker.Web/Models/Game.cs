@@ -45,6 +45,7 @@ namespace AuctionTracker.Web.Models
         public List<SelectListItem> PlatformLst = new List<SelectListItem>()
         {
             new SelectListItem {Text = "PC", Value = "PC"},
+            new SelectListItem {Text = "MAC", Value = "MAC"},
             new SelectListItem {Text = "Amiga", Value = "Amiga"},
             new SelectListItem {Text = "Atari ST", Value = "Atari ST"},
             new SelectListItem {Text = "Spectrum", Value = "Spectrum"},
