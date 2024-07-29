@@ -8,6 +8,25 @@ namespace AuctionTracker.Web.Class
     {
         private IGeneralHelper _generalHelper = new GeneralHelper();
 
+        public bool ValidateSellThroughRate(ModelStateDictionary modelState, PricePerItem pricePerItem)
+        {
+            bool pass = true;
+
+            if (pricePerItem.QuantitySoldThatMonth == 0)
+            {
+                pass = false;
+                modelState.AddModelError("Calculate", "No valid quantity sold that month.");
+            }
+
+            if (pricePerItem.QuantityAvailableThatMonth == 0)
+            {
+                pass = false;
+                modelState.AddModelError("Calculate", "No valid quantity available that month.");
+            }
+
+            return pass;
+        }
+
         public bool ValidatePricePerItem(ModelStateDictionary modelState, PricePerItem pricePerItem)
         {
             bool pass = true;

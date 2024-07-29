@@ -30,5 +30,22 @@ namespace AuctionTracker.Web.Controllers
 
             return View("Index", pricePerItem);
         }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CalculateStr(PricePerItem pricePerItem)
+        {
+            bool pass = _validation.ValidateSellThroughRate(ModelState, pricePerItem);
+
+            if (ModelState.IsValid && pass)
+            {
+                pricePerItem.Str = ((decimal)pricePerItem.QuantitySoldThatMonth / pricePerItem.QuantityAvailableThatMonth) * 100;
+
+                return RedirectToAction("Index", "Tools", pricePerItem);
+            }
+
+            return View("Index", pricePerItem);
+        }
     }
 }

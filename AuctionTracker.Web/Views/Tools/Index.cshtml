@@ -6,13 +6,13 @@
 
 <h2>Auction Tools:</h2>
 
+<div asp-validation-summary="All" class="text-danger"></div>
+
 <form method="post" asp-action="CalculateItemPrice">
 
     <div class="card border-primary mb-3" style="width: 100%">
         <div class="card-header">Calculator - Cost Per Item:</div>
         <div class="card-body">
-
-            <div asp-validation-summary="All" class="text-danger"></div>
 
             <label asp-for="Quantity"></label>
             <input asp-for="Quantity" class="form-control" style="width:68px" />
@@ -26,6 +26,31 @@
             <br />
 
             Cost per item: <span class="highlightGreen">£@Math.Round(Model.ItemPrice, 2)</span>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calculate &nbsp; <i class="bi bi-plus-circle"></i></button>
+
+</form>
+
+<br />
+
+<form method="post" asp-action="CalculateStr">
+
+    <div class="card border-primary mb-3" style="width: 100%">
+        <div class="card-header">Calculator - Sell Through Rate (STR):</div>
+        <div class="card-body">
+
+            <label asp-for="QuantitySoldThatMonth"> Qty Sold That Month</label>
+            <input asp-for="QuantitySoldThatMonth" class="form-control" style="width:80px" />
+
+            <label asp-for="QuantityAvailableThatMonth">Qty Available That Month</label>
+            <input asp-for="QuantityAvailableThatMonth" class="form-control" style="width:68px" />
+
+            <br />
+
+            Sell Through Rate (STR): <span class="highlightGreen">@Math.Round(Model.Str, 2)%</span>
 
         </div>
     </div>
