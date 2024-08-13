@@ -3,6 +3,7 @@ using AuctionTracker.Web.Data;
 using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuctionTracker.Web.Controllers
 {
@@ -24,17 +25,17 @@ namespace AuctionTracker.Web.Controllers
             _db = db;
         }
 
-        public IActionResult Index(Product? product)
+        public async Task<IActionResult> Index(Product? product)
         {
             if (string.IsNullOrEmpty(product.SelectedProductLine) || product.SelectedProductLine == "Please select one")
             {
-                product.Toy = _db.Toys.OrderBy(x => x.Name).OrderBy(x => x.Name);
+                product.Toy = await _db.Toys.OrderBy(x => x.Name).OrderBy(x => x.Name).ToListAsync();
 
                 return View(product);
             }
             else
             {
-                product.Toy = _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine);
+                product.Toy = await _db.Toys.Where(x => x.ToyLine == product.SelectedProductLine).ToListAsync();
 
                 if (!string.IsNullOrEmpty(product.SearchCriteria))
                 {
@@ -92,14 +93,14 @@ namespace AuctionTracker.Web.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Toy toy)
+        public async Task<IActionResult> Create(Toy toy)
         {
             bool pass = _validation.ValidateToy(ModelState, toy);
 
             if (ModelState.IsValid && pass)
             {
-                _db.Toys.Add(toy);
-                _db.SaveChanges();
+                await _db.Toys.AddAsync(toy);
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Toy");
             }
@@ -115,14 +116,14 @@ namespace AuctionTracker.Web.Controllers
         #region Edit
 
         //GET
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var obj = _db.Toys.Find(id);
+            var obj = await _db.Toys.FindAsync(id);
 
             if (obj == null)
             {
@@ -135,7 +136,7 @@ namespace AuctionTracker.Web.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Toy obj)
+        public async Task<IActionResult> Edit(Toy obj)
         {
             bool pass = true;
 
@@ -200,7 +201,7 @@ namespace AuctionTracker.Web.Controllers
             if (ModelState.IsValid && pass)
             {
                 _db.Toys.Update(obj);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Toy");
             }
@@ -213,14 +214,14 @@ namespace AuctionTracker.Web.Controllers
         #region Delete
 
         //GET
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var obj = _db.Toys.Find(id);
+            var obj = await _db.Toys.FindAsync(id);
 
             if (obj == null)
             {
@@ -232,9 +233,9 @@ namespace AuctionTracker.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteProduct(int? id)
+        public async Task<IActionResult> DeleteProduct(int? id)
         {
-            var obj = _db.Toys.Find(id);
+            var obj = await _db.Toys.FindAsync(id);
 
             if (obj == null)
             {
@@ -242,7 +243,7 @@ namespace AuctionTracker.Web.Controllers
             }
 
             _db.Toys.Remove(obj);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             return RedirectToAction("Index", "Toy");
         }
