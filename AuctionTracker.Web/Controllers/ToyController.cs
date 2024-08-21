@@ -140,10 +140,10 @@ namespace AuctionTracker.Web.Controllers
         {
             bool pass = true;
 
-            if (obj.Price == 0.00m || obj.Postage == 0.00m)
+            if (obj.Price == 0.00m)
             {
                 pass = false;
-                ModelState.AddModelError("Edit", "No valid price OR postage provided.");
+                ModelState.AddModelError("Edit", "No valid price provided.");
             }
 
             if (!_generalHelper.ValidDecimalNumber(obj.Price) || !_generalHelper.ValidDecimalNumber(obj.Postage))

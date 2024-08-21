@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionTracker.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240402143636_AuctionDb")]
+    [Migration("20240821105101_AuctionDb")]
     partial class AuctionDb
     {
         /// <inheritdoc />
@@ -67,6 +67,9 @@ namespace AuctionTracker.Web.Migrations
 
                     b.Property<bool>("Sealed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Variant")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -129,6 +132,9 @@ namespace AuctionTracker.Web.Migrations
 
                     b.Property<string>("ToyLine")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Variant")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

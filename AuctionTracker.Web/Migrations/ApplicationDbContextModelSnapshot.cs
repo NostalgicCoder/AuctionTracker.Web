@@ -65,6 +65,9 @@ namespace AuctionTracker.Web.Migrations
                     b.Property<bool>("Sealed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Variant")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Games");
@@ -126,6 +129,9 @@ namespace AuctionTracker.Web.Migrations
 
                     b.Property<string>("ToyLine")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Variant")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

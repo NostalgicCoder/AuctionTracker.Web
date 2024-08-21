@@ -18,6 +18,7 @@ namespace AuctionTracker.Web.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Variant = table.Column<string>(type: "nvarchar(150)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Condition = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sealed = table.Column<bool>(type: "bit", nullable: false),
@@ -40,6 +41,7 @@ namespace AuctionTracker.Web.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Variant = table.Column<string>(type: "nvarchar(150)", nullable: true),
                     Colour = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DamagedAccessory = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stands = table.Column<string>(type: "nvarchar(max)", nullable: true),

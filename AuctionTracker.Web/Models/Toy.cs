@@ -10,6 +10,7 @@ namespace AuctionTracker.Web.Models
         public int Id { get; set; }
 
         public string? Description { get; set; }
+        public string? Variant { get; set; }
         public string? Colour { get; set; }
         public string? DamagedAccessory { get; set; }
         public string? Stands { get; set; }
