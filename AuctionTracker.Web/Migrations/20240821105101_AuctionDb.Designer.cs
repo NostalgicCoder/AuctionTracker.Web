@@ -69,7 +69,7 @@ namespace AuctionTracker.Web.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Variant")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
@@ -135,7 +135,7 @@ namespace AuctionTracker.Web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Variant")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
