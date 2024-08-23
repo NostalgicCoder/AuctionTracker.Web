@@ -1,4 +1,7 @@
 ﻿using AuctionTracker.Web.Interfaces;
+using AuctionTracker.Web.Models;
+using IgdbApi.Lib.Enum;
+using System;
 using System.Text.RegularExpressions;
 
 namespace AuctionTracker.Web.Class
@@ -72,6 +75,43 @@ namespace AuctionTracker.Web.Class
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Convert the database version of the platform to a integer platform Id compatible with IGDB Rest API
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public int ResolvePlatformId(Product product)
+        {
+            int platformId = 0;
+
+            switch (product.SelectedGamePlatform)
+            {
+                case "Atari ST":
+                    platformId = (int)PlatformEnum.AtariST;
+                    break;
+                case "PC":
+                    platformId = (int)PlatformEnum.PC;
+                    break;
+                case "Amiga":
+                    platformId = (int)PlatformEnum.Amiga;
+                    break;
+                case "Spectrum":
+                    platformId = (int)PlatformEnum.Spectrum;
+                    break;
+                case "Amstrad":
+                    platformId = (int)PlatformEnum.Amstrad;
+                    break;
+                case "Xbox 360":
+                    platformId = (int)PlatformEnum.Xbox360;
+                    break;
+                case "C64":
+                    platformId = (int)PlatformEnum.C64;
+                    break;
+            }
+
+            return platformId;
         }
     }
 }

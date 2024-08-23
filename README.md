@@ -20,6 +20,10 @@ Technologies / Principles Used:
 - ASP.NET MVC Core
 - CSS / Bootstrap Themes & Icons
 - Chart.js
+- REST
+- IGDB API (Via my own wrapper, project 'IgdbApi.Lib')
+- RestSharp
+- Newtonsoft.Json
 - Entity Framework - Code first approach
 - SQL Server Express backend database
 - TDD (Microsoft Test Framework + Fluent Assertion)
@@ -32,6 +36,8 @@ Resources / Credits:
 - Original Traning Video - https://www.youtube.com/watch?v=hZ1DASYd9rk&list=WL&index=7
 - Chart training example - https://www.c-sharpcorner.com/article/creating-charts-with-asp-net-core/
 - Refer to the location '\Resources\AuctionDb.bak' in the code for a backup copy of the SQL database (Test Version).
+- https://www.igdb.com/
+- https://api-docs.igdb.com/#authentication
 
 Image Credits:
 
@@ -49,12 +55,13 @@ Images:
 ![Alt text](Images/AuctionTrackerGame1.jpg)
 ![Alt text](Images/AuctionTrackerGame2.jpg)
 ![Alt text](Images/AuctionTrackerGame3.jpg)
+![Alt text](Images/AuctionTrackerGame4.jpg)
+![Alt text](Images/AuctionTrackerGame5.jpg)
 ![Alt text](Images/AuctionTrackerCrud1.jpg)
 ![Alt text](Images/AuctionTrackerCrud2.jpg)
 ![Alt text](Images/AuctionTrackerCrud3.jpg)
 ![Alt text](Images/AuctionTrackerEnd1.jpg)
 ![Alt text](Images/AuctionTrackerEnd2.jpg)
 ![Alt text](Images/AuctionTrackerEnd3.jpg)
-
 
 

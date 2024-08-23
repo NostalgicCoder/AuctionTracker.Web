@@ -91,7 +91,7 @@
             <tr>
                 <td class="siteTheme" style="text-align: center">
                     @* @Html.ActionLink(@obj.Name, "GameInfo", "Game", new { valGameName = obj.Name }) *@
-                    @Html.ActionLink(@obj.Name, "GameInfo", "Game", new Product() { SelectedProduct = obj.Name })
+                    @Html.ActionLink(@obj.Name, "GameInfo", "Game", new Product() { SelectedProduct = obj.Name, SelectedGamePlatform = obj.Platform })
                 </td>
                 <td class="siteTheme" style="text-align: center">
                     @obj.Condition

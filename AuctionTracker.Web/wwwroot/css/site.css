@@ -55,6 +55,14 @@ div.section {
     padding: 10px;
 }
 
+div.igdbInfoContainer {
+    padding: 10px;
+    width: 100%;
+    height: 350px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
 span.highlightGreen {
     color: mediumseagreen;
     font-weight: 900;

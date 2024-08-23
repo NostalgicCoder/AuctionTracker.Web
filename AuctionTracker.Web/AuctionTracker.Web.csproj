@@ -18,10 +18,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="RestSharp" Version="111.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IgdbApi.Lib">
+      <HintPath>..\..\IgdbApi.Lib\IgdbApi.Lib\bin\Release\net8.0\IgdbApi.Lib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
