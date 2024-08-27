@@ -2,7 +2,6 @@
 using AuctionTracker.Web.Data;
 using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
-using IgdbApi.Lib;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,11 +12,9 @@ namespace AuctionTracker.Web.Controllers
         private IValidation _validation = new Validation();
         private ISortData _sortData = new SortData();
         private IPopulateProductModel _populateProductModel = new PopulateProductModel();
-        private IGeneralHelper _generalHelper = new GeneralHelper();
+        private IProcessIgdb _processIgdb = new ProcessIgdb();    
 
         private readonly ApplicationDbContext _db;
-
-        private Igdb _igdb = new Igdb();
 
         /// <summary>
         /// Constructor
@@ -44,10 +41,7 @@ namespace AuctionTracker.Web.Controllers
 
         public IActionResult GameInfo(Product product)
         {
-            _igdb.GetTwitchAccessToken();
-
-            product.FullGameData = _igdb.GetAllDataOnAGame(product.SelectedProduct, _generalHelper.ResolvePlatformId(product));
-
+            product = _processIgdb.CallIgdb(product);
             product = _populateProductModel.PopulateGameModel(_db, product);
 
             return View(product);
@@ -58,6 +52,7 @@ namespace AuctionTracker.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult GameSortOrder(Product product)
         {
+            product = _processIgdb.CallIgdb(product);
             product = _populateProductModel.PopulateGameModel(_db, product);
 
             return View("GameInfo", product);
