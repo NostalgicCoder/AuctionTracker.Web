@@ -50,6 +50,12 @@ Credit to the below site(s) for images used in this application.
 
 - https://retromash.com/2015/01/30/top-ten-action-figure-toylines/
 
+Video Demo:
+
+NOTE! - Video length is short due to 10mb limit on videos on GitHub
+
+https://github.com/user-attachments/assets/b76b6f0b-0442-4eca-b1a6-c2d32e0195f0
+
 Images:
 
 ![Alt text](Images/AuctionTrackerStart1.jpg)
