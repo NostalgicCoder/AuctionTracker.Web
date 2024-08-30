@@ -28,6 +28,11 @@ Technologies / Principles Used:
 - SQL Server Express backend database
 - TDD (Microsoft Test Framework + Fluent Assertion)
 
+Requirements:
+
+- SQL backend database to be installed, refer to '\Resources\AuctionDb.bak'
+- Signup to 'Twitch developer portal' to aquire 'clientId' and 'clientSecret' to use the IGDB API functionality in this program, refer to https://api-docs.igdb.com/#authentication
+
 Resources / Credits:
 
 - https://getbootstrap.com/docs/5.3/getting-started/introduction/

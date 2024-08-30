@@ -17,7 +17,8 @@ namespace AuctionTracker.Web.Class
         {
             Igdb igdb = new Igdb();
 
-            igdb.GetTwitchAccessToken();
+            // REQUIREMENT - Provide your own Twitch Developer Portal 'clientId' and 'clientSecret' below in order for the IGDB calls to work.
+            igdb.GetTwitchAccessToken("YourClientId", "YourClientSecret");
 
             product.FullGameData = igdb.GetAllDataOnAGame(product.SelectedProduct, _generalHelper.ResolvePlatformId(product));
 
