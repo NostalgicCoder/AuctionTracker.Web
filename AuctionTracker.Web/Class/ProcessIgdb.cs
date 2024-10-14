@@ -1,6 +1,7 @@
 ﻿using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
 using IgdbApi.Lib;
+using IgdbApi.Lib.Interfaces;
 
 namespace AuctionTracker.Web.Class
 {
@@ -15,7 +16,7 @@ namespace AuctionTracker.Web.Class
         /// <returns></returns>
         public Product CallIgdb(Product product)
         {
-            Igdb igdb = new Igdb();
+            IIgdb igdb = new Igdb();
 
             // REQUIREMENT - Provide your own Twitch Developer Portal 'clientId' and 'clientSecret' below in order for the IGDB calls to work.
             igdb.GetTwitchAccessToken("YourClientId", "YourClientSecret");
