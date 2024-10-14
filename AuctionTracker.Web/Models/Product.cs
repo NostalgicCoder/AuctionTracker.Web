@@ -1,5 +1,5 @@
 ﻿using AuctionTracker.Web.Interfaces;
-using IgdbApi.Lib.Models;
+using IgdbApi.Lib.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AuctionTracker.Web.Models
@@ -43,7 +43,7 @@ namespace AuctionTracker.Web.Models
         public IEnumerable<Game> Game { get; set; }
         public IEnumerable<Toy> Toy { get; set; }
 
-        public FullGameData FullGameData { get; set; }
+        public IFullGameData FullGameData { get; set; }
 
         public List<SelectListItem> SortOrderListGame = new List<SelectListItem>()
         {
