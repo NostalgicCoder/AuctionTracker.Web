@@ -24,4 +24,10 @@
     <ProjectReference Include="..\AuctionTracker.Web\AuctionTracker.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="IgdbApi.Lib">
+      <HintPath>..\..\IgdbApi.Lib\IgdbApi.Lib\bin\Release\net8.0\IgdbApi.Lib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
