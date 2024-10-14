@@ -1,7 +1,6 @@
 ﻿using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
 using IgdbApi.Lib.Enum;
-using System;
 using System.Text.RegularExpressions;
 
 namespace AuctionTracker.Web.Class

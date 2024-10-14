@@ -9,6 +9,12 @@ namespace AuctionTracker.Web.Class
         private ICalculatePrices _calculatePrices = new CalculatePrices();
         private ISortData _sortData = new SortData();
 
+        /// <summary>
+        /// Return all the game results that match the users selection, filter and sorting result on the frontend.
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public Product PopulateGameModel(ApplicationDbContext db, Product product)
         {
             product.Game = db.Games.Where(x => x.Name == product.SelectedProduct);
@@ -49,6 +55,12 @@ namespace AuctionTracker.Web.Class
             return product;
         }
 
+        /// <summary>
+        /// Return all the toy results that match the users selection, filter and sorting result on the frontend.
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public Product PopulateToyModel(ApplicationDbContext db, Product product)
         {
             product.Toy = db.Toys.Where(x => x.ToyLine == product.SelectedProductLine && x.Name == product.SelectedProduct);

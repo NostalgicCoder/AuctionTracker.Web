@@ -8,6 +8,12 @@ namespace AuctionTracker.Web.Class
     {
         private IGeneralHelper _generalHelper = new GeneralHelper();
 
+        /// <summary>
+        /// Verify the state of the 'ValidateSellThroughRate' user model (pass or fail) before sending it back to the action result
+        /// </summary>
+        /// <param name="modelState"></param>
+        /// <param name="pricePerItem"></param>
+        /// <returns></returns>
         public bool ValidateSellThroughRate(ModelStateDictionary modelState, PricePerItem pricePerItem)
         {
             bool pass = true;
@@ -27,6 +33,12 @@ namespace AuctionTracker.Web.Class
             return pass;
         }
 
+        /// <summary>
+        /// Verify the state of the 'ValidatePricePerItem' user model (pass or fail) before sending it back to the action result
+        /// </summary>
+        /// <param name="modelState"></param>
+        /// <param name="pricePerItem"></param>
+        /// <returns></returns>
         public bool ValidatePricePerItem(ModelStateDictionary modelState, PricePerItem pricePerItem)
         {
             bool pass = true;
@@ -52,6 +64,12 @@ namespace AuctionTracker.Web.Class
             return pass;
         }
 
+        /// <summary>
+        /// Verify the state of the 'ValidateGame' user model (pass or fail) before sending it back to the action result
+        /// </summary>
+        /// <param name="modelState"></param>
+        /// <param name="game"></param>
+        /// <returns></returns>
         public bool ValidateGame(ModelStateDictionary modelState, Game game)
         {
             bool pass = true;
@@ -95,6 +113,12 @@ namespace AuctionTracker.Web.Class
             return pass;
         }
 
+        /// <summary>
+        /// Verify the state of the 'ValidateToy' user model (pass or fail) before sending it back to the action result
+        /// </summary>
+        /// <param name="modelState"></param>
+        /// <param name="toy"></param>
+        /// <returns></returns>
         public bool ValidateToy(ModelStateDictionary modelState, Toy toy)
         {
             bool pass = true;
