@@ -119,16 +119,23 @@
                         <div class="igdbInfoContainer">
 
                             @{
+                                if (Model.FullGameData.ReleaseDates != null && Model.FullGameData.ReleaseDates.Count != 0)
+                                {
+                                    <li><b>Release Date(s):</b> @String.Join(" | ", Model.FullGameData.ReleaseDates.Select(x => x.human).ToArray())</li>
+
+                                    <p></p>
+                                }
+
                                 if (Model.FullGameData.Platforms != null)
                                 {
-                                    <li>@String.Join(", ", Model.FullGameData.Platforms.Select(x => x.name).ToArray())</li>
+                                    <li><b>Platforms:</b> @String.Join(", ", Model.FullGameData.Platforms.Select(x => x.name).ToArray())</li>
                                 }
 
                                 if (Model.FullGameData.Genres != null)
                                 {
                                     <p></p>
 
-                                    <li>@String.Join(", ", Model.FullGameData.Genres.Select(x => x.name).ToArray())</li>
+                                    <li><b>Genres:</b> @String.Join(", ", Model.FullGameData.Genres.Select(x => x.name).ToArray())</li>
                                 }
                             }
 

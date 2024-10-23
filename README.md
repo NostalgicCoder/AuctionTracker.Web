@@ -2,6 +2,8 @@
 eBay Auction Tracker - About:
 -----------------------------------------
 
+First created on: 04/04/2024
+
 The purpose of this project was to achieve two goals:
 
 1)
@@ -15,12 +17,12 @@ Create a programmatic solution to a spreadsheet I had been using for several yea
 Technologies / Principles Used:
 
 - C#
+- ASP.NET MVC Core
 - JavaScript
 - JQuery
-- ASP.NET MVC Core
 - CSS / Bootstrap Themes & Icons
 - Chart.js
-- REST
+- REST API
 - IGDB API (Via my own wrapper, project 'IgdbApi.Lib')
 - RestSharp
 - Newtonsoft.Json

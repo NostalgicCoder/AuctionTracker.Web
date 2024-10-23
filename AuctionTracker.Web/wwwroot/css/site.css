@@ -60,7 +60,9 @@ div.igdbInfoContainer {
     width: 100%;
     height: 350px;
     word-wrap: break-word;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* X axis will not scroll, Y axis will scroll if contents require it*/
 }
 
 span.highlightGreen {
