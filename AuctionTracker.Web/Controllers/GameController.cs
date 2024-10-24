@@ -36,6 +36,8 @@ namespace AuctionTracker.Web.Controllers
 
             product = _sortData.SortGameOrder(product, 1);
 
+            product.CurrentYearItemCount = product.Game.Where(x => x.SaleDate.Year == DateTime.Now.Year).Count();
+
             return View(product);
         }
 

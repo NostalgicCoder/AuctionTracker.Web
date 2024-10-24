@@ -25,6 +25,7 @@ namespace AuctionTracker.Web.Models
         public decimal MaxPostageCurrentYear { get; set; }
         public decimal MinPostageCurrentYear { get; set; }
 
+        public Int32 CurrentYearItemCount { get; set; }
 
         public string Trend { get; set; }
         public string SelectedProduct { get; set; }
@@ -32,6 +33,7 @@ namespace AuctionTracker.Web.Models
         public string SelectedProductLine { get; set; }
         public string SelectedSortOrder { get; set; }
         public string SearchCriteria { get; set; }
+
         public List<SelectedRow> SelectedRow { get; set; }
 
         public bool SearchCondition { get; set; }

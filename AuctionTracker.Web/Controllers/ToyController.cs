@@ -45,6 +45,8 @@ namespace AuctionTracker.Web.Controllers
 
                 product = _sortData.SortToyOrder(product, 1);
 
+                product.CurrentYearItemCount = product.Toy.Where(x => x.ToyLine == product.SelectedProductLine && x.SaleDate.Year == DateTime.Now.Year).Count();
+
                 return View("SelectedToyLine", product);
             }
         }
