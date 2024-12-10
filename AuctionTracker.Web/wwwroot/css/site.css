@@ -75,3 +75,10 @@ img.imgCentre {
     margin-left: auto;
     margin-right: auto;
 }
+
+img.gameCoverArt {
+    border: 1px solid;
+    height: 374;
+    width: 264px;
+    border-radius: 8px;
+}
