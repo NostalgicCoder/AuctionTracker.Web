@@ -16,13 +16,32 @@
 
 <script type="text/javascript">
 
-    // On Page Load:
+    // JQuery - On Page Load:
     $(document).ready(function() {
         // Get the array size for 'selectedRowChkBx' checkboxes and uncheck them all (Req due to dynamic nature of results varying in size)
         var value = $("input:checkbox[id=selectedRowChkBx]").length;
 
         for (i = 0; i < value; i++) {
             $('input:checkbox[id=selectedRowChkBx]')[i].checked = false;
+        }
+        
+        var priceAccuracy = @Html.Raw(Json.Serialize(Model.PriceAccuracy))
+
+        var spanResultCountVal = document.getElementById('spanResultCount');
+
+        spanResultCountVal.style.fontWeight = 'bold';
+       
+        if(priceAccuracy == 'Low Accuracy')
+        {
+            spanResultCountVal.style.color = 'red';
+        }
+        else if (priceAccuracy == 'Medium Accuracy')
+        {
+            spanResultCountVal.style.color = 'orange';
+        }
+        else if (priceAccuracy == 'High Accuracy')
+        {
+            spanResultCountVal.style.color = 'green';
         }
     });
 
@@ -161,7 +180,7 @@
                     Result Count:
                 </th>
                 <td class="siteTheme">
-                    @Model.Game.Count().ToString()
+                    @Model.Game.Count().ToString() - <span id="spanResultCount">@Model.PriceAccuracy</span> &nbsp; <i class="bi bi-info-square" data-toggle="tooltip" data-placement="right" title="The more results that are available the greater the accuracy of the pricing data."></i>
                 </td>
             </tr>
             <tr>

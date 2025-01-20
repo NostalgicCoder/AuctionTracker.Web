@@ -28,6 +28,7 @@ namespace AuctionTracker.Web.Models
         public Int32 CurrentYearItemCount { get; set; }
 
         public string Trend { get; set; }
+        public string PriceAccuracy { get; set; }
         public string SelectedProduct { get; set; }
         public string SelectedGamePlatform { get; set; }
         public string SelectedProductLine { get; set; }

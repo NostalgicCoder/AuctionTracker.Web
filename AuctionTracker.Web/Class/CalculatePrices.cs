@@ -15,6 +15,8 @@ namespace AuctionTracker.Web.Class
         /// <returns></returns>
         public Product GetGamePrices(Product product)
         {
+            product.PriceAccuracy = GetPriceAccuracy(product.Game.Count());
+
             if (product.Game.Count() != 0)
             {
                 product.MeanPrice = Math.Round((product.Game.Sum(x => x.Price) / product.Game.Count()), 2);
@@ -96,6 +98,8 @@ namespace AuctionTracker.Web.Class
         /// <returns></returns>
         public Product GetToyPrices(Product product)
         {
+            product.PriceAccuracy = GetPriceAccuracy(product.Toy.Count());
+
             if (product.Toy.Count() != 0)
             {
                 product.MeanPrice = Math.Round((product.Toy.Sum(x => x.Price) / product.Toy.Count()), 2);
@@ -167,6 +171,31 @@ namespace AuctionTracker.Web.Class
             }
 
             return product;
+        }
+
+        /// <summary>
+        /// Get the accuracy of a price based on the number of results available for analysis
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public string GetPriceAccuracy(Int32 count)
+        {
+            // TODO - Get this to also look at the age of results to factor in accuracy
+
+            if(count == 0)
+            {
+                return "No Results";
+            }
+            else if (count > 0 && count <= 5)
+            {
+                return "Low Accuracy";
+            }
+            else if (count > 5 && count <= 20)
+            {
+                return "Medium Accuracy";
+            }
+
+            return "High Accuracy";
         }
     }
 }
