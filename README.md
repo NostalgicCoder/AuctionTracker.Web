@@ -29,6 +29,7 @@ Technologies / Principles Used:
 - Entity Framework - Code first approach
 - SQL Server Express backend database
 - TDD (Microsoft Test Framework + Fluent Assertion)
+- Dependancy Injection
 
 Requirements:
 

@@ -1,5 +1,4 @@
-﻿using AuctionTracker.Web.Class;
-using AuctionTracker.Web.Interfaces;
+﻿using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +6,12 @@ namespace AuctionTracker.Web.Controllers
 {
     public class ToolsController : Controller
     {
-        private IValidation _validation = new Validation();
+        private IValidation _validation;
+
+        public ToolsController(IValidation validation)
+        {
+            _validation = validation;
+        }
 
         public IActionResult Index(PricePerItem? pricePerItem)
         {

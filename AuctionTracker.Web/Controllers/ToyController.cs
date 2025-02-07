@@ -1,5 +1,4 @@
-﻿using AuctionTracker.Web.Class;
-using AuctionTracker.Web.Data;
+﻿using AuctionTracker.Web.Data;
 using AuctionTracker.Web.Interfaces;
 using AuctionTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,18 +10,23 @@ namespace AuctionTracker.Web.Controllers
     {
         private readonly ApplicationDbContext _db;
 
-        private IPopulateControls _populateControls = new PopulateControls();
-        private IGeneralHelper _generalHelper = new GeneralHelper();
-        private IValidation _validation = new Validation();
-        private ISortData _sortData = new SortData();
-        private IPopulateProductModel _populateProductModel = new PopulateProductModel();
+        private IPopulateControls _populateControls;
+        private IGeneralHelper _generalHelper;
+        private IValidation _validation;
+        private ISortData _sortData;
+        private IPopulateProductModel _populateProductModel;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ToyController(ApplicationDbContext db)
+        public ToyController(ApplicationDbContext db, IPopulateControls populateControls, IGeneralHelper generalHelper, IValidation validation, ISortData sortData, IPopulateProductModel populateProductModel)
         {
             _db = db;
+            _populateControls = populateControls;
+            _generalHelper = generalHelper;
+            _validation = validation;
+            _sortData = sortData;
+            _populateProductModel = populateProductModel;
         }
 
         public async Task<IActionResult> Index(Product? product)
