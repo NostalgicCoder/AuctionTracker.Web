@@ -18,6 +18,8 @@ builder.Services.AddSingleton<IPopulateProductModel, PopulateProductModel>();
 builder.Services.AddSingleton<IProcessIgdb, ProcessIgdb>();
 builder.Services.AddSingleton<IGeneralHelper, GeneralHelper>();
 builder.Services.AddSingleton<IPopulateControls, PopulateControls>();
+builder.Services.AddSingleton<ICalculateTrends, CalculateTrends>();
+builder.Services.AddSingleton<ICalculatePrices, CalculatePrices>();
 
 var app = builder.Build();
 

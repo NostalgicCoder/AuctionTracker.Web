@@ -5,9 +5,9 @@ namespace AuctionTracker.Web.Class
 {
     public class CalculateTrends : ICalculateTrends
     {
-        private string _trendUp = "Going up";
-        private string _trendDown = "Going down";
-        private string _trendSame = "Staying the same";
+        private readonly string _trendUp = "Going up";
+        private readonly string _trendDown = "Going down";
+        private readonly string _trendSame = "Staying the same";
 
         /// <summary>
         /// Analyse the search results and try and spot a trend for the price: up, down, same or not enough data.  

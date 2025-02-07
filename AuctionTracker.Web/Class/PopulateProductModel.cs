@@ -6,8 +6,14 @@ namespace AuctionTracker.Web.Class
 {
     public class PopulateProductModel : IPopulateProductModel
     {
-        private ICalculatePrices _calculatePrices = new CalculatePrices();
-        private ISortData _sortData = new SortData();
+        private ICalculatePrices _calculatePrices;
+        private ISortData _sortData;
+
+        public PopulateProductModel(ICalculatePrices calculatePrices, ISortData sortData)
+        {
+            _calculatePrices = calculatePrices;
+            _sortData = sortData;
+        }
 
         /// <summary>
         /// Return all the game results that match the users selection, filter and sorting result on the frontend.

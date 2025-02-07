@@ -5,7 +5,12 @@ namespace AuctionTracker.Web.Class
 {
     public class CalculatePrices : ICalculatePrices
     {
-        private ICalculateTrends _calculateTrends = new CalculateTrends();
+        private ICalculateTrends _calculateTrends;
+
+        public CalculatePrices(ICalculateTrends calculateTrends)
+        {
+            _calculateTrends = calculateTrends;
+        }
 
         /// <summary>
         /// Calculate prices associated with the current game thats been selected by the user

@@ -6,7 +6,12 @@ namespace AuctionTracker.Web.Class
 {
     public class Validation : IValidation
     {
-        private IGeneralHelper _generalHelper = new GeneralHelper();
+        private IGeneralHelper _generalHelper;
+
+        public Validation(IGeneralHelper generalHelper)
+        {
+            _generalHelper = generalHelper;
+        }
 
         /// <summary>
         /// Verify the state of the 'ValidateSellThroughRate' user model (pass or fail) before sending it back to the action result
